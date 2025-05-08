@@ -38,7 +38,7 @@ export default function PricingCard({ title, price, features, color = "blue", hi
 
   return (
     <div
-      className={`bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 ${highlighted ? "ring-2 ring-pink-500 transform scale-105" : "hover:-translate-y-2"}`}
+      className={`bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 flex flex-col ${highlighted ? "ring-2 ring-pink-500 transform scale-105" : "hover:-translate-y-2"}`}
     >
       <div className={`${colorClasses.header} p-6 text-white`}>
         <h3 className="text-xl font-medium mb-2">{title}</h3>
@@ -47,9 +47,9 @@ export default function PricingCard({ title, price, features, color = "blue", hi
           {price}
         </div>
       </div>
-
-      <div className="p-6">
-        <ul className="space-y-3 mb-6">
+  
+      <div className="p-6 flex flex-col justify-between flex-1">
+        <ul className="space-y-3 mb-6 flex-1">
           {features.map((feature, index) => (
             <li key={index} className="flex items-center text-gray-700">
               <svg
@@ -59,13 +59,13 @@ export default function PricingCard({ title, price, features, color = "blue", hi
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
               {feature}
             </li>
           ))}
         </ul>
-
+  
         <Link
           href="/tickets"
           className={`block w-full py-3 px-4 text-center rounded-lg font-medium transition-colors ${colorClasses.button}`}
@@ -75,4 +75,5 @@ export default function PricingCard({ title, price, features, color = "blue", hi
       </div>
     </div>
   )
+  
 }

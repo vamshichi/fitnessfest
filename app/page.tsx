@@ -9,18 +9,19 @@ import SponsorGrid from "@/components/sponsor-grid"
 // import GallerySection from "@/components/gallery-section"
 import NewsletterForm from "@/components/newsletter-form"
 import SpeakerSection from "@/components/speaker"
+import Tecket from "@/public/images/h3-counter-bg.png"
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="min-h-screen relative bg-gradient-to-r from-purple-900 to-violet-800 text-white">
+      <section className="min-h-screen relative  text-white">
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-50"
+        className="absolute inset-0 w-full h-full object-cover"
        >
   <source src="/video/Background Clip.mp4" type="video/mp4" />
   Your browser does not support the video tag.
@@ -33,7 +34,7 @@ export default function Home() {
             </div>
 
             <h1
-              className="mb-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              className="mb-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight "
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -72,62 +73,81 @@ export default function Home() {
       </section>
 
       {/* Countdown Section */}
-      <section className="py-12 bg-white shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="bg-[url('/images/h3-counter-bg.png')] bg-cover bg-center ">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center py-15 px-25">
-              <div className="lg:col-span-1 text-center lg:text-left">
-                <h3 className="text-2xl font-bold mb-2 ">Event Starting In</h3>
-                <p className="">Secure your seat now</p>
-                <Link
-                  href="/tickets"
-                  className="hidden md:inline-block bg-orange-600 text-white px-4 py-2 mt-5 rounded-lg font-medium hover:bg-purple-700 transition-colors"
-                >
-                  Buy Ticket
-                </Link>
-              </div>
-              <div className="lg:col-span-3 ">
-                <CountdownTimer targetDate="2025-11-22T09:00:00" />
-              </div>
-            </div>
+      <section className="py-20 bg-white shadow-sm">
+  <div className="container mx-auto px-4">
+    <div
+      className="rounded-lg bg-no-repeat bg-cover bg-center min-h-[300px] flex items-center"
+      style={{
+        backgroundImage: `url(${Tecket.src})`,
+      }}
+    >
+      <div className="w-full p-6 md:p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-center">
+          {/* Left Section */}
+          <div className="space-y-3 text-black pl-15 py-10">
+            <h3 className="text-2xl md:text-3xl font-bold">Event Starting In</h3>
+            <p className="">Secure your seat now</p>
+            <Link
+              href="/tickets"
+              className="inline-block bg-orange-600 text-white px-5 py-2 rounded-md font-medium hover:bg-purple-700 transition-colors"
+            >
+              Buy Ticket
+            </Link>
+          </div>
+
+          {/* Countdown Timer */}
+          <div className="lg:col-span-3 mt-6 lg:mt-0 lg:pr-40 text-white">
+            <CountdownTimer targetDate="2025-11-22T09:00:00" />
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Event Stats Section */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500 rounded-full -translate-y-1/2 translate-x-1/2 z-0"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-500 rounded-full translate-y-1/2 -translate-x-1/2 z-0"></div>
+  {/* Decorative Circles */}
+  <div className="absolute top-0 right-0 w-40 h-40 sm:w-64 sm:h-64 bg-pink-500 rounded-full -translate-y-1/2 translate-x-1/2 z-0 pointer-events-none"></div>
+  <div className="absolute bottom-0 left-0 w-40 h-40 sm:w-64 sm:h-64 bg-amber-500 rounded-full translate-y-1/2 -translate-x-1/2 z-0 pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Join This Event</h2>
-              <p className="text-lg text-gray-700 mb-6">
-              Bengaluru Fitness Festival is more than just an event – it’s a movement to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
-              </p>
-              <p className="text-gray-600">
-              Expect high-energy workouts, educational sessions, fun activities for families, and a buzzing atmosphere that will leave you inspired and recharged.
-              </p>
-            </div>
+  {/* Content */}
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      {/* Text Section */}
+      <div>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Join This Event
+        </h2>
+        <p className="text-lg text-gray-700 mb-6">
+          Bengaluru Fitness Festival is more than just an event – it’s a movement to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
+        </p>
+        <p className="text-gray-600">
+          Expect high-energy workouts, educational sessions, fun activities for families, and a buzzing atmosphere that will leave you inspired and recharged.
+        </p>
+      </div>
 
-            <div className="grid grid-cols-3 gap-6">
-              <div className="text-center p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-4xl font-bold text-purple-600 mb-2">120+</h3>
-                <p className="text-gray-700">Attendees</p>
-              </div>
-              <div className="text-center p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-4xl font-bold text-pink-500 mb-2">15+</h3>
-                <p className="text-gray-700">Workshops</p>
-              </div>
-              <div className="text-center p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-4xl font-bold text-amber-500 mb-2">3</h3>
-                <p className="text-gray-700">Days</p>
-              </div>
-            </div>
-          </div>
+      {/* Statistics Section */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="text-center p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <h3 className="text-4xl font-bold text-purple-600 mb-2">120+</h3>
+          <p className="text-gray-700">Attendees</p>
         </div>
-      </section>
+        <div className="text-center p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <h3 className="text-4xl font-bold text-pink-500 mb-2">15+</h3>
+          <p className="text-gray-700">Workshops</p>
+        </div>
+        <div className="text-center p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <h3 className="text-4xl font-bold text-amber-500 mb-2">3</h3>
+          <p className="text-gray-700">Days</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* About Section */}
       <section className="py-16 md:py-24 bg-gray-100 relative overflow-hidden">
@@ -203,7 +223,7 @@ export default function Home() {
               <div className="text-center mt-12 ">
             <Link
               href="/speakers"
-              className="inline-flex items-center border border-white text-white px-6 py-3 my-10 rounded-lg font-medium hover:bg-white hover:text-purple-900 transition-colors bg-purple-600"
+              className="inline-flex items-center border border-white text-white px-6 py-3 my-10 rounded-lg font-medium hover:bg-white hover:text-purple-900 transition-colors bg-orange-600"
             >
               View All Speakers
               <ChevronRight size={16} className="ml-2" />

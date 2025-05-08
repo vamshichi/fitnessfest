@@ -42,22 +42,22 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
   }, [targetDate])
 
   return (
-    <div className="grid grid-cols-4 gap-4 text-center">
-      <div className="bg-white p-4 rounded-lg shadow">
-        <div className="text-4xl md:text-5xl font-bold text-purple-600">{days}</div>
-        <div className="text-gray-600 text-sm md:text-base mt-2">Days</div>
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+      <div className="bg-white/90 p-4 sm:p-5 rounded-lg shadow w-full">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600">{days}</div>
+        <div className="text-gray-700 text-sm sm:text-base mt-2">Days</div>
       </div>
-      <div className="bg-white p-4 rounded-lg shadow">
-        <div className="text-4xl md:text-5xl font-bold text-pink-500">{hours}</div>
-        <div className="text-gray-600 text-sm md:text-base mt-2">Hours</div>
+      <div className="bg-white/90 p-4 sm:p-5 rounded-lg shadow w-full">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-500">{hours}</div>
+        <div className="text-gray-700 text-sm sm:text-base mt-2">Hours</div>
       </div>
-      <div className="bg-white p-4 rounded-lg shadow">
-        <div className="text-4xl md:text-5xl font-bold text-amber-500">{minutes}</div>
-        <div className="text-gray-600 text-sm md:text-base mt-2">Minutes</div>
+      <div className="bg-white/90 p-4 sm:p-5 rounded-lg shadow w-full">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-amber-500">{minutes}</div>
+        <div className="text-gray-700 text-sm sm:text-base mt-2">Minutes</div>
       </div>
-      <div className="bg-white p-4 rounded-lg shadow">
-        <div className="text-4xl md:text-5xl font-bold text-emerald-500">{seconds}</div>
-        <div className="text-gray-600 text-sm md:text-base mt-2">Seconds</div>
+      <div className="bg-white/90 p-4 sm:p-5 rounded-lg shadow w-full">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-emerald-500">{seconds}</div>
+        <div className="text-gray-700 text-sm sm:text-base mt-2">Seconds</div>
       </div>
     </div>
   )
