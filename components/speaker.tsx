@@ -46,8 +46,8 @@ const speakers = [
 export default function SpeakerSection() {
   return (
     <div className="py-12 px-4 text-center">
-      <p className="text-white font-semibold uppercase mb-2">Speakers</p>
-      <h2 className="text-3xl font-extrabold text-purple-950 mb-8">
+      <p className=" font-semibold uppercase mb-2">Speakers</p>
+      <h2 className="text-3xl font-extrabold  mb-8">
         Leading Fitness Speakers
       </h2>
 
@@ -68,7 +68,7 @@ export default function SpeakerSection() {
             </div>
 
             {/* Speaker Info */}
-            <h3 className="mt-4 text-lg font-extrabold text-purple-950">
+            <h3 className="mt-4 text-lg font-extrabold text-slate-900">
               {speaker.name}
             </h3>
             <p className="text-sm text-gray-600">{speaker.title}</p>

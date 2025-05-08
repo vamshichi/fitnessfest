@@ -218,7 +218,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-      <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-amber-300 shadow-sm">
+      <div className="bg-gray-200 shadow-sm">
               <SpeakerSection />
               <div className="text-center mt-12 ">
             <Link
@@ -277,10 +277,10 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-purple-900 to-violet-800 text-white">
+      <section className="py-16 md:py-24 bg-blue-400 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h5 className="text-purple-300 font-semibold mb-4">Event Pricing</h5>
+            <h5 className=" font-semibold mb-4">Event Pricing</h5>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Book your seat now</h2>
             <p className="max-w-2xl mx-auto text-white/80">
               Choose the ticket that best suits your needs and secure your place at the conference
