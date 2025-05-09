@@ -158,7 +158,7 @@ export default function Home() {
                 <div className="pt-8">
                   <div className="rounded-lg overflow-hidden shadow-lg">
                     <Image
-                      src="/images/gym1.jpg"
+                      src="/images/Health.jpg"
                       alt="Conference"
                       width={400}
                       height={600}
@@ -169,7 +169,7 @@ export default function Home() {
                 <div>
                   <div className="rounded-lg overflow-hidden shadow-lg mb-4">
                     <Image
-                      src="/images/gym2.jpg"
+                      src="/images/fitness.jpg"
                       alt="Conference"
                       width={400}
                       height={400}
@@ -178,7 +178,7 @@ export default function Home() {
                   </div>
                   <div className="rounded-lg overflow-hidden shadow-lg">
                     <Image
-                      src="/images/gym3.jpg"
+                      src="/images/nutrition.jpg"
                       alt="Conference"
                       width={400}
                       height={300}
