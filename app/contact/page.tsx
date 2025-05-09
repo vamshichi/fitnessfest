@@ -49,16 +49,27 @@ export default function ContactPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-lg md:text-xl opacity-90 mb-8">
-              Have questions about Maxpo Exhibitions? We're here to help. Reach out to our team.
-            </p>
-          </div>
-        </div>
-      </section>
+      <section className="relative text-white py-20">
+  {/* Background Image */}
+  <div
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={{ backgroundImage: "url('/images/contact.jpg')" }}
+  />
+
+  {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 opacity-40" />
+
+  {/* Content */}
+  <div className="relative z-10 container mx-auto px-4">
+    <div className="max-w-3xl mx-auto text-center">
+      <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+      <p className="text-lg md:text-xl opacity-90 mb-8">
+        Have questions about Fitness Fest? We're here to help. Reach out to our team.
+      </p>
+    </div>
+  </div>
+</section>
+
 
       {/* Contact Form Section */}
       <section className="py-16">
@@ -100,12 +111,12 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-1">Location</h3>
-                    <p className="text-gray-600">Maxpo Exhibitions</p>
-                    <p className="text-gray-600">Dubai, United Arab Emirates</p>
+                    <p className="text-gray-600">Fitness Fest</p>
+                    <p className="text-gray-600">Benguluru</p>
                   </div>
                 </div>
 
-                <div className="flex items-start">
+                {/* <div className="flex items-start">
                   <div className="bg-blue-100 p-3 rounded-full mr-4">
                     <Clock className="w-6 h-6 text-blue-600" />
                   </div>
@@ -114,7 +125,7 @@ export default function ContactPage() {
                     <p className="text-gray-600">Sunday - Thursday: 9:00 AM - 6:00 PM</p>
                     <p className="text-gray-600">Friday - Saturday: Closed</p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -290,17 +301,17 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Find Us</h2>
           <div className="bg-white rounded-xl overflow-hidden shadow-lg h-96">
-            {/* Replace with actual map component or iframe */}
+            {/* Replace with actual map component or iframe 
             <div className="w-full h-full bg-gray-200 flex items-center justify-center">
               <p className="text-gray-500">Interactive Map Would Be Displayed Here</p>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
       <section className="py-16">

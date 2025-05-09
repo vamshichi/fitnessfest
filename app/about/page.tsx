@@ -3,24 +3,43 @@ import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { MapPin, Calendar, Users, Clock } from "lucide-react"
+import ZonesAndHighlights from "@/components/ZonesAndHighlights"
+import WhyAttend from "@/components/WhyAttend"
+import WhoShouldJoin from "@/components/WhoShouldJoin"
 
 export default function AboutPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="min-h-screen bg-[#f3c532] text-white py-20 flex items-center">
-  <div className="container mx-auto px-4">
+      <section className="min-h-screen bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/Banner for website.jpg')" }}>
+  <div className="absolute inset-0 bg-black opacity-60"></div>
+  <div className="container mx-auto px-4 relative z-10">
     <div className="max-w-3xl mx-auto text-center">
-      <h1 className="text-4xl md:text-5xl font-bold mb-6">About The Conference</h1>
-      <p className="text-lg md:text-xl opacity-90 mb-8">
+      <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">About the Festival Fitness  for Every BODY.</h1>
+      {/* <p className="text-lg md:text-xl opacity-90 mb-8 text-white">
         Join us for the most anticipated tech event of the year, bringing together industry leaders, innovators,
         and tech enthusiasts.
-      </p>
+      </p> */}
     </div>
   </div>
 </section>
 
-
+<section className="py-16 bg-white  text-center ">
+  <div className="max-w-3xl mx-auto">
+    <h2 className="text-3xl font-bold mb-6">Welcome to Bengaluru Fitness Festival</h2>
+  <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+  Bengaluru Fitness Festival is more than just an event – it’s a movement to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
+  </p>
+  <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+  Expect high-energy workouts, educational sessions, fun activities for families, and a buzzing atmosphere that will leave you inspired and recharged.
+    </p>
+    </div>
+</section>
+      <section>
+        <div>
+          <ZonesAndHighlights />
+        </div>
+      </section>
       {/* About Event Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
@@ -45,7 +64,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
+                  src="/images/image for website.jpg"
                   alt="Conference attendees"
                   width={800}
                   height={600}
@@ -106,7 +125,10 @@ export default function AboutPage() {
       </section>
 
       {/* Why Attend */}
-      <section className="py-16 md:py-24">
+      <div><WhyAttend /></div>
+      <div><WhoShouldJoin /></div>
+      {/* <WhoShouldJoin /> */}
+      {/* <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Why Attend DevCon 2024?</h2>
@@ -148,7 +170,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
       <section className="py-16 bg-gray-50">

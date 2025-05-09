@@ -48,7 +48,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="600">
               <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 <Users size={18} />
-                <span>5000+ Attendees</span>
+                <span>20000+ Attendees</span>
               </div>
               {/* <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 <Clock size={18} />
@@ -290,32 +290,31 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <PricingCard
               title="General Pass"
-              price={499}
+              price="₹499 (1-Day) / ₹899 (2-Day)"
               color="blue"
               features={["Entry To All General Zones", "Participation Fitness Sessions & Workshops", "Digital Event Certificate", "Festival Kit (Wristband, Water Bottle, Event Guide)","INCLUDES: 1 Healthy Snack + Eenergy Drink Per Day"]}
             />
             <PricingCard
               title="All-Access Pass"
-              price={1399}
+              price="₹1,399 (2-Day only)"
               color="pink"
               features={["Aaccess To Sessions & Front-Stage Spots", "Event Certificate", "Premium Festival Kit (Bag, T-shirt, Goodies)", "1-On-1 Expert Consult Slot (Nutrition or Fitness)", "INCLUDES: Daily Lunch (Healthy Veg/Non-veg combo) + 2 Snacks + Drinks"]}
               highlighted={true}
             />
             <PricingCard
               title="Group Pass(5+ People)"
-              price={243}
+              price="₹699/person (2-Day)"
               color="amber"
               features={[
-                "All-Access Level Benefits",
+                "All-Access level benefits",
                 "Team Fitness Challenge Entry",
                 "Group Photo + Wearable Band",
-                "Event Certificate",
                 "INCLUDES: Daily Lunch + Energy Booster + Snack Combo",
               ]}
             />
             <PricingCard
               title="Senior wellness Pass(Age 60+)"
-              price={499}
+              price="₹399 (1-Day) / ₹599 (2-Day)"
               color="pink"
               features={[
                 "Entry to wellness-specific sessions (low impact)",
@@ -325,14 +324,24 @@ export default function Home() {
               ]}
             />
             <PricingCard
-              title="Basic Pass(Age 60+)"
-              price={43}
+              title="Family Pass (2 Adults + 2 Kids under 12)"
+              price="₹1,799 (2-Day)"
               color="blue"
               features={[
                 "Back Row Seat",
                 "Free Lunch & Snacks",
                 "Event Certificate",
                 "1 Workshop",
+              ]}
+            />
+            <PricingCard
+              title="Kids Under 6"
+              price="FREE ENTRY"
+              color="blue"
+              features={[
+                "Must be accompanied by a parent",
+                "INCLUDES: Free fruit cup or healthy cookie",
+                
               ]}
             />
           </div>

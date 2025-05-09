@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Check, Calendar, Clock, MapPin } from "lucide-react"
 import Link from "next/link"
+import TicketsSection from "@/components/TicketsSection"
 
 // Ticket data
 const tickets = [
@@ -153,16 +154,27 @@ export default function TicketsPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-900 to-purple-700 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Get Your Tickets</h1>
-            <p className="text-lg md:text-xl opacity-90 mb-8">
-              Secure your spot at DevCon 2024 and join thousands of tech enthusiasts for an unforgettable experience
-            </p>
-          </div>
-        </div>
-      </section>
+      <section className="relative text-white py-20">
+  {/* Background Image */}
+  <div
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={{ backgroundImage: "url('/images/ticket.jpg')" }}
+  />
+
+  {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-purple-700 opacity-50" />
+
+  {/* Content */}
+  <div className="relative z-10 container mx-auto px-4">
+    <div className="max-w-3xl mx-auto text-center">
+      <h1 className="text-4xl md:text-5xl font-bold mb-6">Get Your Tickets</h1>
+      <p className="text-lg md:text-xl opacity-90 mb-8">
+        Secure your spot at DevCon 2024 and join thousands of tech enthusiasts for an unforgettable experience
+      </p>
+    </div>
+  </div>
+</section>
+
 
       {/* Event Details */}
       <section className="py-12 bg-gray-50">
@@ -468,7 +480,7 @@ export default function TicketsPage() {
           </div>
         </div>
       </section>
-
+      <TicketsSection />
       {/* Support Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">

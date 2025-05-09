@@ -2,7 +2,7 @@ import Link from "next/link"
 
 interface PricingCardProps {
   title: string
-  price: number
+  price: string
   features: string[]
   color?: "blue" | "pink" | "amber"
   highlighted?: boolean
@@ -42,8 +42,8 @@ export default function PricingCard({ title, price, features, color = "blue", hi
     >
       <div className={`${colorClasses.header} p-6 text-white`}>
         <h3 className="text-xl font-medium mb-2">{title}</h3>
-        <div className="text-3xl font-bold">
-          <sup className="text-xl">₹</sup>
+        <div className="">
+          {/* <sup className="text-xl"></sup> */}
           {price}
         </div>
       </div>

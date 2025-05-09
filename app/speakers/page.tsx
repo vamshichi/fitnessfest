@@ -194,18 +194,29 @@ export default function SpeakersPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-900 to-purple-700 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Speakers</h1>
-            <p className="text-lg md:text-xl opacity-90 mb-8">
-              Learn from industry leaders and experts who are shaping the future of technology
-            </p>
-          </div>
-        </div>
-      </section>
+      <section className="relative text-white py-20">
+  {/* Background Image */}
+  <div
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={{ backgroundImage: "url('/images/Banner for website 2.jpg')" }}
+  />
 
-      {/* Featured Speakers */}
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-purple-700 opacity-40" />
+
+  {/* Content */}
+  <div className="relative z-10 container mx-auto px-4">
+    <div className="max-w-3xl mx-auto text-center">
+      <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Speakers</h1>
+      <p className="text-lg md:text-xl opacity-90 mb-8">
+        Learn from industry leaders and experts who are shaping the future of technology
+      </p>
+    </div>
+  </div>
+</section>
+
+
+      {/* Featured Speakers
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Speakers</h2>
@@ -215,7 +226,7 @@ export default function SpeakersPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* All Speakers */}
       <section className="py-16 bg-gray-50">
