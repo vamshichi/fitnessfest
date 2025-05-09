@@ -5,12 +5,13 @@ import { Inter } from "next/font/google"
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 import Image from "next/image"
+import Header from "@/components/navbar"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Developer Conference 2024",
-  description: "Join us for the biggest developer conference of the year",
+  title: "fitnessfest",
+  description: "Bengaluru Fitness Festival is more than just an event",
 }
 
 export default function RootLayout({
@@ -21,31 +22,31 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <header className="bg-[#1A1A1A] shadow-sm sticky top-0 z-50">
+      {/* <header className="shadow-sm sticky top-0 z-50">
 
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between py-4">
+          <div className="bg-white container mx-auto">
+            <div className="flex items-center justify-between ">
               <Link href="/" className="text-2xl font-bold text-purple-900">
-              <Image alt="Logo" src="/logo/logo2.png" width={300} height={150} className="h-25" />
+              <Image alt="Logo" src="/images/logo in black.png" width={200} height={200} className="ml-10" />
               </Link>
 
               <nav className="hidden md:flex items-center space-x-8">
-                <Link href="/" className="text-white hover:text-purple-600 font-medium">
+                <Link href="/" className="text-black hover:text-purple-600 font-medium">
                   Home
                 </Link>
-                <Link href="/about" className="text-white hover:text-purple-600 font-medium">
+                <Link href="/about" className="text-black  hover:text-purple-600 font-medium">
                   About
                 </Link>
-                <Link href="/speakers" className="text-white hover:text-purple-600 font-medium">
+                <Link href="/speakers" className="text-black  hover:text-purple-600 font-medium">
                   Speakers
                 </Link>
-                <Link href="/schedule" className="text-white hover:text-purple-600 font-medium">
+                <Link href="/schedule" className="text-black hover:text-purple-600 font-medium">
                   Schedule
                 </Link>
-                <Link href="/blog" className="text-white hover:text-purple-600 font-medium">
+                <Link href="/blog" className="text-black hover:text-purple-600 font-medium">
                   Blog
                 </Link>
-                <Link href="/contact" className="text-white hover:text-purple-600 font-medium">
+                <Link href="/contact" className="text-black hover:text-purple-600 font-medium">
                   Contact
                 </Link>
               </nav>
@@ -72,7 +73,8 @@ export default function RootLayout({
               </div>
             </div>
           </div>
-        </header>
+        </header> */}
+        <Header />
 
         {children}
 

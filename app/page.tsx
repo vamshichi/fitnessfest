@@ -50,10 +50,10 @@ export default function Home() {
                 <Users size={18} />
                 <span>5000+ Attendees</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+              {/* <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 <Clock size={18} />
                 <span>199 Days</span>
-              </div>
+              </div> */}
               <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 <MapPin size={18} />
                 <span>KTPO - Whitefield, Bengaluru, India</span>
@@ -370,11 +370,11 @@ export default function Home() {
       </section> */}
 
       {/* Newsletter Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-purple-900 to-violet-800 text-white">
+      <section className="py-16 md:py-24 bg-[#dc5044] text-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h5 className="text-purple-300 font-semibold mb-4">Subscribe Newsletter</h5>
+              <h5 className="text-white font-semibold mb-4">Subscribe Newsletter</h5>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Subscribe to receive daily news</h2>
               <p className="text-white/80">
                 Stay updated with the latest conference news, speaker announcements, and special offers

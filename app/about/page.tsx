@@ -8,7 +8,7 @@ export default function AboutPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="min-h-screen bg-gradient-to-r from-purple-900 to-purple-700 text-white py-20 flex items-center">
+      <section className="min-h-screen bg-[#f3c532] text-white py-20 flex items-center">
   <div className="container mx-auto px-4">
     <div className="max-w-3xl mx-auto text-center">
       <h1 className="text-4xl md:text-5xl font-bold mb-6">About The Conference</h1>
@@ -34,7 +34,7 @@ export default function AboutPage() {
               To become India’s most vibrant fitness movement—uniting individuals, families, and communities through a shared passion for health, well-being, and active living.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-purple-600 hover:bg-purple-700">
+                <Button className="bg-[#dc5044] hover:bg-purple-700">
                   <Link href="/schedule">View Schedule</Link>
                 </Button>
                 <Button variant="outline">
@@ -52,7 +52,7 @@ export default function AboutPage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-purple-600 text-white p-6 rounded-lg shadow-lg hidden md:block">
+              <div className="absolute -bottom-6 -left-6 bg-[#dc5044] text-white p-6 rounded-lg shadow-lg hidden md:block">
                 <p className="text-xl font-bold">10+ Years</p>
                 <p>Of Successful Events</p>
               </div>
@@ -211,7 +211,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-purple-900 to-purple-700 text-white">
+      <section className="py-16 bg-[#dc5044] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Join Us?</h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
