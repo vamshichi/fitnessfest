@@ -119,14 +119,14 @@ export default function Home() {
       {/* Text Section */}
       <div>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Join This Event
+        Bengaluru Fitness Festival 2025
+        India Moves Here.
         </h2>
         <p className="text-lg text-gray-700 mb-6">
-          Bengaluru Fitness Festival is more than just an event – it’s a movement to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
+        Welcome to Bengaluru Fitness Festival 2025 – a celebration of energy, strength, and wellness for all age groups. Join us for two action-packed days of movement, music, and motivation as we bring together fitness lovers from every corner of the city.
         </p>
         <p className="text-gray-600">
-          Expect high-energy workouts, educational sessions, fun activities for families, and a buzzing atmosphere that will leave you inspired and recharged.
-        </p>
+        From yoga mats to obstacle races, from nutrition to dance, this is where Bengaluru comes alive and gets moving. Are you ready to take part?        </p>
       </div>
 
       {/* Statistics Section */}
@@ -140,7 +140,7 @@ export default function Home() {
           <p className="text-gray-700">Workshops</p>
         </div>
         <div className="text-center p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 className="text-4xl font-bold text-amber-500 mb-2">3</h3>
+          <h3 className="text-4xl font-bold text-amber-500 mb-2">2</h3>
           <p className="text-gray-700">Days</p>
         </div>
       </div>
@@ -277,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-16 md:py-24 bg-blue-400 text-white">
+      <section className="py-16 md:py-24 bg-[#70adb0] text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h5 className=" font-semibold mb-4">Event Pricing</h5>

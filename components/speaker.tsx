@@ -58,7 +58,7 @@ export default function SpeakerSection() {
             <div className="relative w-[220px] h-[220px]">
               {/* Rotating dotted border */}
               <div
-                className={`absolute inset-0 rounded-full border-5 border-dashed ${speaker.color} transition-transform duration-100 group-hover:animate-spin`}
+                className={`absolute inset-0 rounded-full border-3 border-dashed ${speaker.color} transition-transform duration-500 group-hover:animate-spin`}
               ></div>
 
               {/* Speaker image placeholder */}
