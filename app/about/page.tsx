@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { MapPin, Calendar, Users, Clock } from "lucide-react"
-import ZonesAndHighlights from "@/components/ZonesAndHighlights"
+// import ZonesAndHighlights from "@/components/ZonesAndHighlights"
 import WhyAttend from "@/components/WhyAttend"
 import WhoShouldJoin from "@/components/WhoShouldJoin"
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
 </section>
       <section>
         <div>
-          <ZonesAndHighlights />
+          {/* <ZonesAndHighlights /> */}
         </div>
       </section>
       {/* About Event Section */}

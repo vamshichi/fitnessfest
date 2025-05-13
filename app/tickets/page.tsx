@@ -1,14 +1,14 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+// import { Input } from "@/components/ui/input"
+// import { Checkbox } from "@/components/ui/checkbox"
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+// import { Label } from "@/components/ui/label"
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Check, Calendar, Clock, MapPin } from "lucide-react"
-import Link from "next/link"
-import TicketsSection from "@/components/TicketsSection"
+// import Link from "next/link"
+// import TicketsSection from "@/components/TicketsSection"
 import Ticket from "@/components/ticket"
 
 // Ticket data

@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
-import Image from "next/image"
+// import Image from "next/image"
 import Header from "@/components/navbar"
 
 const inter = Inter({ subsets: ["latin"] })
