@@ -1,9 +1,11 @@
 // app/event/[id]/page.tsx
 import Image from 'next/image';
+import { use } from "react"
 
-interface Props {
-  params: { id: string };
-}
+
+type Props = {
+    params: { id: string };
+  };
 
 // Mock data – replace this with actual fetch logic
 const event = {
@@ -16,8 +18,9 @@ const event = {
   image: '/images/event-banner.jpg',
 };
 
-export default async function EventDetailsPage({ params }: Props) {
-  const { id } = params;
+export default async function Page({ params }: { params: Promise<{ id: string }> })  {
+    const resolvedParams = use(params)
+      const Id = Number.parseInt(resolvedParams.id)
 
   return (
     <div className="max-w-7xl mx-auto p-6">
