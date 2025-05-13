@@ -107,12 +107,18 @@ export default function SpeakerSection() {
             </div>
 
             {/* Speaker Info */}
+            <div
+  className="mt-4 text-center bg-no-repeat bg-center bg-cover"
+  style={{ backgroundImage: "url('/images/png.png')" }}
+>
             <h3 className="mt-4 text-lg font-extrabold text-slate-900">{speaker.name}</h3>
             <p className="text-sm text-gray-600">{speaker.title}</p>
-            <div className="mt-2 flex items-center justify-center gap-2">
+            </div>
+
+            {/* <div className="mt-2 flex items-center justify-center gap-2">
               <span className="text-xs font-medium bg-gray-100 px-2 py-1 rounded">{speaker.day}</span>
               <span className="text-xs text-gray-500">{speaker.timing}</span>
-            </div>
+            </div> */}
           </Link>
         ))}
       </div>

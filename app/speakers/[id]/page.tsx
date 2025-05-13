@@ -108,6 +108,7 @@ export default function SpeakerDetail({ params }: { params: Promise<{ id: string
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Speaker image with rotating border */}
+          <div className=" bg-gray-100 p-20">
           <div className="relative w-[300px] h-[300px]">
             <div
               className={`absolute inset-0 rounded-full border-3 border-dashed ${speaker.color} animate-spin-slow`}
@@ -119,15 +120,25 @@ export default function SpeakerDetail({ params }: { params: Promise<{ id: string
                 className="w-full h-full object-cover"
               />
             </div>
+           
+          </div>
+          <div
+  className="mt-4 text-center bg-no-repeat bg-center"
+  style={{ backgroundImage: "url('/images/png.png')" }}
+>
+    <div className="mt-4">
+  <h1 className="text-xl font-extrabold mb-2 ">{speaker.name}</h1>
+  <p className="text-gray-900 mb-2">{speaker.title}</p>
+  </div>
+</div>
+
           </div>
 
           {/* Speaker details */}
           <div className="flex-1">
-            <h1 className="text-4xl font-extrabold mb-2">{speaker.name}</h1>
-            <p className="text-xl text-gray-600 mb-2">{speaker.title}</p>
-
+            
             {/* Schedule information */}
-            <div className="flex items-center gap-4 mb-6">
+            {/* <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center gap-1 text-sm bg-gray-100 px-3 py-1.5 rounded-full">
                 <Calendar size={16} className="text-gray-500" />
                 <span>{speaker.day}</span>
@@ -136,21 +147,49 @@ export default function SpeakerDetail({ params }: { params: Promise<{ id: string
                 <Clock size={16} className="text-gray-500" />
                 <span>{speaker.timing}</span>
               </div>
-            </div>
+            </div> */}
 
             <div className="space-y-4">
+                <h2 className="text-2xl font-bold">Personal Information</h2>
               <p className="text-lg">{speaker.bio}</p>
-              <div className="pt-4">
+              {/* <div className="pt-4">
                 <h2 className="text-2xl font-bold mb-4">Session Details</h2>
                 <div className="bg-gray-100 p-4 rounded-lg">
                   <p className="font-medium">Fitness in the Digital Age</p>
                   <p className="text-gray-600 mt-1">Location: Main Hall, Room 101</p>
                   <p className="text-gray-600">Capacity: 200 attendees</p>
                 </div>
-              </div>
+              </div> */}
+            </div>
+            
+          </div>
+        </div>
+        <div className="mt-12">
+  <h2 className="text-2xl font-bold mb-6">Speaker's Next Events</h2>
+  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {[1, 2, 3].map((_, index) => (
+      <div key={index} className="bg-white shadow-md rounded-lg p-4 border border-gray-200">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-orange-500">12</div>
+            <div className="uppercase text-sm text-gray-500">August</div>
+          </div>
+          <div>
+            <div className="text-sm text-gray-700 flex items-center gap-1">
+              <Clock size={16} className="text-gray-500" />
+              09:00 - 11:00 AM
+            </div>
+            <div className="text-sm text-gray-700 flex items-center gap-1 mt-1">
+              <Calendar size={16} className="text-gray-500" />
+              Monthon City Hall, New York
             </div>
           </div>
         </div>
+        <div className="font-semibold text-gray-800">Registration for Opening Workshop</div>
+      </div>
+    ))}
+  </div>
+</div>
       </div>
     </div>
   )
