@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Check, Calendar, Clock, MapPin } from "lucide-react"
 import Link from "next/link"
 import TicketsSection from "@/components/TicketsSection"
+import Ticket from "@/components/ticket"
 
 // Ticket data
 const tickets = [
@@ -239,9 +240,10 @@ export default function TicketsPage() {
           </div>
         </div>
       </section>
-
+      
+      <Ticket />
       {/* Ticket Selection */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Choose Your Ticket</h2>
 
@@ -290,10 +292,10 @@ export default function TicketsPage() {
             </TabsContent>
           </Tabs>
         </div>
-      </section>
+      </section> */}
 
       {/* Registration Form */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Complete Your Registration</h2>
@@ -435,10 +437,10 @@ export default function TicketsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -479,10 +481,10 @@ export default function TicketsPage() {
             </div>
           </div>
         </div>
-      </section>
-      <TicketsSection />
+      </section> */}
+      {/* <TicketsSection /> */}
       {/* Support Section */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Need Help?</h2>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -493,7 +495,7 @@ export default function TicketsPage() {
             <Button className="bg-purple-600 hover:bg-purple-700">View FAQ</Button>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   )
 }
