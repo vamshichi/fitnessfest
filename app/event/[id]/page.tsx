@@ -1,11 +1,11 @@
-// app/event/[id]/page.tsx
-import Image from 'next/image';
-import { use } from "react"
+'use client';
 
+import Image from 'next/image';
+import { use } from 'react';
 
 type Props = {
-    params: { id: string };
-  };
+  params: Promise<{ id: string }>;
+};
 
 // Mock data – replace this with actual fetch logic
 const event = {
@@ -18,9 +18,9 @@ const event = {
   image: '/images/event-banner.jpg',
 };
 
-export default async function Page({ params }: { params: Promise<{ id: string }> })  {
-    const resolvedParams = use(params)
-      const Id = Number.parseInt(resolvedParams.id)
+export default function Page({ params }: Props) {
+  const resolvedParams = use(params);
+  const id = parseInt(resolvedParams.id);
 
   return (
     <div className="max-w-7xl mx-auto p-6">
@@ -29,7 +29,6 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       </h1>
 
       <div className="grid md:grid-cols-3 gap-8">
-        {/* Left Section - Main Content */}
         <div className="md:col-span-2">
           <Image
             src={event.image}
@@ -38,13 +37,11 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             height={390}
             className="rounded-md w-full"
           />
-
           <p className="mt-6 text-gray-700 text-lg leading-relaxed">
             {event.description}
           </p>
         </div>
 
-        {/* Right Section - Sidebar */}
         <div className="bg-indigo-50 p-6 rounded-md shadow-sm space-y-4">
           <div className="text-3xl font-bold text-indigo-900">
             ${event.price}
