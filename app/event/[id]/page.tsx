@@ -1,72 +1,90 @@
-'use client';
-
-import Image from 'next/image';
-import { use } from 'react';
+"use client"
+import { use } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
+import { getEventById } from "@/data/events"
+import { EventSpeakersSection } from "@/components/event-speakers-section"
 
 type Props = {
-  params: Promise<{ id: string }>;
-};
+  params: Promise< { id: string }>
+}
 
-// Mock data – replace this with actual fetch logic
-const event = {
-  title: 'Digital Workshop Conference 2021',
-  description: `We’re inviting the top creatives in the tech industry from all over the world to come learn, grow, scrape their knees, try new things, to be vulnerable, epic adventures – this is where you’d put the event description. This is an example of a multi-day event. Great for conferences, music festivals, and other multi-day events.`,
-  price: 65,
-  startDate: 'September 10 @ 1:00 am',
-  endDate: 'September 13 @ 1:00 am',
-  location: 'PO Box 16122 Collins Street West Victoria 8007 Newyork',
-  image: '/images/event-banner.jpg',
-};
+export default function EventDetailPage({ params }: Props) {
+  const resolvedParams = use(params)
+    // const speakerId = Number.parseInt(resolvedParams.id)
 
-export default function Page({ params }: Props) {
-  const resolvedParams = use(params);
-  const id = parseInt(resolvedParams.id);
+  // Get event data
+  const event = getEventById(resolvedParams.id)
+
+  if (!event) {
+    return (
+      <div className="max-w-7xl mx-auto p-6">
+        <Link href="/" className="text-blue-500 hover:underline flex items-center gap-2 mb-8">
+          <ArrowLeft size={16} />
+          Back to events
+        </Link>
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">Event not found</h1>
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">
-        {event.title}
-      </h1>
+      <Link href="/" className="text-blue-500 hover:underline flex items-center gap-2 mb-8">
+        <ArrowLeft size={16} />
+        Back to events
+      </Link>
+
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">{event.title}</h1>
 
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <Image
-            src={event.image}
+            src={event.image || "/placeholder.svg"}
             alt="Event Banner"
             width={751}
             height={390}
             className="rounded-md w-full"
           />
-          <p className="mt-6 text-gray-700 text-lg leading-relaxed">
-            {event.description}
-          </p>
+          <p className="mt-6 text-gray-700 text-lg leading-relaxed">{event.description}</p>
+
+          {/* Speakers Section */}
+          <EventSpeakersSection event={event} />
+
         </div>
 
         <div className="bg-indigo-50 p-6 rounded-md shadow-sm space-y-4">
           <div className="text-3xl font-bold text-indigo-900">
-            ${event.price}
+            {typeof event.price === "number" ? `$${event.price}` : event.price}
           </div>
-          <button className="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500 transition">
+          <button className="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500 transition w-full">
             Buy Your Ticket
           </button>
 
           <div className="border-t pt-4 space-y-2">
             <h2 className="font-semibold text-indigo-900">Details</h2>
+            {event.startDate && (
+              <div>
+                <span className="font-semibold">Start:</span> <span>{event.startDate}</span>
+              </div>
+            )}
+            {event.endDate && (
+              <div>
+                <span className="font-semibold">End:</span> <span>{event.endDate}</span>
+              </div>
+            )}
+            {event.timeRange && (
+              <div>
+                <span className="font-semibold">Time:</span> <span>{event.timeRange}</span>
+              </div>
+            )}
             <div>
-              <span className="font-semibold">Start:</span>{' '}
-              <span>{event.startDate}</span>
-            </div>
-            <div>
-              <span className="font-semibold">End:</span>{' '}
-              <span>{event.endDate}</span>
-            </div>
-            <div>
-              <span className="font-semibold">Location:</span>{' '}
-              <span>{event.location}</span>
+              <span className="font-semibold">Location:</span> <span>{event.location}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,90 +1,21 @@
 "use client"
+
 import { use } from "react"
 import Link from "next/link"
-import { ArrowLeft, Calendar, Clock } from "lucide-react"
-
-// Using the same speakers data
-const speakers = [
-  {
-    name: "Mike Fermalin",
-    title: "Career Expert",
-    color: "border-pink-500",
-    bio: "Mike is a renowned career expert with over 15 years of experience helping professionals advance their careers.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 1",
-    timing: "10:00 AM - 11:30 AM",
-  },
-  {
-    name: "Mike Fermalin",
-    title: "Career Expert",
-    color: "border-pink-500",
-    bio: "Mike is a renowned career expert with over 15 years of experience helping professionals advance their careers.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 1",
-    timing: "2:00 PM - 3:30 PM",
-  },
-  {
-    name: "Mike Fermalin",
-    title: "Career Expert",
-    color: "border-pink-500",
-    bio: "Mike is a renowned career expert with over 15 years of experience helping professionals advance their careers.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 2",
-    timing: "9:00 AM - 10:30 AM",
-  },
-  {
-    name: "Mike Fermalin",
-    title: "Career Expert",
-    color: "border-pink-500",
-    bio: "Mike is a renowned career expert with over 15 years of experience helping professionals advance their careers.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 2",
-    timing: "1:00 PM - 2:30 PM",
-  },
-  {
-    name: "Mike Fermalin",
-    title: "Career Expert",
-    color: "border-pink-500",
-    bio: "Mike is a renowned career expert with over 15 years of experience helping professionals advance their careers.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 3",
-    timing: "11:00 AM - 12:30 PM",
-  },
-  {
-    name: "Anna Blair",
-    title: "Founder, Marks",
-    color: "border-blue-400",
-    bio: "Anna is the founder of Marks, a leading fitness brand that has transformed the industry.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 1",
-    timing: "4:00 PM - 5:30 PM",
-  },
-  {
-    name: "Trevor J. Bell",
-    title: "Lead Trainer, Blids",
-    color: "border-pink-600",
-    bio: "Trevor is an expert trainer with Blids, specializing in high-intensity workouts and nutrition.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 3",
-    timing: "2:00 PM - 3:30 PM",
-  },
-  {
-    name: "Michael Rooker",
-    title: "Developer Expert",
-    color: "border-purple-600",
-    bio: "Michael brings technical expertise to fitness applications, creating innovative solutions for trainers and clients.",
-    image: "/placeholder.svg?height=300&width=300",
-    day: "Day 2",
-    timing: "3:00 PM - 4:30 PM",
-  },
-]
+import { ArrowLeft } from "lucide-react"
+import { speakers } from "@/data/events"
+import { SpeakerProfile } from "@/components/speaker-profile"
+import { SpeakerInfo } from "@/components/speaker-info"
+import { SpeakerEvents } from "@/components/speaker-events"
 
 export default function SpeakerDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params)
-  const speakerId = Number.parseInt(resolvedParams.id)
+  const speakerId = resolvedParams.id
 
   // Check if the speaker exists
-  if (isNaN(speakerId) || speakerId < 0 || speakerId >= speakers.length) {
+  const speaker = speakers.find(speaker => speaker.id === speakerId)
+
+  if (!speaker) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <h1 className="text-2xl font-bold mb-4">Speaker not found</h1>
@@ -96,100 +27,34 @@ export default function SpeakerDetail({ params }: { params: Promise<{ id: string
     )
   }
 
-  const speaker = speakers[speakerId]
-
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 bg-gray-50">
       <Link href="/" className="text-blue-500 hover:underline flex items-center gap-2 mb-8">
         <ArrowLeft size={16} />
         Back to speakers
       </Link>
 
-      <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          {/* Speaker image with rotating border */}
-          <div className=" bg-gray-100 p-20">
-          <div className="relative w-[300px] h-[300px]">
-            <div
-              className={`absolute inset-0 rounded-full border-3 border-dashed ${speaker.color} animate-spin-slow`}
-            ></div>
-            <div className="absolute inset-0 m-2 rounded-full flex items-center justify-center z-10 overflow-hidden">
-              <img
-                src={speaker.image || "/placeholder.svg"}
-                alt={speaker.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-           
-          </div>
-          <div
-  className="mt-4 text-center bg-no-repeat bg-center"
-  style={{ backgroundImage: "url('/images/png.png')" }}
->
-    <div className="mt-4">
-  <h1 className="text-xl font-extrabold mb-2 ">{speaker.name}</h1>
-  <p className="text-gray-900 mb-2">{speaker.title}</p>
-  </div>
-</div>
-
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Left column - Speaker profile */}
+          <div className="md:col-span-1">
+            <SpeakerProfile speaker={speaker} />
           </div>
 
-          {/* Speaker details */}
-          <div className="flex-1">
-            
-            {/* Schedule information */}
-            {/* <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center gap-1 text-sm bg-gray-100 px-3 py-1.5 rounded-full">
-                <Calendar size={16} className="text-gray-500" />
-                <span>{speaker.day}</span>
-              </div>
-              <div className="flex items-center gap-1 text-sm bg-gray-100 px-3 py-1.5 rounded-full">
-                <Clock size={16} className="text-gray-500" />
-                <span>{speaker.timing}</span>
-              </div>
-            </div> */}
+          {/* Right column - Speaker information */}
+          <div className="md:col-span-2">
+            <SpeakerInfo speaker={speaker} />
 
-            <div className="space-y-4">
-                <h2 className="text-2xl font-bold">Personal Information</h2>
-              <p className="text-lg">{speaker.bio}</p>
-              {/* <div className="pt-4">
-                <h2 className="text-2xl font-bold mb-4">Session Details</h2>
-                <div className="bg-gray-100 p-4 rounded-lg">
-                  <p className="font-medium">Fitness in the Digital Age</p>
-                  <p className="text-gray-600 mt-1">Location: Main Hall, Room 101</p>
-                  <p className="text-gray-600">Capacity: 200 attendees</p>
-                </div>
-              </div> */}
+            <div className="mt-8">
+              <h2 className="text-2xl font-bold text-purple-900 mb-4">Personal Information</h2>
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <p className="text-gray-700 leading-relaxed">{speaker.bio}</p>
+              </div>
             </div>
-            
+
+            <SpeakerEvents speakerId={speaker.id} />
           </div>
         </div>
-        <div className="mt-12">
-  <h2 className="text-2xl font-bold mb-6">Speaker's Next Events</h2>
-  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {[1, 2, 3].map((_, index) => (
-      <div key={index} className="bg-white shadow-md rounded-lg p-4 border border-gray-200">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-orange-500">12</div>
-            <div className="uppercase text-sm text-gray-500">August</div>
-          </div>
-          <div>
-            <div className="text-sm text-gray-700 flex items-center gap-1">
-              <Clock size={16} className="text-gray-500" />
-              09:00 - 11:00 AM
-            </div>
-            <div className="text-sm text-gray-700 flex items-center gap-1 mt-1">
-              <Calendar size={16} className="text-gray-500" />
-              Monthon City Hall, New York
-            </div>
-          </div>
-        </div>
-        <div className="font-semibold text-gray-800">Registration for Opening Workshop</div>
-      </div>
-    ))}
-  </div>
-</div>
       </div>
     </div>
   )

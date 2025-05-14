@@ -222,13 +222,13 @@ export default function Home() {
       <div className="bg-gray-200 shadow-sm">
               <SpeakerSection />
               <div className="text-center mt-12 ">
-            <Link
+            {/* <Link
               href="/speakers"
               className="inline-flex items-center border border-white text-white px-6 py-3 my-10 rounded-lg font-medium hover:bg-white hover:text-purple-900 transition-colors bg-orange-600"
             >
               View All Speakers
               <ChevronRight size={16} className="ml-2" />
-            </Link>
+            </Link> */}
           </div>
       </div>
       </section>
