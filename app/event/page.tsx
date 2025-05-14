@@ -5,13 +5,13 @@ import { CalendarClock, MapPin } from "lucide-react"
 import { events } from "@/data/events"
 
 export default function EventPage() {
-  // Filter events for September 11, 2022
-  const dateEvents = events.filter((event) => event.date === "11 September 2022")
+  // Filter events for 12 October 2025 or any other date you want to display
+  const dateEvents = events.filter((event) => event.date === "12 October 2025") // Change this date to match your events
 
   return (
     <div className="min-h-screen bg-white py-10 px-4">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">11 September 2022</h1>
+        <h1 className="text-3xl font-bold mb-6">12 October 2025</h1> {/* Change the title here too */}
         <div className="border-l-2 border-gray-300 relative">
           {dateEvents.map((event, idx) => (
             <div key={event.id} className="mb-10 ml-6 relative">
