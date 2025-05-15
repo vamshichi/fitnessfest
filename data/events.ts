@@ -1,5 +1,34 @@
 
 
+
+export type Sponsor = {
+  id: string
+  name: string
+  logo: string
+  tier: string // Gold, Silver, Bronze, etc.
+  description: string
+  website: string
+  location: string
+  industry: string[]
+  yearsFunding?: number
+  employeeCount?: number
+  sponsorshipAmount?: string
+  benefits?: string[]
+  color: string
+}
+
+export type Event = {
+  id: string
+  name: string
+  location: string
+  date: string
+  time: string
+  description: string
+  image: string
+  speakers: string[]
+    sponsors: string[]
+  sponsorIds: string[]
+}
 // Events data
 export const events = [
     {
@@ -17,6 +46,8 @@ export const events = [
       startDate: "October 12, 2025",
       endDate: "October 12, 2025",
       speakerIds: ["1", "2", "3"],
+      sponsors: ["FitLife Nutrition", "ActiveWear", "VitaBoost"],
+      sponsorIds: ["1", "3", "5"],
     },
     {
       id: "2",
@@ -33,6 +64,8 @@ export const events = [
       startDate: "October 12, 2025",
       endDate: "October 12, 2025",
       speakerIds: ["2", "3", "4"],
+      sponsors: ["PowerGear", "HealthTech"],
+      sponsorIds: ["2", "4"]
     },
     {
       id: "3",
@@ -49,6 +82,8 @@ export const events = [
       startDate: "October 12, 2025",
       endDate: "October 12, 2025",
       speakerIds: ["1", "2"],
+      sponsors: ["FitLife Nutrition", "PowerGear"],
+    sponsorIds: ["1", "2"],
     },
     {
       id: "4",
@@ -65,6 +100,8 @@ export const events = [
       startDate: "October 12, 2025",
       endDate: "October 12, 2025",
       speakerIds: ["1", "2", "3"],
+      sponsors: ["FitLife Nutrition", "PowerGear"],
+    sponsorIds: ["1", "2"],
     },
     {
       id: "5",
@@ -81,6 +118,8 @@ export const events = [
       startDate: "October 12, 2025",
       endDate: "October 12, 2025",
       speakerIds: ["1", "2"],
+      sponsors: ["FitLife Nutrition", "PowerGear"],
+    sponsorIds: ["1", "2"],
     },
     {
       id: "6",
@@ -97,6 +136,8 @@ export const events = [
       startDate: "October 12, 2025",
       endDate: "October 12, 2025",
       speakerIds: ["3", "4"],
+      sponsors: ["FitLife Nutrition", "PowerGear"],
+    sponsorIds: ["1", "2"],
     },
     {
       id: "7",
@@ -113,6 +154,8 @@ export const events = [
       startDate: "October 12, 2025",
       endDate: "October 12, 2025",
       speakerIds: ["2", "3"],
+      sponsors: ["FitLife Nutrition", "PowerGear"],
+    sponsorIds: ["1", "2"],
     },
   ];
   
@@ -281,4 +324,90 @@ export const events = [
         color: "border-green-500",
       },
   ]
+  
+
+  
+
+  export const sponsors: Sponsor[] = [
+    {
+      id: "1",
+      name: "FitLife Nutrition",
+      logo: "/placeholder.svg?height=200&width=200",
+      tier: "Gold",
+      description:
+        "FitLife Nutrition provides premium supplements and nutrition advice for fitness enthusiasts and athletes.",
+      website: "https://www.fitlifenutrition.com",
+      location: "New York, NY",
+      industry: ["Nutrition", "Supplements", "Health"],
+      yearsFunding: 5,
+      employeeCount: 120,
+      sponsorshipAmount: "$25,000",
+      benefits: ["Main Stage Branding", "VIP Access", "Product Showcase"],
+      color: "border-yellow-500",
+    },
+    {
+      id: "2",
+      name: "PowerGear",
+      logo: "/placeholder.svg?height=200&width=200",
+      tier: "Silver",
+      description: "PowerGear manufactures high-quality fitness equipment for home and commercial gyms.",
+      website: "https://www.powergear.com",
+      location: "Los Angeles, CA",
+      industry: ["Equipment", "Fitness", "Manufacturing"],
+      yearsFunding: 3,
+      employeeCount: 85,
+      sponsorshipAmount: "$15,000",
+      benefits: ["Exhibition Space", "Logo on Materials"],
+      color: "border-gray-400",
+    },
+    {
+      id: "3",
+      name: "ActiveWear",
+      logo: "/placeholder.svg?height=200&width=200",
+      tier: "Gold",
+      description: "ActiveWear designs and produces premium athletic clothing for all types of fitness activities.",
+      website: "https://www.activewear.com",
+      location: "Chicago, IL",
+      industry: ["Apparel", "Fashion", "Retail"],
+      yearsFunding: 7,
+      employeeCount: 200,
+      sponsorshipAmount: "$30,000",
+      benefits: ["Main Stage Branding", "VIP Access", "Fashion Show"],
+      color: "border-yellow-500",
+    },
+    {
+      id: "4",
+      name: "HealthTech",
+      logo: "/placeholder.svg?height=200&width=200",
+      tier: "Bronze",
+      description: "HealthTech develops innovative wearable technology for fitness tracking and health monitoring.",
+      website: "https://www.healthtech.com",
+      location: "San Francisco, CA",
+      industry: ["Technology", "Wearables", "Health"],
+      yearsFunding: 2,
+      employeeCount: 45,
+      sponsorshipAmount: "$8,000",
+      benefits: ["Exhibition Space"],
+      color: "border-orange-700",
+    },
+    {
+      id: "5",
+      name: "VitaBoost",
+      logo: "/placeholder.svg?height=200&width=200",
+      tier: "Silver",
+      description: "VitaBoost creates natural energy drinks and recovery beverages for fitness enthusiasts.",
+      website: "https://www.vitaboost.com",
+      location: "Miami, FL",
+      industry: ["Beverages", "Nutrition", "Health"],
+      yearsFunding: 4,
+      employeeCount: 60,
+      sponsorshipAmount: "$12,000",
+      benefits: ["Product Sampling", "Logo on Materials"],
+      color: "border-gray-400",
+    },
+  ]
+  
+  export function getSponsorById(id: string) {
+    return sponsors.find((sponsor) => sponsor.id === id)
+  }
   

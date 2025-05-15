@@ -5,14 +5,14 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { getEventById } from "@/data/events"
 import { EventSpeakersSection } from "@/components/event-speakers-section"
+import { EventSponsorsSection } from "@/components/event-sponsors-section"
 
 type Props = {
-  params: Promise< { id: string }>
+  params: Promise<{ id: string }>
 }
 
 export default function EventDetailPage({ params }: Props) {
   const resolvedParams = use(params)
-    // const speakerId = Number.parseInt(resolvedParams.id)
 
   // Get event data
   const event = getEventById(resolvedParams.id)
@@ -49,9 +49,13 @@ export default function EventDetailPage({ params }: Props) {
           />
           <p className="mt-6 text-gray-700 text-lg leading-relaxed">{event.description}</p>
 
+           {/* Sponsors Section */}
+           <EventSponsorsSection event={event} />
+
           {/* Speakers Section */}
           <EventSpeakersSection event={event} />
 
+         
         </div>
 
         <div className="bg-indigo-50 p-6 rounded-md shadow-sm space-y-4">

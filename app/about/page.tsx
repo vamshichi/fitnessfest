@@ -54,11 +54,11 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button className="bg-[#dc5044] hover:bg-purple-700">
-                  <Link href="/schedule">View Schedule</Link>
+                  <Link href="/event">View Schedule</Link>
                 </Button>
-                <Button variant="outline">
+                {/* <Button variant="outline">
                   <Link href="/speakers">Meet Our Speakers</Link>
-                </Button>
+                </Button> */}
               </div>
             </div>
             <div className="relative">
