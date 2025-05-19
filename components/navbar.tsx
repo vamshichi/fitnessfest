@@ -17,20 +17,21 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`sticky top-0 z-50 transition-colors duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+    <header className="sticky top-0 z-50 bg-black shadow-md">
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-2">
           <Link href="/" className="text-2xl font-bold text-purple-900">
-            <Image alt="Logo" src="/images/logo in black.png" width={200} height={200} className="ml-10" />
+            <Image alt="Logo" src="/logo/logo2.png" width={300} height={250} className="ml-10" />
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-black hover:text-purple-600 font-medium">Home</Link>
-            <Link href="/about" className="text-black hover:text-purple-600 font-medium">About</Link>
+            <Link href="/" className="text-white hover:text-white font-medium">Home</Link>
+            <Link href="/about" className="text-white hover:text-white font-medium">About</Link>
             {/* <Link href="/speakers" className="text-black hover:text-purple-600 font-medium">Speakers</Link> */}
-            <Link href="/event" className="text-black hover:text-purple-600 font-medium">Event</Link>
+            <Link href="/event" className="text-white hover:text-white font-medium">Event</Link>
             {/* <Link href="/blog" className="text-black hover:text-purple-600 font-medium">Blog</Link> */}
-            <Link href="/contact" className="text-black hover:text-purple-600 font-medium">Contact</Link>
+            <Link href="/awards" className="text-white hover:text-white font-medium">Awards</Link>
+            <Link href="/contact" className="text-white hover:text-white font-medium">Contact</Link>
           </nav>
 
           <div className="flex items-center space-x-4">

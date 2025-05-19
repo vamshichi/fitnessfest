@@ -88,16 +88,16 @@ export default function RootLayout({
                 For partnerships & media: pad@fitnessfest.in
                 </p>
                 <div className="flex space-x-4">
-                  <Link href="#" className="text-gray-400 hover:text-white">
+                  <Link href="https://www.facebook.com/BengaluruFitnessFest/" className="text-gray-400 hover:text-white">
                     <Facebook size={20} />
                   </Link>
-                  <Link href="#" className="text-gray-400 hover:text-white">
+                  <Link href="https://x.com/BlrFitnessFest" className="text-gray-400 hover:text-white">
                     <Twitter size={20} />
                   </Link>
-                  <Link href="#" className="text-gray-400 hover:text-white">
+                  <Link href="https://www.instagram.com/bengaluru_fitness_fest/" className="text-gray-400 hover:text-white">
                     <Instagram size={20} />
                   </Link>
-                  <Link href="#" className="text-gray-400 hover:text-white">
+                  <Link href="https://www.linkedin.com/company/bengaluru-fitness-fest/" className="text-gray-400 hover:text-white">
                     <Linkedin size={20} />
                   </Link>
                 </div>
@@ -146,8 +146,8 @@ export default function RootLayout({
               <div>
                 <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
                 <ul className="space-y-2">
-                  <li className="text-gray-400">info@devconf.com</li>
-                  <li className="text-gray-400">+1 (123) 456-7890</li>
+                  <li className="text-gray-400">info@fitnessfest.in</li>
+                  <li className="text-gray-400">+91 97427 11211</li>
                   <li className="text-gray-400">123 Conference St, Boston, Canada</li>
                 </ul>
               </div>

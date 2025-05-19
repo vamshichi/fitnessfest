@@ -54,7 +54,7 @@ export default function EventDetailPage({ params }: Props) {
 
           {/* Speakers Section */}
           <EventSpeakersSection event={event} />
-
+ 
          
         </div>
 
