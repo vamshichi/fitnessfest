@@ -12,10 +12,20 @@ export default function AboutPage() {
     <main className="flex-1">
       {/* Hero Section */}
       <section className="min-h-screen bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/Banner for website.jpg')" }}>
-  <div className="absolute inset-0 bg-black opacity-60"></div>
+  <div
+  className="absolute inset-0 bg-black opacity-60"
+  // style={{
+  //   backgroundImage: 'linear-gradient(to bottom right, #70adb0, #dc5044, #f3c532)'
+  // }}
+></div>
+
   <div className="container mx-auto px-4 relative z-10">
     <div className="max-w-3xl mx-auto text-center">
-      <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">About the Festival Fitness  for Every BODY.</h1>
+   <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00f] via-[#ff0] to-[#00f]">
+  About the Festival Fitness for Every BODY.
+</h1>
+
+
       {/* <p className="text-lg md:text-xl opacity-90 mb-8 text-white">
         Join us for the most anticipated tech event of the year, bringing together industry leaders, innovators,
         and tech enthusiasts.
@@ -24,154 +34,134 @@ export default function AboutPage() {
   </div>
 </section>
 
-<section className="py-16 bg-white  text-center ">
-  <div className="max-w-3xl mx-auto">
-    <h2 className="text-3xl font-bold mb-6">Welcome to Bengaluru Fitness Festival</h2>
-  <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-  Bengaluru Fitness Festival is more than just an event – it’s a movement to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
-  </p>
-  <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-  Expect high-energy workouts, educational sessions, fun activities for families, and a buzzing atmosphere that will leave you inspired and recharged.
+{/* Hero Welcome Section */}
+<section className="py-20 bg-gradient-to-br from-[#f3c532]/10 via-white to-[#70adb0]/10 text-center">
+  <div className="max-w-4xl mx-auto px-4">
+    <h2 className="text-4xl md:text-5xl font-extrabold text-[#dc5044] mb-6">
+      Welcome to Bengaluru Fitness Festival
+    </h2>
+    <p className="text-lg md:text-xl text-gray-700 mb-6">
+      Bengaluru Fitness Festival is more than just an event – it’s a <span className="font-semibold text-[#70adb0]">movement</span> to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
     </p>
-    </div>
+    <p className="text-lg md:text-xl text-gray-700">
+      Expect <span className="text-[#dc5044] font-semibold">high-energy workouts</span>, educational sessions, family-friendly fun, and a buzzing atmosphere that will leave you inspired and recharged.
+    </p>
+  </div>
 </section>
-      <section>
-        <div>
-          {/* <ZonesAndHighlights /> */}
+
+{/* Zones Highlight Placeholder */}
+<section className=" bg-white text-center">
+  <div>
+    {/* <ZonesAndHighlights /> */}
+  </div>
+</section>
+
+{/* Mission and Vision Section */}
+<section className="py-20 bg-[#f9f9f9]">
+  <div className="container mx-auto px-4">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      
+      {/* Text Content */}
+      <div>
+        <h2 className="text-4xl font-bold mb-6 text-[#dc5044]">
+          Our Mission & Vision
+        </h2>
+        <p className="text-gray-700 mb-4 text-lg leading-relaxed">
+          To inspire a healthier and happier community by making fitness <span className="text-[#70adb0] font-medium">fun, accessible</span>, and inclusive for people of all ages and skill levels through engaging experiences, energetic events, and educational opportunities.
+        </p>
+        <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+          Our vision is to become <span className="text-[#f3c532] font-medium">India’s most vibrant fitness movement</span> — uniting individuals, families, and communities through a shared passion for health, well-being, and active living.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Link
+  href="/event"
+  className="inline-block bg-[#dc5044] hover:bg-[#b43b32] text-white px-6 py-3 rounded-full font-semibold text-lg transition-all shadow-lg"
+  style={{
+    boxShadow: '0 4px 1px rgba(248, 211, 5, 0.4)' // custom yellow shadow
+  }}
+>
+  View Schedule
+</Link>
+
         </div>
-      </section>
-      {/* About Event Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Mission & Vision</h2>
-              <p className="text-gray-700 mb-4">
-              To inspire a healthier and happier community by making fitness fun, accessible, and inclusive for people of all ages and skill levels through engaging experiences, energetic events, and educational opportunities.
-              </p>
-              <p className="text-gray-700 mb-6">
-              To become India’s most vibrant fitness movement—uniting individuals, families, and communities through a shared passion for health, well-being, and active living.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-[#dc5044] hover:bg-purple-700">
-                  <Link href="/event">View Schedule</Link>
-                </Button>
-                {/* <Button variant="outline">
-                  <Link href="/speakers">Meet Our Speakers</Link>
-                </Button> */}
-              </div>
-            </div>
-            <div className="relative">
-              <div className="rounded-lg overflow-hidden shadow-xl">
-                <Image
-                  src="/images/image for website.jpg"
-                  alt="Conference attendees"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-[#dc5044] text-white p-6 rounded-lg shadow-lg hidden md:block">
-                <p className="text-xl font-bold">10+ Years</p>
-                <p>Of Successful Events</p>
-              </div>
-            </div>
-          </div>
+      </div>
+
+      {/* Image Content */}
+      <div className="relative">
+        <div className="rounded-xl overflow-hidden shadow-2xl border-4 border-[#f3c532]/40">
+          <Image
+            src="/images/image for website.jpg"
+            alt="Festival attendees"
+            width={800}
+            height={600}
+            className="w-full h-auto object-cover"
+          />
         </div>
-      </section>
+        <div className="absolute -bottom-6 -left-6 bg-[#dc5044] text-white p-5 rounded-lg shadow-xl hidden md:block">
+          <p className="text-xl font-bold leading-tight">10+ Years</p>
+          <p className="text-sm">Of Successful Events</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Event Details */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Event Details</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Date & Time</h3>
-              <p className="text-gray-600">July 17-19, 2024</p>
-              <p className="text-gray-600">9:00 AM - 6:00 PM</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Location</h3>
-              <p className="text-gray-600">Tech Convention Center</p>
-              <p className="text-gray-600">Boston, Canada</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Attendees</h3>
-              <p className="text-gray-600">5,000+ Participants</p>
-              <p className="text-gray-600">From 30+ Countries</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Sessions</h3>
-              <p className="text-gray-600">50+ Workshops</p>
-              <p className="text-gray-600">20+ Keynote Speeches</p>
-            </div>
-          </div>
+      <section className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-100">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-extrabold text-center text-[#dc5044] mb-14 tracking-wide">
+      Event Details
+    </h2>
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+      {/* Date & Time */}
+      <div className="bg-white p-6 rounded-2xl shadow-xl text-center hover:shadow-[#f3c532]/50 transition-shadow duration-300">
+        <div className="w-16 h-16 bg-[#f3c532]/20 rounded-full flex items-center justify-center mx-auto mb-5">
+          <Calendar className="w-8 h-8 text-[#dc5044]" />
         </div>
-      </section>
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">Date & Time</h3>
+        <p className="text-gray-600">November 22-23, 2025</p>
+        <p className="text-gray-600">9:00 AM - 6:00 PM</p>
+      </div>
+
+      {/* Location */}
+      <div className="bg-white p-6 rounded-2xl shadow-xl text-center hover:shadow-[#70adb0]/50 transition-shadow duration-300">
+        <div className="w-16 h-16 bg-[#70adb0]/20 rounded-full flex items-center justify-center mx-auto mb-5">
+          <MapPin className="w-8 h-8 text-[#dc5044]" />
+        </div>
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">Location</h3>
+        <p className="text-gray-600">Bengaluru Exhibition Grounds</p>
+        <p className="text-gray-600">Karnataka, India</p>
+      </div>
+
+      {/* Attendees */}
+      <div className="bg-white p-6 rounded-2xl shadow-xl text-center hover:shadow-[#f3c532]/50 transition-shadow duration-300">
+        <div className="w-16 h-16 bg-[#f3c532]/20 rounded-full flex items-center justify-center mx-auto mb-5">
+          <Users className="w-8 h-8 text-[#dc5044]" />
+        </div>
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">Attendees</h3>
+        <p className="text-gray-600">5,000+ Participants</p>
+        <p className="text-gray-600">From 30+ Countries</p>
+      </div>
+
+      {/* Sessions */}
+      <div className="bg-white p-6 rounded-2xl shadow-xl text-center hover:shadow-[#70adb0]/50 transition-shadow duration-300">
+        <div className="w-16 h-16 bg-[#70adb0]/20 rounded-full flex items-center justify-center mx-auto mb-5">
+          <Clock className="w-8 h-8 text-[#dc5044]" />
+        </div>
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">Sessions</h3>
+        <p className="text-gray-600">50+ Workshops</p>
+        <p className="text-gray-600">20+ Keynote Speeches</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Why Attend */}
       <div><WhyAttend /></div>
       <div><WhoShouldJoin /></div>
-      {/* <WhoShouldJoin /> */}
-      {/* <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Attend DevCon 2024?</h2>
-            <p className="text-gray-600">
-              Join thousands of tech professionals for three days of learning, networking, and inspiration.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-              <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center mb-4 text-xl font-bold">
-                1
-              </div>
-              <h3 className="text-xl font-bold mb-3">Learn from the Best</h3>
-              <p className="text-gray-600">
-                Gain insights from industry leaders and experts through keynote speeches, workshops, and panel
-                discussions.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-              <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center mb-4 text-xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-bold mb-3">Network & Connect</h3>
-              <p className="text-gray-600">
-                Meet like-minded professionals, potential collaborators, and industry recruiters to expand your network.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-              <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center mb-4 text-xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-bold mb-3">Discover New Technologies</h3>
-              <p className="text-gray-600">
-                Explore the latest tools, technologies, and innovations through interactive demos and exhibitions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
+      
       {/* FAQ Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">

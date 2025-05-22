@@ -16,62 +16,91 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="min-h-screen relative  text-white">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-       >
-  <source src="/video/clip.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+     <section className="min-h-screen relative text-white overflow-hidden">
+  {/* Background Video with diagonal clip-path applied inline */}
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover"
+    style={{
+      clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)',
+      zIndex: 0,
+    }}
+  >
+    <source src="/video/clip.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-        <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-6 inline-block rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm" data-aos="fade-down">
-              <p className="text-lg font-medium">November 22-23, 2025</p>
-            </div>
+  {/* Dark overlay */}
+  <div
+    className="absolute inset-0 bg-[#70adb0] opacity-20"
+    style={{ zIndex: 1 }}
+  ></div>
 
-            <h1
-              className="mb-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight "
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              Fitness for EveryBody
-            </h1>
+  {/* Foreground content */}
+  <div className="container mx-auto px-4 py-24 md:py-32 relative" style={{ zIndex: 2 }}>
+    <div className="max-w-4xl mx-auto text-center">
+      <div
+        className="mb-6 inline-block rounded-full px-4 py-2 backdrop-blur-sm shadow-lg"
+        style={{
+          backgroundColor: 'rgba(243, 197, 50, 0.8)',
+          boxShadow: '0 6px 1px -1px #dc5044',
+        }}
+        data-aos="fade-down"
+      >
+        <p className="text-lg font-medium">November 22-23, 2025</p>
+      </div>
 
-            <p className="mb-8 text-xl text-white/80" data-aos="fade-up" data-aos-delay="400">
-              
-            </p>
+      <h1
+        className="mb-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        Fitness for EveryBody
+      </h1>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="600">
-              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-                <Users size={18} />
-                <span>20000+ Attendees</span>
-              </div>
-              {/* <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-                <Clock size={18} />
-                <span>199 Days</span>
-              </div> */}
-              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-                <MapPin size={18} />
-                <span>KTPO - Whitefield, Bengaluru, India</span>
-              </div>
-            </div>
+      <p className="mb-8 text-xl text-white/80" data-aos="fade-up" data-aos-delay="400">
+        Join the biggest celebration of movement, wellness, and community.
+      </p>
 
-            <Link
-              href="/tickets"
-              className="inline-block bg-white text-purple-900 px-8 py-4 rounded-full font-bold text-lg transition-all hover:bg-purple-100 hover:scale-105"
-              data-aos="fade-up"
-              data-aos-delay="800"
-            >
-              Buy Ticket Now
-            </Link>
-          </div>
+      <div
+        className="flex flex-wrap justify-center gap-4 mb-12"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm"
+          style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+        >
+          <Users size={18} />
+          <span>20000+ Attendees</span>
         </div>
-      </section>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm"
+          style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+        >
+          <MapPin size={18} />
+          <span>KTPO - Whitefield, Bengaluru, India</span>
+        </div>
+      </div>
+
+      <Link
+        href="/tickets"
+        className="inline-block text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105"
+        style={{
+          backgroundColor: '#dc5044',
+          boxShadow: '0 4px 1px #f3c532',
+        }}
+        data-aos="fade-up"
+        data-aos-delay="800"
+      >
+        Buy Ticket Now
+      </Link>
+    </div>
+  </div>
+</section>
+
+
 
       {/* Countdown Section */}
       <section className="py-20 bg-white shadow-sm">

@@ -1,13 +1,21 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Montserrat } from "next/font/google"
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { config } from "@fortawesome/fontawesome-svg-core"
 // import Image from "next/image"
 import Header from "@/components/navbar"
+import { Providers } from "@/providers"
 
-const inter = Inter({ subsets: ["latin"] })
+config.autoAddCss = false
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-montserrat",
+})
 
 export const metadata: Metadata = {
   title: "fitnessfest",
@@ -21,62 +29,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-      {/* <header className="shadow-sm sticky top-0 z-50">
-
-          <div className="bg-white container mx-auto">
-            <div className="flex items-center justify-between ">
-              <Link href="/" className="text-2xl font-bold text-purple-900">
-              <Image alt="Logo" src="/images/logo in black.png" width={200} height={200} className="ml-10" />
-              </Link>
-
-              <nav className="hidden md:flex items-center space-x-8">
-                <Link href="/" className="text-black hover:text-purple-600 font-medium">
-                  Home
-                </Link>
-                <Link href="/about" className="text-black  hover:text-purple-600 font-medium">
-                  About
-                </Link>
-                <Link href="/speakers" className="text-black  hover:text-purple-600 font-medium">
-                  Speakers
-                </Link>
-                <Link href="/schedule" className="text-black hover:text-purple-600 font-medium">
-                  Schedule
-                </Link>
-                <Link href="/blog" className="text-black hover:text-purple-600 font-medium">
-                  Blog
-                </Link>
-                <Link href="/contact" className="text-black hover:text-purple-600 font-medium">
-                  Contact
-                </Link>
-              </nav>
-
-              <div className="flex items-center space-x-4">
-                <Link
-                  href="/tickets"
-                  className="hidden md:inline-block bg-orange-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition-colors"
-                >
-                  Buy Ticket
-                </Link>
-
-                <button className="md:hidden text-gray-900">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </header> */}
+       <body className={`${montserrat.variable} font-sans`}>
+     
         <Header />
 
-        {children}
+       <Providers>{children}</Providers>
 
         <footer className="bg-gray-900 text-white pt-16 pb-8">
           <div className="container mx-auto px-4">

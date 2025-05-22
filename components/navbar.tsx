@@ -31,6 +31,7 @@ export default function Header() {
             <Link href="/event" className="text-white hover:text-white font-medium">Event</Link>
             {/* <Link href="/blog" className="text-black hover:text-purple-600 font-medium">Blog</Link> */}
             <Link href="/awards" className="text-white hover:text-white font-medium">Awards</Link>
+            <Link href="/competitions" className="text-white hover:text-white font-medium">Competitions</Link>
             <Link href="/contact" className="text-white hover:text-white font-medium">Contact</Link>
           </nav>
 
