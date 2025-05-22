@@ -1,19 +1,56 @@
 import prisma from "@/lib/prisma"
 import { DataTable } from "@/components/admin/data-table"
 import { columns } from "./columns"
+import { unstable_noStore as noStore } from "next/cache"
 
 export default async function VotesPage() {
-  const votes = await prisma.awardVote.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  })
+  // Prevent caching of this page
+  noStore()
 
-  return (
-    <div>
-      <h1 className="text-3xl font-bold mb-8">Award Votes</h1>
+  try {
+    // Log the fetch attempt
+    console.log("Fetching award votes from database...")
 
-      <DataTable columns={columns} data={votes} filterColumn="voterName" />
-    </div>
-  )
+    const votes = await prisma.awardVote.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
+
+    console.log(`Successfully fetched ${votes.length} award votes`)
+
+    return (
+      <div>
+        <h1 className="text-3xl font-bold mb-8">Award Votes</h1>
+        {votes.length === 0 ? (
+          <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-3 rounded">
+            No award votes found. When users vote for nominees, their votes will appear here.
+          </div>
+        ) : (
+          <DataTable columns={columns} data={votes} filterColumn="voterName" />
+        )}
+      </div>
+    )
+  } catch (error) {
+    console.error("Error fetching votes:", error)
+    return (
+      <div>
+        <h1 className="text-3xl font-bold mb-8">Award Votes</h1>
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          Error loading award votes: {error instanceof Error ? error.message : String(error)}
+        </div>
+        <div className="mt-4 p-4 bg-gray-50 rounded-md">
+          <h2 className="text-lg font-semibold mb-2">Troubleshooting Steps:</h2>
+          <ol className="list-decimal pl-5 space-y-2">
+            <li>Check your database connection string in the environment variables</li>
+            <li>Verify that your database is running and accessible</li>
+            <li>Check the server logs for more detailed error information</li>
+            <li>
+              Try the debug endpoint at <code>/api/debug/db-status</code> to test database connectivity
+            </li>
+          </ol>
+        </div>
+      </div>
+    )
+  }
 }
