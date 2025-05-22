@@ -19,7 +19,7 @@ interface VotingCardProps {
   nominee: Nominee
   categoryId: string
   color: string
-  onVote: (voterInfo: VoterInfo) => void
+  onVote: (voterInfo: VoterInfo) => Promise<{ success: boolean; id?: string; error?: string } | void>
   hasVoted: boolean
 }
 
@@ -71,24 +71,35 @@ export default function VotingCard({ nominee, categoryId, color, onVote, hasVote
     setShowVoterForm(true)
   }
 
-  const handleVoterFormSubmit = (voterInfo: VoterInfo) => {
+  const handleVoterFormSubmit = async (voterInfo: VoterInfo) => {
     setShowVoterForm(false)
     setIsVoting(true)
 
-    // Call the server action
-    onVote(voterInfo)
+    try {
+      // Call the server action
+      const result = await onVote(voterInfo)
 
-    // Update local state
-    setTimeout(() => {
+      // Update local state regardless of the result
       setLocalVotes((prev) => prev + 1)
-      setIsVoting(false)
       setShowConfirmation(true)
+
+      // Log success if we have a result with an ID
+      if (result && "id" in result) {
+        console.log("Vote submitted successfully with ID:", result.id)
+      } else {
+        console.log("Vote submitted successfully")
+      }
 
       // Hide confirmation after 3 seconds
       setTimeout(() => {
         setShowConfirmation(false)
       }, 3000)
-    }, 1000)
+    } catch (error) {
+      console.error("Error submitting vote:", error)
+      // Handle error case
+    } finally {
+      setIsVoting(false)
+    }
   }
 
   return (

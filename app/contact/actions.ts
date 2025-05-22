@@ -12,6 +12,15 @@ export async function submitContactForm(formData: FormData) {
     const message = formData.get("message") as string
     const type = formData.get("type") as string
 
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      console.error("Missing required fields in contact form submission")
+      return {
+        success: false,
+        error: "Missing required fields. Please fill out all required fields.",
+      }
+    }
+
     // Create base submission data
     const submissionData: any = {
       name,
@@ -41,8 +50,8 @@ export async function submitContactForm(formData: FormData) {
       data: submissionData,
     })
 
-    console.log("Contact submission saved:", result.id)
-    return { success: true }
+    console.log("Contact submission saved successfully with ID:", result.id)
+    return { success: true, id: result.id }
   } catch (error) {
     console.error("Error submitting contact form:", error)
     return {

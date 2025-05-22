@@ -16,6 +16,15 @@ export async function submitRegistration(formData: FormData) {
     const emergencyContactPhone = formData.get("emergencyContactPhone") as string
     const termsAccepted = formData.get("termsAccepted") === "true"
 
+    // Validate required fields
+    if (!firstName || !lastName || !email || !phone || !competition || !experienceLevel) {
+      console.error("Missing required fields in registration form")
+      return {
+        success: false,
+        error: "Missing required fields. Please fill out all required fields.",
+      }
+    }
+
     // Log the data being saved
     console.log("Saving competition registration:", {
       firstName,
@@ -41,8 +50,8 @@ export async function submitRegistration(formData: FormData) {
       },
     })
 
-    console.log("Competition registration saved:", result.id)
-    return { success: true }
+    console.log("Competition registration saved successfully with ID:", result.id)
+    return { success: true, id: result.id }
   } catch (error) {
     console.error("Error submitting registration:", error)
     return {

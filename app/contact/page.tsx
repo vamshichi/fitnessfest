@@ -30,19 +30,22 @@ export default function ContactPage() {
       const result = await submitContactForm(formData)
 
       if (result.success) {
-  toast({
-    title: "Message sent!",
-    description: "We'll get back to you as soon as possible.",
-    variant: "default",
-  });
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you as soon as possible.",
+          variant: "default",
+        })
 
-  // Reset the form
-  (event.target as HTMLFormElement).reset();
-}
- else {
+        // Reset the form
+        const form = event.target as HTMLFormElement
+        form.reset()
+
+        console.log("Contact form submitted successfully with ID:", result.id)
+      } else {
         throw new Error(result.error || "Something went wrong")
       }
     } catch (error: any) {
+      console.error("Contact form submission error:", error)
       toast({
         title: "Error",
         description: error.message || "Failed to send your message. Please try again.",

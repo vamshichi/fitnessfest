@@ -103,7 +103,7 @@ export default function AwardsPage() {
           name: "Alex Chen",
           description: "Overcame significant obstacles to achieve greatness in competitive fitness events this year.",
           votes: 178,
-          image: "/placeholder.svg?height=100&width=100&query=competitive athlete",
+          image: "/competitive-athlete.png",
         },
         {
           id: "maya-johnson",
@@ -252,7 +252,7 @@ export default function AwardsPage() {
         description: "You have already voted in this category. You can only vote once per category.",
         variant: "destructive",
       })
-      return
+      return { success: false, error: "Already voted in this category" }
     }
 
     // Find the category and nominee to get their names
@@ -265,7 +265,7 @@ export default function AwardsPage() {
         description: "Could not find the selected category or nominee.",
         variant: "destructive",
       })
-      return
+      return { success: false, error: "Category or nominee not found" }
     }
 
     try {
@@ -293,12 +293,15 @@ export default function AwardsPage() {
 
       setShowVoteSuccess(true)
       setTimeout(() => setShowVoteSuccess(false), 5000)
+
+      return { success: true, id: result.id }
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to submit your vote. Please try again.",
         variant: "destructive",
       })
+      return { success: false, error: error instanceof Error ? error.message : "Unknown error" }
     }
   }
 

@@ -80,10 +80,12 @@ export default function RegistrationForm() {
           description: `Thank you for registering for the ${competitions.find((c) => c.id === data.competition)?.name}. We'll be in touch soon with more details.`,
         })
         form.reset()
+        console.log("Registration submitted successfully with ID:", result.id)
       } else {
         throw new Error(result.error || "Failed to submit registration")
       }
     } catch (error: any) {
+      console.error("Registration submission error:", error)
       toast({
         title: "Error",
         description: error.message || "Failed to submit your registration. Please try again.",
