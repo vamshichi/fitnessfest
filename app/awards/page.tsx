@@ -349,7 +349,7 @@ export default function AwardsPage() {
                   : "bg-transparent text-white border-2 border-white hover:bg-white hover:text-black"
               }`}
             >
-              View Winners
+              View Awards
             </button>
           </div>
         </div>

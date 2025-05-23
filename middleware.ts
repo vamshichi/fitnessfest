@@ -1,45 +1,41 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
-import { getToken } from "next-auth/jwt"
+import { verifyJwt } from "./lib/jwt"
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  // Check if the request is for an admin route
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    // Get the token from the cookies
+    const token = request.cookies.get("auth_token")?.value
 
-  // Check if the path starts with /admin
-  const isAdminPath = pathname.startsWith("/admin")
+    // If there's no token, redirect to login
+    if (!token) {
+      const loginUrl = new URL("/login", request.url)
+      loginUrl.searchParams.set("from", request.nextUrl.pathname)
+      return NextResponse.redirect(loginUrl)
+    }
 
-  // Skip middleware for login page and API routes
-  if (pathname === "/login" || pathname.startsWith("/api")) {
-    return NextResponse.next()
-  }
+    // Verify the token
+    const payload = await verifyJwt(token)
 
-  // Get the token
-  const token = await getToken({
-    req: request,
-    secret: process.env.NEXTAUTH_SECRET,
-  })
+    // If the token is invalid, redirect to login
+    if (!payload) {
+      const loginUrl = new URL("/login", request.url)
+      loginUrl.searchParams.set("from", request.nextUrl.pathname)
+      return NextResponse.redirect(loginUrl)
+    }
 
-  // If trying to access admin pages without being logged in
-  if (isAdminPath && !token) {
-    const url = new URL("/login", request.url)
-    url.searchParams.set("callbackUrl", encodeURI(pathname))
-    return NextResponse.redirect(url)
-  }
-
-  // If logged in and trying to access login page, redirect to dashboard
-  if (pathname === "/login" && token) {
-    return NextResponse.redirect(new URL("/admin/dashboard", request.url))
+    // If the user doesn't have the admin role, redirect to login
+    if (payload.role !== "admin") {
+      const loginUrl = new URL("/login", request.url)
+      loginUrl.searchParams.set("from", request.nextUrl.pathname)
+      return NextResponse.redirect(loginUrl)
+    }
   }
 
   return NextResponse.next()
 }
 
-// Configure middleware to run on specific paths
 export const config = {
-  matcher: [
-    // Match all admin routes except api routes
-    "/admin/:path*",
-    // Match login page
-    "/login",
-  ],
+  matcher: ["/admin/:path*"],
 }

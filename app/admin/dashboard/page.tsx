@@ -1,167 +1,191 @@
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth-options"
+import { unstable_noStore as noStore } from "next/cache"
+import Link from "next/link"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import prisma from "@/lib/prisma"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Award, Dumbbell } from "lucide-react"
 
 export default async function DashboardPage() {
-  const session = await getServerSession(authOptions)
+  // Prevent caching
+  noStore()
 
-  // Count submissions
-  const contactCount = await prisma.contactSubmission.count()
-  const voteCount = await prisma.awardVote.count()
-  const registrationCount = await prisma.competitionRegistration.count()
+  try {
+    // Get counts
+    const contactCount = await prisma.contactSubmission.count()
+    const registrationCount = await prisma.competitionRegistration.count()
+    const voteCount = await prisma.awardVote.count()
 
-  // Get recent contact submissions
-  const recentContacts = await prisma.contactSubmission.findMany({
-    take: 5,
-    orderBy: {
-      createdAt: "desc",
-    },
-  })
+    // Get recent contacts
+    const recentContacts = await prisma.contactSubmission.findMany({
+      take: 5,
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
 
-  // Get recent votes
-  const recentVotes = await prisma.awardVote.findMany({
-    take: 5,
-    orderBy: {
-      createdAt: "desc",
-    },
-  })
+    // Get recent registrations
+    const recentRegistrations = await prisma.competitionRegistration.findMany({
+      take: 5,
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
 
-  // Get recent registrations
-  const recentRegistrations = await prisma.competitionRegistration.findMany({
-    take: 5,
-    orderBy: {
-      createdAt: "desc",
-    },
-  })
+    // Get recent votes
+    const recentVotes = await prisma.awardVote.findMany({
+      take: 5,
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
 
-  return (
-    <div>
-      <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Contact Submissions</CardTitle>
-            <Mail className="w-4 h-4 text-[#dc5044]" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{contactCount}</div>
-            <p className="text-xs text-muted-foreground">Total contact form submissions</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Award Votes</CardTitle>
-            <Award className="w-4 h-4 text-[#f3c532]" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{voteCount}</div>
-            <p className="text-xs text-muted-foreground">Total award votes submitted</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Competition Registrations</CardTitle>
-            <Dumbbell className="w-4 h-4 text-[#70adb0]" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{registrationCount}</div>
-            <p className="text-xs text-muted-foreground">Total competition registrations</p>
-          </CardContent>
-        </Card>
+    return (
+      <div className="flex-1 space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+        </div>
+        <Tabs defaultValue="overview" className="space-y-4">
+          <TabsList>
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+          </TabsList>
+          <TabsContent value="overview" className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-3">
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Total Contacts</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{contactCount}</div>
+                  <p className="text-xs text-muted-foreground">
+                    <Link href="/admin/contacts" className="text-blue-500 hover:underline">
+                      View all contacts
+                    </Link>
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Competition Registrations</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{registrationCount}</div>
+                  <p className="text-xs text-muted-foreground">
+                    <Link href="/admin/registrations" className="text-blue-500 hover:underline">
+                      View all registrations
+                    </Link>
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Award Votes</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{voteCount}</div>
+                  <p className="text-xs text-muted-foreground">
+                    <Link href="/admin/votes" className="text-blue-500 hover:underline">
+                      View all votes
+                    </Link>
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <Card className="col-span-1">
+                <CardHeader>
+                  <CardTitle>Recent Contacts</CardTitle>
+                  <CardDescription>Showing the {recentContacts.length} most recent contact submissions</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {recentContacts.length === 0 ? (
+                      <p className="text-sm text-gray-500">No contacts yet</p>
+                    ) : (
+                      recentContacts.map((contact) => (
+                        <div key={contact.id} className="flex items-center">
+                          <div className="ml-4 space-y-1">
+                            <p className="text-sm font-medium leading-none">{contact.name}</p>
+                            <p className="text-sm text-muted-foreground">{contact.email}</p>
+                            <p className="text-xs text-gray-500">{new Date(contact.createdAt).toLocaleDateString()}</p>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="col-span-1">
+                <CardHeader>
+                  <CardTitle>Recent Registrations</CardTitle>
+                  <CardDescription>
+                    Showing the {recentRegistrations.length} most recent competition registrations
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {recentRegistrations.length === 0 ? (
+                      <p className="text-sm text-gray-500">No registrations yet</p>
+                    ) : (
+                      recentRegistrations.map((registration) => (
+                        <div key={registration.id} className="flex items-center">
+                          <div className="ml-4 space-y-1">
+                            <p className="text-sm font-medium leading-none">
+                              {registration.firstName} {registration.lastName}
+                            </p>
+                            <p className="text-sm text-muted-foreground">{registration.email}</p>
+                            <p className="text-xs text-gray-500">{registration.competition}</p>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="col-span-1">
+                <CardHeader>
+                  <CardTitle>Recent Votes</CardTitle>
+                  <CardDescription>Showing the {recentVotes.length} most recent award votes</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {recentVotes.length === 0 ? (
+                      <p className="text-sm text-gray-500">No votes yet</p>
+                    ) : (
+                      recentVotes.map((vote) => (
+                        <div key={vote.id} className="flex items-center">
+                          <div className="ml-4 space-y-1">
+                            <p className="text-sm font-medium leading-none">{vote.voterName}</p>
+                            <p className="text-sm text-muted-foreground">{vote.voterEmail}</p>
+                            <p className="text-xs text-gray-500">Voted for: {vote.nomineeName}</p>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold flex items-center gap-2">
-              <Mail className="w-5 h-5 text-[#dc5044]" />
-              Recent Contact Submissions
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentContacts.map((contact) => (
-                <div key={contact.id} className="border-b pb-3">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-medium">{contact.name}</p>
-                      <p className="text-sm text-gray-500">{contact.email}</p>
-                    </div>
-                    <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">{contact.type}</span>
-                  </div>
-                  <p className="text-sm mt-1 truncate">{contact.subject}</p>
-                  <p className="text-xs text-gray-500 mt-1">{new Date(contact.createdAt).toLocaleDateString()}</p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold flex items-center gap-2">
-              <Award className="w-5 h-5 text-[#f3c532]" />
-              Recent Award Votes
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentVotes.map((vote) => (
-                <div key={vote.id} className="border-b pb-3">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-medium">{vote.voterName}</p>
-                      <p className="text-sm text-gray-500">{vote.voterEmail}</p>
-                    </div>
-                  </div>
-                  <p className="text-sm mt-1">
-                    Voted for: <span className="font-medium">{vote.nomineeName}</span>
-                  </p>
-                  <p className="text-sm mt-1">
-                    Category: <span className="font-medium">{vote.categoryName}</span>
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">{new Date(vote.createdAt).toLocaleDateString()}</p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold flex items-center gap-2">
-              <Dumbbell className="w-5 h-5 text-[#70adb0]" />
-              Recent Competition Registrations
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentRegistrations.map((registration) => (
-                <div key={registration.id} className="border-b pb-3">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-medium">
-                        {registration.firstName} {registration.lastName}
-                      </p>
-                      <p className="text-sm text-gray-500">{registration.email}</p>
-                    </div>
-                    <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">{registration.experienceLevel}</span>
-                  </div>
-                  <p className="text-sm mt-1">
-                    Competition: <span className="font-medium">{registration.competition}</span>
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">{new Date(registration.createdAt).toLocaleDateString()}</p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+    )
+  } catch (error) {
+    console.error("Error fetching dashboard data:", error)
+    return (
+      <div className="container mx-auto py-10">
+        <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+        <div className="bg-red-50 p-6 rounded-lg shadow border border-red-200">
+          <h2 className="text-red-600 font-semibold mb-2">Error loading dashboard</h2>
+          <p className="text-gray-700 mb-4">
+            There was a problem connecting to the database. Please try again later or contact support.
+          </p>
+          <details className="text-sm text-gray-500">
+            <summary>Technical details</summary>
+            <pre className="mt-2 p-2 bg-gray-100 rounded overflow-x-auto">
+              {error instanceof Error ? error.message : "Unknown error"}
+            </pre>
+          </details>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }

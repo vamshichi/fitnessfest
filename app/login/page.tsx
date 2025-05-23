@@ -2,166 +2,87 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
-import { signIn, useSession } from "next-auth/react"
+import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
-import Image from "next/image"
 
 export default function LoginPage() {
-  const router = useRouter()
-  const { toast } = useToast()
-  const { data: session, status } = useSession()
-  const searchParams = useSearchParams()
-  // Always default to dashboard if no callback URL is provided
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard"
-  const error = searchParams.get("error")
-
-  const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [errorMessage, setErrorMessage] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const { login } = useAuth()
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const { toast } = useToast()
 
-  // If already authenticated, redirect to dashboard
-  useEffect(() => {
-    if (status === "authenticated") {
-      window.location.href = "/admin/dashboard"
-    }
-  }, [status])
-
-  // Handle error from URL
-  useEffect(() => {
-    if (error) {
-      setErrorMessage(error === "CredentialsSignin" ? "Invalid email or password" : `Authentication error: ${error}`)
-    }
-  }, [error])
-
-  // Function to create admin user
-  const createAdminUser = async () => {
-    try {
-      setIsLoading(true)
-      const response = await fetch("/api/debug")
-      const data = await response.json()
-
-      if (data.error) {
-        setErrorMessage(`Failed to create admin user: ${data.error}`)
-      } else {
-        toast({
-          title: "Success",
-          description: data.message,
-        })
-        setEmail("admin@fitnessfest.com")
-        setPassword("admin123")
-      }
-    } catch (error) {
-      setErrorMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  // Get the redirect URL from the query parameters
+  const from = searchParams.get("from") || "/admin/dashboard"
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    setErrorMessage("")
 
     try {
-      // Use callbackUrl directly in signIn to ensure proper redirection
-      const result = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-        callbackUrl: "/admin/dashboard", // Explicitly set to dashboard
-      })
-
-      if (result?.error) {
-        setErrorMessage(`Authentication failed: ${result.error}`)
-      } else {
-        toast({
-          title: "Success",
-          description: "Logged in successfully",
-        })
-        // Force redirect to dashboard
-        window.location.href = "/admin/dashboard"
-      }
+      await login(email, password)
+      router.push(from)
     } catch (error) {
-      setErrorMessage(`Error: ${error instanceof Error ? error.message : String(error)}`)
+      toast({
+        title: "Login Failed",
+        description: error instanceof Error ? error.message : "Invalid email or password",
+        variant: "destructive",
+      })
     } finally {
       setIsLoading(false)
     }
   }
 
-  // If still loading session, show loading state
-  if (status === "loading") {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#dc5044] mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <Image src="/logo2.png" alt="Fitness Fest Logo" width={150} height={75} />
-          </div>
-          <h1 className="text-3xl font-bold text-[#dc5044]">Admin Login</h1>
-          <p className="text-gray-600 mt-2">Sign in to access the admin dashboard</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#dc5044] to-[#70adb0]">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-2xl">
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold text-gray-900">Admin Login</h1>
+          <p className="mt-2 text-gray-600">Sign in to access the admin dashboard</p>
         </div>
 
-        {errorMessage && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-6">{errorMessage}</div>
-        )}
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1"
+              />
+            </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email Address
-            </label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@fitnessfest.com"
-              required
-              className="border-[#70adb0]/30 focus:ring-[#70adb0]"
-            />
+            <div>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1"
+              />
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              className="border-[#70adb0]/30 focus:ring-[#70adb0]"
-            />
-          </div>
-
-          <Button type="submit" className="w-full bg-[#dc5044] hover:bg-[#c03c32] text-white" disabled={isLoading}>
-            {isLoading ? "Signing in..." : "Sign In"}
+          <Button type="submit" className="w-full bg-[#dc5044] hover:bg-[#c03c32]" disabled={isLoading}>
+            {isLoading ? "Signing in..." : "Sign in"}
           </Button>
         </form>
-
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-sm text-gray-600 mb-4">Having trouble? Try creating the admin user:</p>
-          <Button onClick={createAdminUser} variant="outline" className="w-full" disabled={isLoading}>
-            {isLoading ? "Processing..." : "Create Admin User"}
-          </Button>
-        </div>
       </div>
     </div>
   )
