@@ -375,7 +375,7 @@ export default function AwardsPage() {
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
             }`}
           >
-            <FontAwesomeIcon icon={faTrophy} className="mr-2" /> Award Winners
+            <FontAwesomeIcon icon={faTrophy} className="mr-2" /> Awards
           </button>
         </div>
 

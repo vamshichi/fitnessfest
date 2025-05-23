@@ -14,15 +14,35 @@ export default async function RegistrationsPage() {
       },
     })
 
+    // Get unique competitions and experience levels for filters
+    const competitions = Array.from(new Set(registrations.map((reg) => reg.competition)))
+    const experienceLevels = Array.from(new Set(registrations.map((reg) => reg.experienceLevel)))
+
     return (
       <div className="container mx-auto py-10">
-        <h1 className="text-2xl font-bold mb-6">Competition Registrations</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Competition Registrations</h1>
+        </div>
+
         {registrations.length === 0 ? (
           <div className="bg-white p-6 rounded-lg shadow">
             <p className="text-gray-500">No registrations found.</p>
           </div>
         ) : (
-          <DataTable columns={columns} data={registrations} filterColumn="fullName" />
+          <div className="space-y-4">
+            {/* Competition filter */}
+            <DataTable
+              columns={columns}
+              data={registrations}
+              filterColumn="fullName"
+              filterOptions={{
+                key: "competition",
+                label: "competition",
+                values: competitions,
+              }}
+              exportFileName="registrations_export"
+            />
+          </div>
         )}
       </div>
     )

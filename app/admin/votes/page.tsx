@@ -14,15 +14,31 @@ export default async function VotesPage() {
       },
     })
 
+    // Get unique categories for filters
+    const categories = Array.from(new Set(votes.map((vote) => vote.categoryName)))
+
     return (
       <div className="container mx-auto py-10">
-        <h1 className="text-2xl font-bold mb-6">Award Votes</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Award Votes</h1>
+        </div>
+
         {votes.length === 0 ? (
           <div className="bg-white p-6 rounded-lg shadow">
             <p className="text-gray-500">No votes found.</p>
           </div>
         ) : (
-          <DataTable columns={columns} data={votes} filterColumn="voterName" />
+          <DataTable
+            columns={columns}
+            data={votes}
+            filterColumn="voterName"
+            filterOptions={{
+              key: "categoryName",
+              label: "category",
+              values: categories,
+            }}
+            exportFileName="votes_export"
+          />
         )}
       </div>
     )

@@ -14,15 +14,21 @@ export default async function ContactsPage() {
       },
     })
 
+    // Get unique contact types for the filter
+    const contactTypes = Array.from(new Set(contacts.map((contact) => contact.type)))
+
     return (
       <div className="container mx-auto py-10">
-        <h1 className="text-2xl font-bold mb-6">Contact Submissions</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Contact Submissions</h1>
+        </div>
+
         {contacts.length === 0 ? (
           <div className="bg-white p-6 rounded-lg shadow">
             <p className="text-gray-500">No contact submissions found.</p>
           </div>
         ) : (
-          <DataTable columns={columns} data={contacts} filterColumn="name" />
+          <DataTable columns={columns} data={contacts} filterColumn="name" contactTypes={contactTypes} />
         )}
       </div>
     )
