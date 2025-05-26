@@ -1,43 +1,49 @@
 "use client"
 
 import { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faMedal,
-  faHashtag,
-  faBolt,
-  faBuilding,
-  faLightbulb,
-  faHandsHelping,
-  faGlassCheers,
-  faMicrophone,
-  faCamera,
-  faHistory,
-  faClipboardList,
-  faPhotoVideo,
-  faTrophy,
-  faVoteYea,
-} from "@fortawesome/free-solid-svg-icons"
-import AwardCard from "@/components/award-card"
-import TestimonialCard from "@/components/testimonial-card"
-import FeatureCard from "@/components/feature-card"
-import VotingCard from "@/components/voting-card"
+import { Trophy, Hash, Zap, Users, Mic, Camera, Vote, Award } from "lucide-react"
+import VotingCard  from "@/components/voting-card"
+// import  FeatureCard  from "@/components/feature-card"
+import { AwardsParticipationForm } from "@/components/awards-participation-form"
 import { useToast } from "@/hooks/use-toast"
-import type { VoterInfo } from "@/components/voting-card"
-import { submitVote } from "./actions"
+import { Button } from "@/components/ui/button"
+// import { Input } from "@/components/ui/input"
+import Image from "next/image"
+
+interface Nominee {
+  id: string
+  name: string
+  description: string
+  votes: number
+  image: string
+}
+
+interface Category {
+  id: string
+  title: string
+  icon: any
+  color: string
+  nominees: Nominee[]
+}
+
+interface VoterInfo {
+  name: string
+  email: string
+  categoryId: string
+  nomineeId: string
+}
 
 export default function AwardsPage() {
   const { toast } = useToast()
-  const [activeTab, setActiveTab] = useState("nominees")
+  const [activeTab, setActiveTab] = useState("participate")
   const [hasVoted, setHasVoted] = useState<Record<string, boolean>>({})
   const [showVoteSuccess, setShowVoteSuccess] = useState(false)
-  const [voterData, setVoterData] = useState<VoterInfo[]>([])
 
-  const awardCategories = [
+  const awardCategories: Category[] = [
     {
       id: "personal-trainer",
       title: "Personal Trainer of the Year",
-      icon: faMedal,
+      icon: Trophy,
       color: "red",
       nominees: [
         {
@@ -45,28 +51,28 @@ export default function AwardsPage() {
           name: "Sarah Johnson",
           description: "Transformed over 200 lives this year with innovative training methods and community programs.",
           votes: 245,
-          image: "/fitness-trainer-woman.png",
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
         },
         {
           id: "michael-patel",
           name: "Michael Patel",
           description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
           votes: 189,
-          image: "/fitness-trainer-man.png",
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
         },
         {
           id: "jessica-lee",
           name: "Jessica Lee",
           description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
           votes: 217,
-          image: "/adaptive-fitness-trainer.png",
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
         },
       ],
     },
     {
       id: "fitness-influencer",
       title: "Fitness Influencer Award",
-      icon: faHashtag,
+      icon: Hash,
       color: "teal",
       nominees: [
         {
@@ -74,28 +80,28 @@ export default function AwardsPage() {
           name: "Mark Williams",
           description: "Creates science-based content that has inspired thousands to begin their fitness journey.",
           votes: 312,
-          image: "/fitness-influencer-man.png",
+          image: "/placeholder.svg?height=100&width=100&query=fitness influencer man",
         },
         {
           id: "aisha-rodriguez",
           name: "Aisha Rodriguez",
           description: "Promotes body positivity and inclusive fitness through her popular social media channels.",
           votes: 287,
-          image: "/body-positive-fitness-influencer.png",
+          image: "/placeholder.svg?height=100&width=100&query=body positive fitness influencer",
         },
         {
           id: "tyler-chen",
           name: "Tyler Chen",
           description: "Specializes in nutrition education and debunking harmful fitness myths online.",
           votes: 265,
-          image: "/nutrition-fitness-expert.png",
+          image: "/placeholder.svg?height=100&width=100&query=nutrition fitness expert",
         },
       ],
     },
     {
       id: "breakthrough-athlete",
       title: "Breakthrough Athlete",
-      icon: faBolt,
+      icon: Zap,
       color: "yellow",
       nominees: [
         {
@@ -103,7 +109,7 @@ export default function AwardsPage() {
           name: "Alex Chen",
           description: "Overcame significant obstacles to achieve greatness in competitive fitness events this year.",
           votes: 178,
-          image: "/competitive-athlete.png",
+          image: "/placeholder.svg?height=100&width=100&query=competitive athlete",
         },
         {
           id: "maya-johnson",
@@ -123,121 +129,19 @@ export default function AwardsPage() {
     },
   ]
 
-  const awardWinners = [
-    {
-      icon: faMedal,
-      title: "Personal Trainer of the Year",
-      winner: "Sarah Johnson",
-      description:
-        "Recognized for exceptional client results, innovative training methods, and community impact. Sarah has transformed over 200 lives this year alone.",
-      tags: ["Transformation", "Innovation", "Community"],
-      color: "red",
-    },
-    {
-      icon: faHashtag,
-      title: "Fitness Influencer Award",
-      winner: "Mark Williams",
-      description:
-        "For creating accessible, science-based content that has inspired thousands to begin their fitness journey and debunking harmful fitness myths.",
-      tags: ["Education", "Social Media", "Inspiration"],
-      color: "teal",
-    },
-    {
-      icon: faBolt,
-      title: "Breakthrough Athlete",
-      winner: "Alex Chen",
-      description:
-        "For exceptional performance and progress in competitive fitness events throughout the year, overcoming significant obstacles to achieve greatness.",
-      tags: ["Performance", "Dedication", "Resilience"],
-      color: "yellow",
-    },
-    {
-      icon: faBuilding,
-      title: "Wellness Program Excellence",
-      winner: "FitLife Corporate",
-      description:
-        "For developing an innovative workplace wellness program with measurable health outcomes, reducing sick days by 30% and improving employee satisfaction.",
-      tags: ["Corporate", "Wellness", "Innovation"],
-      color: "red",
-    },
-    {
-      icon: faLightbulb,
-      title: "Fitness Innovation Award",
-      winner: "FlexTech Wearables",
-      description:
-        "For groundbreaking technology that has transformed how people track and improve their fitness with AI-powered real-time coaching and feedback.",
-      tags: ["Technology", "AI", "Wearables"],
-      color: "teal",
-    },
-    {
-      icon: faHandsHelping,
-      title: "Community Impact Award",
-      winner: "Fitness For All Foundation",
-      description:
-        "For making fitness accessible to underserved communities through free programs and facilities, reaching over 5,000 individuals this year.",
-      tags: ["Inclusion", "Accessibility", "Community"],
-      color: "yellow",
-    },
-  ]
-
-  const previousAwards = [
-    {
-      icon: faHistory,
-      title: "2024 Hall of Fame",
-      description:
-        "View our previous award winners and their outstanding contributions to the fitness community over the years.",
-      tags: ["Legacy", "Excellence", "History"],
-      color: "red",
-    },
-    {
-      icon: faClipboardList,
-      title: "Nomination Process",
-      description:
-        "Learn about our rigorous selection process and how to nominate candidates for next year's awards. Nominations open in January.",
-      tags: ["Criteria", "Selection", "Judging"],
-      color: "teal",
-    },
-    {
-      icon: faPhotoVideo,
-      title: "Awards Ceremony",
-      description:
-        "Relive the excitement of this year's awards ceremony with photos and highlights from our gala event.",
-      tags: ["Gallery", "Highlights", "Memories"],
-      color: "yellow",
-    },
-  ]
-
-  const testimonials = [
-    {
-      text: "Winning the Fitness Innovation Award was a game-changer for our company. The recognition helped us secure funding and expand our reach globally.",
-      name: "James Peterson",
-      role: "CEO, FitTech Solutions",
-    },
-    {
-      text: "The Fitness Fest Awards ceremony was an incredible experience. I met so many inspiring people and formed partnerships that have transformed my career.",
-      name: "Maria Rodriguez",
-      role: "Personal Trainer of the Year 2024",
-    },
-    {
-      text: "Being recognized for our community work gave our foundation the visibility we needed to expand our programs to five new cities this year.",
-      name: "David Kim",
-      role: "Founder, Fitness Forward",
-    },
-  ]
-
   const features = [
     {
-      icon: faGlassCheers,
+      icon: Users,
       title: "VIP Reception",
       description: "Exclusive networking with industry leaders and award winners.",
     },
     {
-      icon: faMicrophone,
+      icon: Mic,
       title: "Inspiring Speakers",
       description: "Hear from the top minds in fitness and wellness.",
     },
     {
-      icon: faCamera,
+      icon: Camera,
       title: "Red Carpet",
       description: "Professional photography and media coverage.",
     },
@@ -255,7 +159,6 @@ export default function AwardsPage() {
       return { success: false, error: "Already voted in this category" }
     }
 
-    // Find the category and nominee to get their names
     const category = awardCategories.find((cat) => cat.id === categoryId)
     const nominee = category?.nominees.find((nom) => nom.id === voterInfo.nomineeId)
 
@@ -269,23 +172,14 @@ export default function AwardsPage() {
     }
 
     try {
-      // Submit vote to the database
-      const result = await submitVote(voterInfo, nominee.name, category.title)
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      if (!result.success) {
-        throw new Error(result.error || "Failed to submit vote")
-      }
-
-      // Store voter data locally
-      setVoterData((prev) => [...prev, voterInfo])
-
-      // Update local state to show the user has voted
       setHasVoted((prev) => ({
         ...prev,
         [categoryId]: true,
       }))
 
-      // Show success message
       toast({
         title: "Vote Submitted!",
         description: `Thank you ${voterInfo.name} for voting. Your vote has been recorded.`,
@@ -294,7 +188,7 @@ export default function AwardsPage() {
       setShowVoteSuccess(true)
       setTimeout(() => setShowVoteSuccess(false), 5000)
 
-      return { success: true, id: result.id }
+      return { success: true, id: `vote-${Date.now()}` }
     } catch (error) {
       toast({
         title: "Error",
@@ -305,9 +199,26 @@ export default function AwardsPage() {
     }
   }
 
+  const handleFormSubmit = (values: any) => {
+    console.log("Form submitted:", values)
+    toast({
+      title: "Registration Submitted!",
+      description: "Thank you for your participation. We'll be in touch soon.",
+    })
+  }
+
+  const countries = [
+    { value: "us", label: "United States" },
+    { value: "ca", label: "Canada" },
+    { value: "uk", label: "United Kingdom" },
+    { value: "de", label: "Germany" },
+    { value: "fr", label: "France" },
+  ]
+
   return (
-    <main>
-      <section
+    <main className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+       <section
         className="relative py-24 text-center text-white overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #dc5044 0%, #70adb0 100%)",
@@ -327,224 +238,249 @@ export default function AwardsPage() {
             <span className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[100px] h-[5px] bg-[#f3c532]"></span>
           </h1>
           <p className="text-xl md:text-2xl mt-8 mb-10 opacity-90 max-w-3xl mx-auto">
-            Recognizing outstanding achievements in fitness, wellness, and athletic performance. Vote for your favorites
-            or explore our past winners.
+            Join the celebration of excellence in fitness and wellness. Participate in our awards program by nominating
+            outstanding individuals or voting for your favorites.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mt-8">
-            <button
-              onClick={() => setActiveTab("nominees")}
-              className={`py-4 px-8 rounded-full font-semibold uppercase transition-colors ${
-                activeTab === "nominees"
-                  ? "bg-white text-[#dc5044] border-2 border-white"
-                  : "bg-transparent text-white border-2 border-white hover:bg-white hover:text-black"
+             <Button
+              onClick={() => setActiveTab("participate")}
+              size="lg"
+              className={`py-4 px-10 rounded-full font-bold uppercase text-lg transition-all duration-300 transform hover:scale-105 ${
+                activeTab === "participate"
+                  ? "bg-white text-[#dc5044] shadow-2xl border-4 border-white"
+                  : "bg-transparent text-white border-4 border-white hover:bg-white hover:text-[#dc5044]"
               }`}
             >
+              <Award className="mr-3 h-5 w-5" />
+              Participate
+            </Button>
+           <Button
+              onClick={() => setActiveTab("vote")}
+              size="lg"
+              className={`py-4 px-10 rounded-full font-bold uppercase text-lg transition-all duration-300 transform hover:scale-105 ${
+                activeTab === "vote"
+                  ? "bg-white text-[#dc5044] shadow-2xl border-4 border-white"
+                  : "bg-transparent text-white border-4 border-white hover:bg-white hover:text-[#dc5044]"
+              }`}
+            >
+              <Vote className="mr-3 h-5 w-5" />
               Vote Now
-            </button>
-            <button
-              onClick={() => setActiveTab("winners")}
-              className={`py-4 px-8 rounded-full font-semibold uppercase transition-colors ${
-                activeTab === "winners"
-                  ? "bg-white text-[#dc5044] border-2 border-white"
-                  : "bg-transparent text-white border-2 border-white hover:bg-white hover:text-black"
-              }`}
-            >
-              View Awards
-            </button>
+            </Button>
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-6 py-8">
-        <div className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
-          <button
-            onClick={() => setActiveTab("nominees")}
-            className={`text-lg py-3 px-4 rounded-l-md font-medium transition-colors ${
-              activeTab === "nominees"
-                ? "bg-background text-foreground shadow-sm"
-                : "bg-muted text-muted-foreground hover:bg-muted/80"
+      <div className="container mx-auto px-6 py-16">
+        {/* Tab Navigation */}
+        <div className="flex w-full max-w-lg mx-auto mb-16 bg-white rounded-2xl p-2 shadow-xl border-4 border-gray-100">
+          <Button
+            onClick={() => setActiveTab("participate")}
+            variant="ghost"
+            className={`flex-1 rounded-xl py-4 font-bold text-lg transition-all duration-300 ${
+              activeTab === "participate"
+                ? "bg-gradient-to-r from-[#dc5044] to-[#70adb0] text-white shadow-lg"
+                : "text-gray-600 hover:text-[#dc5044] hover:bg-gray-50"
             }`}
           >
-            <FontAwesomeIcon icon={faVoteYea} className="mr-2" /> Vote for Nominees
-          </button>
-          <button
-            onClick={() => setActiveTab("winners")}
-            className={`text-lg py-3 px-4 rounded-r-md font-medium transition-colors ${
-              activeTab === "winners"
-                ? "bg-background text-foreground shadow-sm"
-                : "bg-muted text-muted-foreground hover:bg-muted/80"
+            <Award className="mr-2 h-5 w-5" />
+            Participate
+          </Button>
+          <Button
+            onClick={() => setActiveTab("vote")}
+            variant="ghost"
+            className={`flex-1 rounded-xl py-4 font-bold text-lg transition-all duration-300 ${
+              activeTab === "vote"
+                ? "bg-gradient-to-r from-[#dc5044] to-[#70adb0] text-white shadow-lg"
+                : "text-gray-600 hover:text-[#dc5044] hover:bg-gray-50"
             }`}
           >
-            <FontAwesomeIcon icon={faTrophy} className="mr-2" /> Awards
-          </button>
+            <Vote className="mr-2 h-5 w-5" />
+            Vote
+          </Button>
         </div>
 
-        {activeTab === "nominees" && (
-          <div className="mt-0">
-            <div className="text-center mb-16">
-              <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#dc5044]">
-                Vote for Your Favorites
-              </h2>
-              <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
+        {/* Participate Tab */}
+        {activeTab === "participate" && (
+          <div className="space-y-20">
+            <div className="text-center">
+              <div className="relative inline-block">
+                <h2 className="text-5xl md:text-6xl font-black uppercase text-black mb-4 relative z-10">
+                  Join Our Awards
+                </h2>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#f3c532] -skew-x-12 z-0"></div>
+              </div>
+              <p className="mt-8 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Be part of celebrating excellence in the fitness community. Submit your nomination or register to
+                participate in our prestigious awards ceremony.
+              </p>
+            </div>
+
+            {/* Awards Categories Overview */}
+            <div className="space-y-12">
+              <div className="text-center">
+                <h3 className="text-4xl font-bold text-[#70adb0] mb-4">Award Categories</h3>
+                <div className="w-24 h-1 bg-[#dc5044] mx-auto"></div>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {awardCategories.map((category, index) => {
+                  const IconComponent = category.icon
+                  const colors = {
+                    red: "border-[#dc5044] bg-gradient-to-br from-[#dc5044]/5 to-[#dc5044]/10",
+                    teal: "border-[#70adb0] bg-gradient-to-br from-[#70adb0]/5 to-[#70adb0]/10",
+                    yellow: "border-[#f3c532] bg-gradient-to-br from-[#f3c532]/5 to-[#f3c532]/10",
+                  }
+
+                  return (
+                    <div
+                      key={category.id}
+                      className={`relative overflow-hidden rounded-2xl p-8 shadow-xl border-4 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${colors[category.color as keyof typeof colors]}`}
+                    >
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-white/20 rounded-bl-full"></div>
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="p-3 bg-white rounded-xl shadow-lg">
+                          <IconComponent className="h-8 w-8 text-[#dc5044]" />
+                        </div>
+                        <h4 className="text-xl font-bold text-gray-800">{category.title}</h4>
+                      </div>
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        Recognizing outstanding achievements and contributions in this category.
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-gray-500">Current nominees:</span>
+                        <span className="bg-[#f3c532] text-black px-3 py-1 rounded-full font-bold text-sm">
+                          {category.nominees.length}
+                        </span>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Participation Form */}
+            <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-4 border-gray-100">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-[#70adb0] mb-4">Registration Form</h3>
+                <div className="w-16 h-1 bg-[#dc5044] mx-auto"></div>
+              </div>
+              <AwardsParticipationForm onSubmit={handleFormSubmit} countries={countries} />
+            </div>
+          </div>
+        )}
+
+        {/* Vote Tab */}
+        {activeTab === "vote" && (
+          <div className="space-y-20">
+            <div className="text-center">
+              <div className="relative inline-block">
+                <h2 className="text-5xl md:text-6xl font-black uppercase text-black mb-4 relative z-10">
+                  Vote for Excellence
+                </h2>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#f3c532] -skew-x-12 z-0"></div>
+              </div>
+              <p className="mt-8 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Help us recognize excellence in the fitness community by voting for your favorite nominees in each
                 category. Voting closes on May 31, 2025.
               </p>
             </div>
 
             {showVoteSuccess && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-8 max-w-3xl mx-auto">
-                <strong className="font-bold">Thank you for your vote!</strong>
-                <span className="block sm:inline">
-                  {" "}
-                  Your vote has been recorded. You can continue voting in other categories.
-                </span>
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 text-green-800 px-6 py-4 rounded-2xl max-w-4xl mx-auto shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong className="font-bold">Thank you for your vote!</strong>
+                    <span className="block sm:inline">
+                      {" "}
+                      Your vote has been recorded. You can continue voting in other categories.
+                    </span>
+                  </div>
+                </div>
               </div>
             )}
 
-            <div className="space-y-16">
-              {awardCategories.map((category) => (
-                <div key={category.id} className="mb-16">
-                  <div className="flex items-center gap-3 mb-6">
-                    <FontAwesomeIcon icon={category.icon} className="text-3xl text-[#dc5044]" />
-                    <h3 className="text-2xl font-bold">{category.title}</h3>
+            <div className="space-y-20">
+              {awardCategories.map((category, index) => {
+                const IconComponent = category.icon
+                return (
+                  <div key={category.id} className="space-y-8">
+                    <div className="text-center">
+                      <div className="flex items-center justify-center gap-4 mb-4">
+                        <div className="p-4 bg-gradient-to-br from-[#dc5044] to-[#70adb0] rounded-2xl shadow-lg">
+                          <IconComponent className="h-10 w-10 text-white" />
+                        </div>
+                        <h3 className="text-3xl font-bold text-gray-800">{category.title}</h3>
+                      </div>
+                      <div className="w-24 h-1 bg-[#f3c532] mx-auto"></div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {category.nominees.map((nominee) => (
+                        <VotingCard
+                          key={nominee.id}
+                          nominee={nominee}
+                          categoryId={category.id}
+                          color={category.color}
+                          onVote={handleVote}
+                          hasVoted={hasVoted[category.id] || false}
+                        />
+                      ))}
+                    </div>
                   </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {category.nominees.map((nominee) => (
-                      <VotingCard
-                        key={nominee.id}
-                        nominee={nominee}
-                        categoryId={category.id}
-                        color={category.color}
-                        onVote={handleVote}
-                        hasVoted={hasVoted[category.id] || false}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         )}
-
-        {activeTab === "winners" && (
-          <>
-            <section className="py-12" id="awards">
-              <div className="text-center mb-16">
-                <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#dc5044]">
-                  2025 Award Winners
-                </h2>
-                <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
-                  Celebrating the individuals and organizations that have made exceptional contributions to the fitness
-                  community this year.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {awardWinners.map((award, index) => (
-                  <AwardCard
-                    key={index}
-                    icon={award.icon}
-                    title={award.title}
-                    winner={award.winner}
-                    description={award.description}
-                    tags={award.tags}
-                    color={award.color}
-                  />
-                ))}
-              </div>
-            </section>
-
-            <section className="py-20 bg-gray-100">
-              <div className="text-center mb-16">
-                <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#dc5044]">
-                  What Past Winners Say
-                </h2>
-                <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
-                  Hear from our previous award recipients about their experience.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {testimonials.map((testimonial, index) => (
-                  <TestimonialCard
-                    key={index}
-                    text={testimonial.text}
-                    name={testimonial.name}
-                    role={testimonial.role}
-                  />
-                ))}
-              </div>
-            </section>
-
-            <section className="py-20">
-              <div className="text-center mb-16">
-                <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#dc5044]">
-                  Previous Winners
-                </h2>
-                <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
-                  Explore our hall of fame and the legacy of excellence in the fitness industry.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {previousAwards.map((award, index) => (
-                  <AwardCard
-                    key={index}
-                    icon={award.icon}
-                    title={award.title}
-                    description={award.description}
-                    tags={award.tags}
-                    color={award.color}
-                  />
-                ))}
-              </div>
-            </section>
-          </>
-        )}
       </div>
 
-      <section
-        className="py-20 text-white relative overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #000000 0%, #333333 100%)",
-        }}
-      >
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fillOpacity='0.05' fillRule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22.24H0v-1.41zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.48H0V3.07zm20 0l2.83-2.83 1.41 1.41-2.83 2.83H20V3.07zm0 17.76l2.83-2.83 1.41 1.41-2.83 2.83H20v-1.41zm0 17.76l2.83-2.83 1.41 1.41-2.83 2.83H20v-1.41zM40 3.07l-2.83-2.83-1.41 1.41 2.83 2.83H40V3.07zm0 17.76l-2.83-2.83-1.41 1.41 2.83 2.83H40v-1.41zm0 17.76l-2.83-2.83-1.41 1.41 2.83 2.83H40v-1.41z'/%3E%3C/g%3E%3C/svg%3E\")",
-          }}
-        ></div>
+      {/* Awards Ceremony Section */}
+      {/* <section className="relative py-24 text-white overflow-hidden bg-gradient-to-135deg from-black via-gray-900 to-gray-800">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-40 h-40 bg-[#dc5044] transform rotate-45"></div>
+          <div className="absolute top-20 right-20 w-32 h-32 bg-[#70adb0] transform -rotate-12"></div>
+          <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-[#f3c532] transform rotate-12"></div>
+          <div className="absolute bottom-40 right-1/3 w-36 h-36 bg-white transform -rotate-45"></div>
+        </div>
 
-        <div className="container mx-auto px-6 text-center relative z-10 max-w-4xl">
-          <h2 className="text-4xl font-extrabold mb-6 uppercase">Register for the Awards Ceremony</h2>
-          <p className="text-xl mb-10 opacity-90">
-            Join us for an unforgettable night celebrating the best in fitness. Limited seats available!
+        <div className="container mx-auto px-6 text-center relative z-10 max-w-6xl">
+          <div className="relative inline-block mb-8">
+            <h2 className="text-5xl md:text-6xl font-black uppercase mb-4 relative z-10">Awards Ceremony</h2>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#f3c532] -skew-x-12 z-0"></div>
+          </div>
+
+          <p className="text-xl md:text-2xl mb-12 opacity-90 max-w-4xl mx-auto leading-relaxed">
+            Be part of an unforgettable night celebrating the best in fitness. Limited seats available for our
+            prestigious awards ceremony!
           </p>
 
-          <form className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto mt-10">
-            <input
+          <div className="flex flex-col md:flex-row gap-4 max-w-3xl mx-auto mt-12 mb-16">
+            <Input
               type="email"
-              placeholder="Enter your email"
-              required
-              className="flex-1 py-4 px-6 rounded-full text-black outline-none"
+              placeholder="Enter your email for ceremony updates"
+              className="flex-1 py-4 px-6 rounded-full text-lg border-2 border-white/20 bg-white/10 text-white placeholder:text-white/70 focus:border-[#f3c532]"
             />
-            <button
-              type="submit"
-              className="bg-[#f3c532] text-black py-4 px-8 rounded-full font-semibold uppercase hover:bg-[#dc5044] hover:text-white transform hover:-translate-y-1 transition-all animate-pulse"
-            >
-              Register Now
-            </button>
-          </form>
+            <Button className="bg-gradient-to-r from-[#f3c532] to-[#dc5044] text-black hover:from-[#dc5044] hover:to-[#f3c532] rounded-full px-10 py-4 font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl">
+              Get Updates
+            </Button>
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
+          <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <FeatureCard key={index} icon={feature.icon} title={feature.title} description={feature.description} />
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   )
 }
