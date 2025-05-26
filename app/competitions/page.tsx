@@ -30,7 +30,7 @@ export default function CompetitionsPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#dc5044]">
-              Event Schedule
+              Competitions Schedule
             </h2>
             <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
               Mark your calendar for these key dates and don't miss any of the action.

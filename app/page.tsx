@@ -221,13 +221,14 @@ export default function Home() {
             </div>
 
             <div>
-              <h5 className="text-purple-600 font-semibold mb-4">An event for</h5>
+              <h5 className="text-purple-600 font-semibold mb-4">About Festival</h5>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Get curious. Be inspired. Create your future.
+              Fitness for EveryBODY
               </h2>
               <div className="space-y-4 text-gray-700">
                 <p>
-                We’re inviting the top creatives in the tech industry from all over the world to come learn, grow, scrape their knees, try new things, to be vulnerable, and to have epic adventures
+                Bengaluru Fitness Festival is more than just an event – it’s a movement to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
+Expect high-energy workouts, educational sessions, fun activities for families, and a buzzing atmosphere that will leave you inspired and recharged.
                 </p>
                 {/* <p>
                   This conference is designed to help you expand your knowledge, connect with like-minded professionals,
@@ -247,7 +248,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
+      {/* <section>
       <div className="bg-gray-200 shadow-sm">
               <SpeakerSection />
               <div className="text-center mt-12 ">
@@ -257,10 +258,10 @@ export default function Home() {
             >
               View All Speakers
               <ChevronRight size={16} className="ml-2" />
-            </Link> */}
+            </Link> 
           </div>
       </div>
-      </section>
+      </section> */}
       {/* Speakers Section */}
       {/* <section className="py-16 md:py-24 bg-gradient-to-r from-purple-600 via-pink-500 to-amber-300 shadow-sm text-white">
         <div className="container mx-auto px-4">
@@ -310,7 +311,7 @@ export default function Home() {
       <Ticket />
 
       {/* Sponsors Section */}
-      <section className="py-16 md:py-24 bg-white">
+      {/* <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h5 className="text-purple-600 font-semibold mb-4">Sponsors</h5>
@@ -322,7 +323,7 @@ export default function Home() {
 
           <SponsorGrid />
         </div>
-      </section>
+      </section> */}
 
       {/* Gallery Section */}
       {/* <section className="py-16 md:py-24 bg-gray-50">

@@ -9,8 +9,7 @@ export default function Footer() {
               <div>
                 <h3 className="text-2xl font-bold mb-4">Bengaluru Fitness Festival 2025</h3>
                 <p className="text-gray-400 mb-4">
-                Organized by Maxx Business Media Pvt. Lgtd.,
-                For partnerships & media: pad@fitnessfest.in
+                Organized by Maxx Business Media Pvt. Ltd.
                 </p>
                 <div className="flex space-x-4">
                   <Link href="https://www.facebook.com/BengaluruFitnessFest/" className="text-gray-400 hover:text-white">
@@ -62,9 +61,9 @@ export default function Footer() {
               <div>
                 <h4 className="text-lg font-semibold mb-4">Event Details</h4>
                 <ul className="space-y-2">
-                  <li className="text-gray-400">July 17-19, 2024</li>
-                  <li className="text-gray-400">Boston Conference Center</li>
-                  <li className="text-gray-400">Boston, Canada</li>
+                  <li className="text-gray-400">July 22-23, 2024</li>
+                  <li className="text-gray-400">KTPO convenction Center</li>
+                  <li className="text-gray-400">White feald ,Bangaluru</li>
                 </ul>
               </div>
 
@@ -73,13 +72,13 @@ export default function Footer() {
                 <ul className="space-y-2">
                   <li className="text-gray-400">info@fitnessfest.in</li>
                   <li className="text-gray-400">+91 97427 11211</li>
-                  <li className="text-gray-400">123 Conference St, Boston, Canada</li>
+                  <li className="text-gray-400">T9, 3rd Floor, Swastik Manandi Arcade, Seshadripuram, Bengaluru 560020</li>
                 </ul>
               </div>
             </div>
 
             <div className="border-t border-gray-800 pt-8">
-              <p className="text-center text-gray-500">All rights reserved © 2025</p>
+              <p className="text-center text-gray-500">Maxx Business Media Pvt. Ltd All rights reserved © 2025</p>
             </div>
           </div>
         </footer>

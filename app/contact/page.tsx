@@ -101,7 +101,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold mb-1">Email Us</h3>
                     <p className="text-gray-600">info@fitnessfest.com</p>
-                    <p className="text-gray-600">support@fitnessfest.com</p>
+                    {/* <p className="text-gray-600">support@fitnessfest.com</p> */}
                   </div>
                 </div>
 
@@ -111,8 +111,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-1">Call Us</h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
-                    <p className="text-gray-600">Mon-Fri: 9am - 5pm EST</p>
+                    <p className="text-gray-600">+91 97427 11211</p>
+                    <p className="text-gray-600">Mon-Fri: 9:30am - 6:30pm</p>
                   </div>
                 </div>
 
@@ -122,13 +122,13 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-1">Location</h3>
-                    <p className="text-gray-600">Fitness Fest HQ</p>
-                    <p className="text-gray-600">123 Fitness Avenue</p>
-                    <p className="text-gray-600">Bengaluru, India</p>
+                    <p className="text-gray-600">T9, 3rd Floor, Swastik Manandi Arcade, Seshadripuram, Bengaluru 560020</p>
+                    {/* <p className="text-gray-600">123 Fitness Avenue</p>
+                    <p className="text-gray-600">Bengaluru, India</p> */}
                   </div>
                 </div>
 
-                <div className="flex items-start">
+                {/* <div className="flex items-start">
                   <div className="bg-[#f3c532]/20 p-4 rounded-full mr-5">
                     <Calendar className="w-6 h-6 text-[#dc5044]" />
                   </div>
@@ -137,7 +137,7 @@ export default function ContactPage() {
                     <p className="text-gray-600">June 15-21, 2025</p>
                     <p className="text-gray-600">Bengaluru Convention Center</p>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="mt-12">
@@ -202,7 +202,7 @@ export default function ContactPage() {
                     className="flex items-center gap-2 data-[state=active]:bg-[#f3c532] data-[state=active]:text-black"
                   >
                     <Mail className="w-4 h-4" />
-                    <span className="hidden sm:inline">General Inquiry</span>
+                    <span className="hidden sm:inline">General</span>
                     <span className="sm:hidden">Inquiry</span>
                   </TabsTrigger>
                   <TabsTrigger
@@ -210,7 +210,7 @@ export default function ContactPage() {
                     className="flex items-center gap-2 data-[state=active]:bg-[#f3c532] data-[state=active]:text-black"
                   >
                     <Dumbbell className="w-4 h-4" />
-                    <span className="hidden sm:inline">Competitor Info</span>
+                    <span className="hidden sm:inline">Exhibitor</span>
                     <span className="sm:hidden">Compete</span>
                   </TabsTrigger>
                   <TabsTrigger
@@ -218,7 +218,7 @@ export default function ContactPage() {
                     className="flex items-center gap-2 data-[state=active]:bg-[#f3c532] data-[state=active]:text-black"
                   >
                     <Award className="w-4 h-4" />
-                    <span className="hidden sm:inline">Sponsorship</span>
+                    <span className="hidden sm:inline">Sponsor</span>
                     <span className="sm:hidden">Sponsor</span>
                   </TabsTrigger>
                 </TabsList>
@@ -451,7 +451,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-[#70adb0]">Find Us</h2>
-            <p className="text-gray-600">Visit our headquarters or the venue of our upcoming event</p>
+            <p className="text-gray-600">Visit our venue of our upcoming event</p>
           </div>
 
           <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">

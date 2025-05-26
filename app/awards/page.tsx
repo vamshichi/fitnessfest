@@ -310,7 +310,7 @@ export default function AwardsPage() {
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#f3c532] -skew-x-12 z-0"></div>
               </div>
               <p className="mt-8 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Be part of celebrating excellence in the fitness community. Submit your nomination or register to
+                Be part of celebrating excellence in the fitness community. Submit your Nomination to
                 participate in our prestigious awards ceremony.
               </p>
             </div>
@@ -361,7 +361,7 @@ export default function AwardsPage() {
             {/* Participation Form */}
             <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-4 border-gray-100">
               <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-[#70adb0] mb-4">Registration Form</h3>
+                <h3 className="text-3xl font-bold text-[#70adb0] mb-4">Nomination Form</h3>
                 <div className="w-16 h-1 bg-[#dc5044] mx-auto"></div>
               </div>
               <AwardsParticipationForm onSubmit={handleFormSubmit} countries={countries} />

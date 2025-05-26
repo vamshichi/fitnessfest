@@ -6,6 +6,7 @@ import { MapPin, Calendar, Users, Clock } from "lucide-react"
 // import ZonesAndHighlights from "@/components/ZonesAndHighlights"
 import WhyAttend from "@/components/WhyAttend"
 import WhoShouldJoin from "@/components/WhoShouldJoin"
+import NewsletterForm from "@/components/newsletter-form"
 
 export default function AboutPage() {
   return (
@@ -121,7 +122,7 @@ export default function AboutPage() {
         </div>
         <h3 className="text-xl font-semibold mb-2 text-gray-800">Date & Time</h3>
         <p className="text-gray-600">November 22-23, 2025</p>
-        <p className="text-gray-600">9:00 AM - 6:00 PM</p>
+        <p className="text-gray-600">9:00 AM - 8:00 PM</p>
       </div>
 
       {/* Location */}
@@ -130,7 +131,7 @@ export default function AboutPage() {
           <MapPin className="w-8 h-8 text-[#dc5044]" />
         </div>
         <h3 className="text-xl font-semibold mb-2 text-gray-800">Location</h3>
-        <p className="text-gray-600">Bengaluru Exhibition Grounds</p>
+        <p className="text-gray-600">KTPO - Whitefield, Bengaluru, India</p>
         <p className="text-gray-600">Karnataka, India</p>
       </div>
 
@@ -140,8 +141,8 @@ export default function AboutPage() {
           <Users className="w-8 h-8 text-[#dc5044]" />
         </div>
         <h3 className="text-xl font-semibold mb-2 text-gray-800">Attendees</h3>
-        <p className="text-gray-600">5,000+ Participants</p>
-        <p className="text-gray-600">From 30+ Countries</p>
+        <p className="text-gray-600">20,000+ Participants</p>
+        {/* <p className="text-gray-600">From 30+ Countries</p> */}
       </div>
 
       {/* Sessions */}
@@ -223,17 +224,26 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-[#dc5044] text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Join Us?</h2>
-          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Secure your spot at DevCon 2024 and be part of the most exciting tech event of the year.
-          </p>
-          <Button size="lg" className="bg-white text-purple-700 hover:bg-gray-100">
-            <Link href="/tickets">Get Your Ticket Now</Link>
-          </Button>
-        </div>
-      </section>
+            {/* <section className="py-16 md:py-24 bg-[#dc5044] text-white">
+              <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <h5 className="text-white font-semibold mb-4">Subscribe Newsletter</h5>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Subscribe to receive daily news</h2>
+                    <p className="text-white/80">
+                      Stay updated to get more detailes abut Bengulure Fitness Fest.
+                    </p>
+                  </div>
+      
+                  <div>
+                    <NewsletterForm />
+                  </div>
+                  
+                </div>
+               
+              </div>
+            </section> */}
+           
     </main>
   )
 }
