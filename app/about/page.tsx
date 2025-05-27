@@ -1,12 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { MapPin, Calendar, Users, Clock } from "lucide-react"
 // import ZonesAndHighlights from "@/components/ZonesAndHighlights"
 import WhyAttend from "@/components/WhyAttend"
 import WhoShouldJoin from "@/components/WhoShouldJoin"
-import NewsletterForm from "@/components/newsletter-form"
+// import NewsletterForm from "@/components/newsletter-form"
 
 export default function AboutPage() {
   return (
@@ -36,19 +36,33 @@ export default function AboutPage() {
 </section>
 
 {/* Hero Welcome Section */}
-<section className="py-20 bg-gradient-to-br from-[#f3c532]/10 via-white to-[#70adb0]/10 text-center">
-  <div className="max-w-4xl mx-auto px-4">
-    <h2 className="text-4xl md:text-5xl font-extrabold text-[#dc5044] mb-6">
-      Welcome to Bengaluru Fitness Festival
-    </h2>
-    <p className="text-lg md:text-xl text-gray-700 mb-6">
-      Bengaluru Fitness Festival is more than just an event – it’s a <span className="font-semibold text-[#70adb0]">movement</span> to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
-    </p>
-    <p className="text-lg md:text-xl text-gray-700">
-      Expect <span className="text-[#dc5044] font-semibold">high-energy workouts</span>, educational sessions, family-friendly fun, and a buzzing atmosphere that will leave you inspired and recharged.
-    </p>
+<section className="py-20 bg-gradient-to-br from-[#f3c532]/10 via-white to-[#70adb0]/10">
+  <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+        <div className="flex justify-center">
+      <img 
+        src="/images/fitness-festival-crowd.png"
+        alt="Bengaluru Fitness Festival" 
+        className="rounded-xl shadow-lg w-full max-w-md"
+      />
+    </div>
+    {/* Left Side Content */}
+    <div className="text-center md:text-left">
+      <h2 className="text-4xl md:text-5xl font-extrabold text-[#dc5044] mb-6">
+        Welcome to Bengaluru Fitness Festival
+      </h2>
+      <p className="text-lg md:text-xl text-gray-700 mb-6">
+        Bengaluru Fitness Festival is more than just an event – it's a <span className="font-semibold text-[#70adb0]">movement</span> to make health and fitness fun, accessible, and inclusive. Whether you're a beginner or a pro, young or old, this festival welcomes everyone with open arms and energetic vibes.
+      </p>
+      <p className="text-lg md:text-xl text-gray-700">
+        Expect <span className="text-[#dc5044] font-semibold">high-energy workouts</span>, educational sessions, family-friendly fun, and a buzzing atmosphere that will leave you inspired and recharged.
+      </p>
+    </div>
+
+    {/* Right Side Image */}
+
   </div>
 </section>
+
 
 {/* Zones Highlight Placeholder */}
 <section className=" bg-white text-center">
@@ -98,10 +112,10 @@ export default function AboutPage() {
             className="w-full h-auto object-cover"
           />
         </div>
-        <div className="absolute -bottom-6 -left-6 bg-[#dc5044] text-white p-5 rounded-lg shadow-xl hidden md:block">
+        {/* <div className="absolute -bottom-6 -left-6 bg-[#dc5044] text-white p-5 rounded-lg shadow-xl hidden md:block">
           <p className="text-xl font-bold leading-tight">10+ Years</p>
           <p className="text-sm">Of Successful Events</p>
-        </div>
+        </div> */}
       </div>
     </div>
   </div>
@@ -242,8 +256,7 @@ export default function AboutPage() {
                 </div>
                
               </div>
-            </section> */}
-           
+            </section> */}   
     </main>
   )
 }
