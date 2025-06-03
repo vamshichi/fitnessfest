@@ -7,7 +7,7 @@ export default function Timer() {
  
   return (
     <div
-      className=" min-h-[100vh] bg-gray-900 relative overflow-hidden"
+      className=" min-h-[80vh] bg-gray-900 relative overflow-hidden"
      style={{
   backgroundImage: "url('/images/Banner for website (1).png')",
   backgroundSize: "cover",
