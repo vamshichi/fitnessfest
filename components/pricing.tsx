@@ -30,7 +30,7 @@ export default function Pricing() {
   ]
 
   return (
-    <section className="py-20 bg-gray-900 text-white">
+    <section className="py-20 px-4 md:px-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h6 className="text-pink-600 text-sm font-semibold mb-2">PRICING TABLE</h6>
@@ -41,18 +41,18 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 sm:gap-10 max-w-5xl mx-auto pt-8">
           {pricingPlans.map((plan, index) => (
             <div key={index} className={`relative ${plan.featured ? "transform scale-105" : ""}`}>
-              {plan.featured && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-pink-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                  EXCLUSIVE OFFER!
-                </div>
-              )}
-
               <div
-                className={`bg-white text-gray-900 rounded-lg p-8 text-center ${plan.featured ? "border-1 border-b-black" : ""}`}
+                className={`bg-white text-gray-900 rounded-lg p-8 text-center relative ${plan.featured ? "border-1 border-b-black" : ""}`}
               >
+                {plan.featured && (
+                  <div className="absolute w-full top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-pink-600 text-white py-1 text-sm font-semibold rounded-sm shadow-lg z-10">
+                    EXCLUSIVE OFFER!
+                  </div>
+                )}
+
                 <h6 className="text-pink-600 text-sm font-semibold mb-2">{plan.name}</h6>
                 <h2 className="text-4xl font-bold mb-4">{plan.price}</h2>
                 <p className="text-gray-600 mb-6">{plan.description}</p>
@@ -64,7 +64,10 @@ export default function Pricing() {
                     <span>{plan.progress}%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-pink-600 h-2 rounded-full" style={{ width: `${plan.progress}%` }}></div>
+                    <div
+                      className="bg-pink-600 h-2 rounded-full"
+                      style={{ width: `${plan.progress}%` }}
+                    ></div>
                   </div>
                 </div>
 
@@ -74,18 +77,16 @@ export default function Pricing() {
                   BUY TICKET
                 </Button>
               </div>
+
+              {/* Bottom Wave Decoration */}
               <div className="absolute bottom-0 left-5 w-full">
-        <svg
-          className="w-full h-6"
-          viewBox="0 0 100 20"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 20 Q5 0 10 20 T20 20 T30 20 T40 20 T50 20 T60 20 T70 20 T80 20 T90 20 T100 20 V20 H0 Z"
-            fill="#111827" // tailwind's bg-gray-900
-          />
-        </svg>
-      </div>
+                <svg className="w-full h-6" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <path
+                    d="M0 20 Q5 0 10 20 T20 20 T30 20 T40 20 T50 20 T60 20 T70 20 T80 20 T90 20 T100 20 V20 H0 Z"
+                    fill="#111827" // Tailwind's bg-gray-900
+                  />
+                </svg>
+              </div>
             </div>
           ))}
         </div>

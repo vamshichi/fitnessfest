@@ -3,8 +3,8 @@ import Image from "next/image"
 
 export default function EventInfoSection() {
   return (
-    <section className="pt-16">
-      <div className="max-w-7xl mx-10">
+    <section className="pt-16 ">
+      <div className="max-w-7xl lg:mx-40 md:mx-20">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           {/* Left Side - Single Image */}
           <div>
@@ -20,10 +20,10 @@ export default function EventInfoSection() {
           </div>
 
           {/* Right Side - Content */}
-          <div className="space-y-6">
+          <div className="space-y-6 sm:mx-15 md:mx-10">
             <div>
               <p className="text-[#fa0368] font-medium text-sm uppercase tracking-wide mb-2">INTRODUCTION</p>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 leading-tight">
                 KNOW MORE ABOUT OUR
                 <br />
                 <span className="text-gray-700">GRAND EVENT</span>
@@ -71,7 +71,7 @@ export default function EventInfoSection() {
       </div>
 
       {/* Event Details Section */}
-      <div className="w-full bg-gray-200 mt-40 relative">
+      <div className="w-full bg-gray-200 mt-40 lg:px-40 relative">
         <div className="w-full sm:py-5 px-4 md:px-16 lg:px-32 grid md:grid-cols-2 gap-8 lg:-translate-y-1/2 items-center">
           <div className="bg-white p-8 rounded-lg shadow border">
             <div className="flex items-center space-x-6">

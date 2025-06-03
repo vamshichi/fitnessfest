@@ -3,7 +3,7 @@ import RegistrationForm from "@/components/registration-form"
 export default function CompetitionsPage() {
   return (
     <main className="flex-1">
-      <section className="relative py-24 text-center text-white overflow-hidden bg-gradient-to-r from-black to-gray-800">
+      <section className="relative py-50 text-center text-white overflow-hidden bg-gradient-to-r from-black to-gray-800">
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -23,8 +23,6 @@ export default function CompetitionsPage() {
           </p>
         </div>
       </section>
-
-      
 
       <section className="py-20">
         <div className="container mx-auto px-6">

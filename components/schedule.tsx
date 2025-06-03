@@ -37,7 +37,7 @@ export default function Schedule() {
   ]
 
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-20 bg-gray-50">
+    <section className="py-16 px-15 lg:px-40 md:px-8 lg:px-20 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
@@ -112,7 +112,7 @@ export default function Schedule() {
         </div>
 
         <div className="text-center mt-12">
-          <Button className="bg-pink-600 hover:bg-orange-600 text-white px-6 py-4 md:px-8 md:py-5 rounded-3xl">
+          <Button className="bg-pink-600 hover:bg-orange-600 text-white px-6 py-5 md:px-8 md:py-5 rounded-3xl">
             VIEW MORE DETAILS
           </Button>
         </div>

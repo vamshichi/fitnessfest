@@ -219,7 +219,7 @@ export default function AwardsPage() {
     <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
        <section
-        className="relative py-24 text-center text-white overflow-hidden"
+        className="relative py-50 text-center text-white overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #fa0368 100%, #FA03688A 100%)",
         }}

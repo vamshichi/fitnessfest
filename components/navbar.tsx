@@ -2,19 +2,32 @@
 
 import { Menu, Phone, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-
-
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
- const router = useRouter()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      setIsScrolled(scrollTop > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="bg-gray-800 shadow-sm px-30">
-      {/* Top Bar - Hidden on small screens */}
-      <div className="hidden md:block bg-gray-800 text-white py-4">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-gray-800 shadow-lg" : "bg-transparent"
+      }`}
+    >
+      {/* Top Bar - Hidden on small screens and when not scrolled */}
+      <div className="hidden md:block text-white py-3 lg:px-40 md:px-40 transition-all duration-300">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-8">
@@ -80,9 +93,13 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div className="h-0.5 bg-white"></div>
+
+      {/* Separator line - only visible when scrolled */}
+     <div className=" hidden md:block h-px bg-white"></div>
+
+
       {/* Main Header */}
-      <div className="bg-gray-800 py-4 border-t border-gray-700 md:border-t-0">
+      <div className={`py-4 lg:px-40 md:px-40 transition-all duration-300 ${isScrolled ? "border-t border-gray-700 md:border-t-0" : ""}`}>
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -101,13 +118,16 @@ export default function Header() {
                   EVENTS
                 </a>
               </div>
-               <div className="relative group">
+              <div className="relative group">
                 <a href="/awards" className="text-white hover:text-pink-500 font-medium transition-colors text-sm">
-                  AWARDS 
+                  AWARDS
                 </a>
               </div>
               <div className="relative group">
-                <a href="/competitions" className="text-white hover:text-pink-500 font-medium transition-colors text-sm">
+                <a
+                  href="/competitions"
+                  className="text-white hover:text-pink-500 font-medium transition-colors text-sm"
+                >
                   COMPETITIONS
                 </a>
               </div>
@@ -116,23 +136,25 @@ export default function Header() {
               </a>
             </nav>
 
-                <div className="flex items-center space-x-2 sm:space-x-4">
-                  <Button 
-                  onClick={() => router.push("/tickets")}
-                   className="bg-pink-500 hover:bg-pink-600 text-white px-3 sm:px-6 py-2 rounded-md font-semibold text-xs sm:text-sm">
-                    BUY NOW
-                  </Button>
-                  <button
-                    className="lg:hidden w-6 h-6 text-white hover:text-pink-500 transition-colors"
-                    aria-label="Open menu"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  >
-                    <Menu className="w-6 h-6" />
-                  </button>
-                </div>
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Button
+                onClick={() => router.push("/tickets")}
+                className="bg-pink-500 hover:bg-pink-600 text-white px-3 sm:px-6 py-2 rounded-md font-semibold text-xs sm:text-sm"
+              >
+                BUY NOW
+              </Button>
+              <button
+                className="lg:hidden w-6 h-6 text-white hover:text-pink-500 transition-colors"
+                aria-label="Open menu"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-gray-900 border-t border-gray-700">

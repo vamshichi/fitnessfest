@@ -1,6 +1,5 @@
 
-import WhyAttend from "@/components/WhyAttend"
-import WhoShouldJoin from "@/components/WhoShouldJoin"
+
 import AboutEvent from "@/components/aboutknowmore"
 import CardSection from "@/components/AboutCardSection"
 import AboutWorkshop from "@/components/AboutWorkshop"
@@ -10,7 +9,7 @@ export default function AboutPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="min-h-[60vh] bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/Banner for website.jpg')" }}>
+      <section className="min-h-[90vh] bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/eventum-img1.jpg')" }}>
   <div
   className="absolute inset-0 bg-black opacity-80"
 ></div>
