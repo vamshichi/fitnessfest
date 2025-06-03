@@ -16,10 +16,8 @@ export default function Timer() {
   borderBottomRightRadius: "10%",
 }}
     >
-      {/* Overlay */}
-      {/* <div className="absolute  inset-0 bg-blue-100 opacity-40"></div> */}
+    
       <div className="absolute  inset-0 bg-black opacity-15"></div>
-      {/* Hero Section */}
       {/* Hero Section */}
 <div className="relative min-h-screen flex items-end"> {/* changed items-center -> items-end, added pt-24 for top gap */}
   <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -69,12 +67,7 @@ export default function Timer() {
     </div>
   </div>
 </div>
-
-
-        {/* Countdown Timer */}
-        {/* Countdown Timer */}
-
-      </div>
+ </div>
     
   )
 }
