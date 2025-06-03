@@ -1,86 +1,86 @@
-import Link from "next/link"
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-   <footer className="bg-gray-900 text-white pt-16 pb-8">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              <div>
-                <h3 className="text-2xl font-bold mb-4">Bengaluru Fitness Festival 2025</h3>
-                <p className="text-gray-400 mb-4">
-                Organized by Maxx Business Media Pvt. Ltd.
-                </p>
-                <div className="flex space-x-4">
-                  <Link href="https://www.facebook.com/BengaluruFitnessFest/" className="text-gray-400 hover:text-white">
-                    <Facebook size={20} />
-                  </Link>
-                  <Link href="https://x.com/BlrFitnessFest" className="text-gray-400 hover:text-white">
-                    <Twitter size={20} />
-                  </Link>
-                  <Link href="https://www.instagram.com/bengaluru_fitness_fest/" className="text-gray-400 hover:text-white">
-                    <Instagram size={20} />
-                  </Link>
-                  <Link href="https://www.linkedin.com/company/bengaluru-fitness-fest/" className="text-gray-400 hover:text-white">
-                    <Linkedin size={20} />
-                  </Link>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/" className="text-gray-400 hover:text-white">
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about" className="text-gray-400 hover:text-white">
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/speakers" className="text-gray-400 hover:text-white">
-                      Speakers
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/schedule" className="text-gray-400 hover:text-white">
-                      Schedule
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/blog" className="text-gray-400 hover:text-white">
-                      Blog
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold mb-4">Event Details</h4>
-                <ul className="space-y-2">
-                  <li className="text-gray-400">July 22-23, 2024</li>
-                  <li className="text-gray-400">KTPO convenction Center</li>
-                  <li className="text-gray-400">White feald ,Bangaluru</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
-                <ul className="space-y-2">
-                  <li className="text-gray-400">info@fitnessfest.in</li>
-                  <li className="text-gray-400">+91 97427 11211</li>
-                  <li className="text-gray-400">T9, 3rd Floor, Swastik Manandi Arcade, Seshadripuram, Bengaluru 560020</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="border-t border-gray-800 pt-8">
-              <p className="text-center text-gray-500">Maxx Business Media Pvt. Ltd All rights reserved © 2025</p>
-            </div>
+    <footer className="bg-gray-900 text-white py-16 relative">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Left Column: Logo + Description */}
+        <div>
+          <h2 className="text-3xl font-bold mb-3">
+            Eventum<span className="text-pink-500">.</span>
+          </h2>
+          <p className="text-sm mb-5 text-gray-300">
+            Cursus facilisi facilis omnis dis minima tenetur a deleniti penatibus
+            necessitatibus. Incidunt laboriosam harum ipsum init unde.
+          </p>
+          <div className="flex gap-3">
+            <a href="#" className="bg-pink-600 p-3 rounded-full hover:bg-pink-700">
+              <FaFacebookF />
+            </a>
+            <a href="#" className="bg-pink-600 p-3 rounded-full hover:bg-pink-700">
+              <FaTwitter />
+            </a>
+            <a href="#" className="bg-pink-600 p-3 rounded-full hover:bg-pink-700">
+              <FaInstagram />
+            </a>
+            <a href="#" className="bg-pink-600 p-3 rounded-full hover:bg-pink-700">
+              <FaYoutube />
+            </a>
           </div>
-        </footer>
-  )
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">QUICK LINKS</h3>
+          <ul className="space-y-2 text-sm text-gray-300">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Event Details</a></li>
+            <li><a href="#">News & Articles</a></li>
+            <li><a href="#">Credits</a></li>
+            <li><a href="#">Legal Notice</a></li>
+          </ul>
+        </div>
+
+        {/* Other Pages */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">OTHER PAGES</h3>
+          <ul className="space-y-2 text-sm text-gray-300">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Parent Community</a></li>
+            <li><a href="#">Organiser</a></li>
+          </ul>
+        </div>
+
+        {/* Newsletter */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">JOIN OUR NEWSLETTER</h3>
+          <p className="text-sm text-gray-300 mb-4">
+            Subscribe our newsletter to get latest news and update from us.
+          </p>
+          <input
+            type="email"
+            placeholder="Your Email.."
+            className="w-full rounded-full px-4 py-3 mb-3 text-gray-900"
+          />
+          <button className="w-full bg-pink-600 hover:bg-pink-700 rounded-full px-4 py-3 font-semibold text-white">
+            SUBSCRIBE NOW
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="mt-10 border-t border-gray-700 pt-6 text-sm text-gray-400 flex flex-col md:flex-row justify-between px-6 max-w-7xl mx-auto gap-3">
+        <div className="flex gap-6">
+          <a href="#" className="hover:text-white">PRIVACY POLICY</a>
+          <a href="#" className="hover:text-white">TERMS & CONDITION</a>
+          <a href="#" className="hover:text-white">SUPPORT</a>
+        </div>
+        <div>
+          © 2022 <span className="font-semibold">Eventum</span>. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
 }

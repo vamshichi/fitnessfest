@@ -1,25 +1,44 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { CalendarClock, MapPin } from "lucide-react"
 import { events } from "@/data/events"
 
 export default function EventPage() {
-  // Filter events for 12 October 2025 or any other date you want to display
-  const dateEvents = events.filter((event) => event.date === "12 October 2025") // Change this date to match your events
+  const eventDates = ["12 October 2025", "13 October 2025"]
+  const [selectedDate, setSelectedDate] = useState(eventDates[0])
+
+  const dateEvents = events.filter((event) => event.date === selectedDate)
 
   return (
     <div className="min-h-screen bg-white py-10 px-4">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">12 October 2025</h1> {/* Change the title here too */}
+        {/* Date Tabs */}
+        <div className="flex justify-center gap-6 mb-10">
+  {eventDates.map((date) => (
+    <button
+      key={date}
+      onClick={() => setSelectedDate(date)}
+      className={`px-6 py-3 rounded-full font-semibold text-base transition-all border shadow-sm ${
+        selectedDate === date
+          ? "bg-pink-600 text-white border-pink-600"
+          : "bg-white text-pink-600 border-pink-300 hover:bg-pink-100"
+      }`}
+    >
+      {date}
+    </button>
+  ))}
+</div>
+
+
+        {/* Events for selected date */}
         <div className="border-l-2 border-gray-300 relative">
           {dateEvents.map((event, idx) => (
             <div key={event.id} className="mb-10 ml-6 relative">
               {/* Time Dot */}
               <div
-                className={`absolute -left-12 top-4 w-12 h-12 rounded-full text-white flex flex-col items-center justify-center ${
-                  idx % 2 === 0 ? "bg-pink-500" : "bg-purple-600"
-                }`}
+                className={`absolute -left-12 top-4 w-12 h-12 rounded-full text-white flex flex-col items-center justify-center bg-pink-600`}
               >
                 <span className="text-sm font-bold">{event.time}</span>
                 <span className="text-xs">{event.period}</span>
@@ -30,7 +49,7 @@ export default function EventPage() {
                 className="group block bg-gray-100 rounded-md overflow-hidden hover:shadow-lg transition mx-15"
               >
                 <div className="flex flex-col md:flex-row">
-                  {/* Image Section */}
+                  {/* Image */}
                   <div className="relative w-full md:w-[340px] h-[200px] bg-gray-300 flex-shrink-0">
                     <img
                       src={event.image || "/placeholder.svg"}
@@ -44,7 +63,7 @@ export default function EventPage() {
                     )}
                   </div>
 
-                  {/* Info Section */}
+                  {/* Info */}
                   <div className="p-5 flex-1">
                     <div className="text-xl font-bold mb-2">{event.price}</div>
                     <h2 className="text-lg font-semibold mb-2 group-hover:underline">{event.title}</h2>

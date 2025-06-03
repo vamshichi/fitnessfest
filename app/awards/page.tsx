@@ -221,7 +221,7 @@ export default function AwardsPage() {
        <section
         className="relative py-24 text-center text-white overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #dc5044 0%, #70adb0 100%)",
+          background: "linear-gradient(135deg, #fa0368 100%, #FA03688A 100%)",
         }}
       >
         <div
@@ -235,7 +235,7 @@ export default function AwardsPage() {
         <div className="container mx-auto px-6 relative z-10 max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 uppercase relative inline-block">
             Fitness Fest Awards
-            <span className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[100px] h-[5px] bg-[#f3c532]"></span>
+            <span className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[100px] h-[5px] bg-[#FA03688A]"></span>
           </h1>
           <p className="text-xl md:text-2xl mt-8 mb-10 opacity-90 max-w-3xl mx-auto">
             Join the celebration of excellence in fitness and wellness. Participate in our awards program by nominating
@@ -278,7 +278,7 @@ export default function AwardsPage() {
             variant="ghost"
             className={`flex-1 rounded-xl py-4 font-bold text-lg transition-all duration-300 ${
               activeTab === "participate"
-                ? "bg-gradient-to-r from-[#dc5044] to-[#70adb0] text-white shadow-lg"
+                ? "bg-gradient-to-r from-[#fa0368] to-[#fa0368] text-white shadow-lg"
                 : "text-gray-600 hover:text-[#dc5044] hover:bg-gray-50"
             }`}
           >
@@ -290,7 +290,7 @@ export default function AwardsPage() {
             variant="ghost"
             className={`flex-1 rounded-xl py-4 font-bold text-lg transition-all duration-300 ${
               activeTab === "vote"
-                ? "bg-gradient-to-r from-[#dc5044] to-[#70adb0] text-white shadow-lg"
+                ? "bg-gradient-to-r from-[#fa0368] to-[#fa0368] text-white shadow-lg"
                 : "text-gray-600 hover:text-[#dc5044] hover:bg-gray-50"
             }`}
           >
@@ -307,7 +307,7 @@ export default function AwardsPage() {
                 <h2 className="text-5xl md:text-6xl font-black uppercase text-black mb-4 relative z-10">
                   Join Our Awards
                 </h2>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#f3c532] -skew-x-12 z-0"></div>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#fa0368] -skew-x-12 z-0"></div>
               </div>
               <p className="mt-8 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Be part of celebrating excellence in the fitness community. Submit your Nomination to
@@ -318,7 +318,7 @@ export default function AwardsPage() {
             {/* Awards Categories Overview */}
             <div className="space-y-12">
               <div className="text-center">
-                <h3 className="text-4xl font-bold text-[#70adb0] mb-4">Award Categories</h3>
+                <h3 className="text-4xl font-bold text-[#fa0368] mb-4">Award Categories</h3>
                 <div className="w-24 h-1 bg-[#dc5044] mx-auto"></div>
               </div>
 
@@ -326,9 +326,9 @@ export default function AwardsPage() {
                 {awardCategories.map((category, index) => {
                   const IconComponent = category.icon
                   const colors = {
-                    red: "border-[#dc5044] bg-gradient-to-br from-[#dc5044]/5 to-[#dc5044]/10",
-                    teal: "border-[#70adb0] bg-gradient-to-br from-[#70adb0]/5 to-[#70adb0]/10",
-                    yellow: "border-[#f3c532] bg-gradient-to-br from-[#f3c532]/5 to-[#f3c532]/10",
+                    red: "border-[#fa0368] bg-gradient-to-br from-[#dc5044]/5 to-[##fa0368]/10",
+                    teal: "border-[#70adb0] bg-gradient-to-br from-[#70adb0]/5 to-[#fa0368]/10",
+                    yellow: "border-[#f3c532] bg-gradient-to-br from-[#f3c532]/5 to-[#fa0368]/10",
                   }
 
                   return (
@@ -348,7 +348,7 @@ export default function AwardsPage() {
                       </p>
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-semibold text-gray-500">Current nominees:</span>
-                        <span className="bg-[#f3c532] text-black px-3 py-1 rounded-full font-bold text-sm">
+                        <span className="bg-[#fa0368] text-white px-3 py-1 rounded-full font-bold text-sm">
                           {category.nominees.length}
                         </span>
                       </div>
@@ -361,7 +361,7 @@ export default function AwardsPage() {
             {/* Participation Form */}
             <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-4 border-gray-100">
               <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-[#70adb0] mb-4">Nomination Form</h3>
+                <h3 className="text-3xl font-bold text-[#fa0368] mb-4">Nomination Form</h3>
                 <div className="w-16 h-1 bg-[#dc5044] mx-auto"></div>
               </div>
               <AwardsParticipationForm onSubmit={handleFormSubmit} countries={countries} />
@@ -377,7 +377,7 @@ export default function AwardsPage() {
                 <h2 className="text-5xl md:text-6xl font-black uppercase text-black mb-4 relative z-10">
                   Vote for Excellence
                 </h2>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#f3c532] -skew-x-12 z-0"></div>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-full h-8 bg-[#fa0368] -skew-x-12 z-0"></div>
               </div>
               <p className="mt-8 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Help us recognize excellence in the fitness community by voting for your favorite nominees in each

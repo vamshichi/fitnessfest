@@ -15,7 +15,7 @@ export default function CompetitionsPage() {
         <div className="container mx-auto px-6 relative z-10 max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 uppercase relative inline-block">
             Test Your Limits
-            <span className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[100px] h-[5px] bg-[#f3c532]"></span>
+            <span className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[100px] h-[5px] bg-[#fa0368]"></span>
           </h1>
           <p className="text-xl md:text-2xl mt-8 mb-10 opacity-90 max-w-3xl mx-auto">
             Join the ultimate fitness challenge at Fitness Fest 2025. Compete against the best athletes, push your
@@ -29,7 +29,7 @@ export default function CompetitionsPage() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#dc5044]">
+            <h2 className="inline-block bg-[#fa0368] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#FA03688A]">
               Competitions Schedule
             </h2>
             <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
@@ -39,7 +39,7 @@ export default function CompetitionsPage() {
 
           <div className="relative max-w-3xl mx-auto">
             {/* Timeline center line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#70adb0]"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#FA03688A]"></div>
 
             {/* Timeline items */}
             {[
@@ -79,11 +79,11 @@ export default function CompetitionsPage() {
                 className={`relative mb-12 ${index % 2 === 0 ? "pr-[calc(50%+2rem)]" : "pl-[calc(50%+2rem)]"} md:mb-16`}
               >
                 {/* Timeline dot */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-[#f3c532] border-4 border-[#70adb0] z-10"></div>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-[#f3c532] border-4 border-[#FA03688A] z-10"></div>
 
                 {/* Content */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                  <div className="inline-block bg-[#dc5044] text-white px-4 py-1 rounded-full text-sm font-semibold mb-3">
+                  <div className="inline-block bg-[#fa0368] text-white px-4 py-1 rounded-full text-sm font-semibold mb-3">
                     {item.date}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
@@ -96,10 +96,10 @@ export default function CompetitionsPage() {
       </section>
 
 {/* Registration Form Section */}
-      <section className="py-20 bg-gradient-to-r from-[#dc5044] to-[#70adb0]">
+      <section className="py-20 bg-gradient-to-r from-[#fa0368] to-[#FA03688A]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_rgba(0,0,0,0.3)]">
+            <h2 className="inline-block bg-[#fa0368] px-12 py-3 text-white text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#FA03688A]">
               Register Now
             </h2>
             <p className="mt-6 text-white text-xl max-w-2xl mx-auto">
@@ -116,7 +116,7 @@ export default function CompetitionsPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="inline-block bg-[#f3c532] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#dc5044]">
+            <h2 className="inline-block bg-[#fa0368] px-12 py-3 text-black text-4xl font-extrabold uppercase transform -skew-x-6 relative z-10 shadow-[5px_5px_0_#FA03688A]">
               Competition Rules
             </h2>
             <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
@@ -153,7 +153,7 @@ export default function CompetitionsPage() {
                 },
               ].map((rule, index) => (
                 <li key={index} className="relative pl-12">
-                  <div className="absolute left-0 top-0 w-8 h-8 bg-[#f3c532] text-black rounded-full flex items-center justify-center font-bold">
+                  <div className="absolute left-0 top-0 w-8 h-8 bg-[#FA03688A] text-black rounded-full flex items-center justify-center font-bold text-white">
                     {index + 1}
                   </div>
                   <h4 className="text-xl font-bold text-gray-900 mb-2">{rule.title}</h4>
