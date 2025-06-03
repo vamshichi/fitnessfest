@@ -30,8 +30,8 @@ export default function Pricing() {
   ]
 
   return (
-    <section className="py-20 px-4 md:px-20 bg-gray-900 text-white">
-      <div className="container mx-auto px-4">
+    <section className="py-20 px-4 bg-gray-900 text-white">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h6 className="text-pink-600 text-sm font-semibold mb-2">PRICING TABLE</h6>
           <h3 className="text-3xl font-bold mb-4">GET YOUR TICKET !!</h3>

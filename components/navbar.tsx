@@ -27,7 +27,7 @@ export default function Header() {
       }`}
     >
       {/* Top Bar - Hidden on small screens and when not scrolled */}
-      <div className="hidden md:block text-white py-3 lg:px-40 md:px-40 transition-all duration-300">
+      <div className="hidden md:block text-white py-3 max-w-6xl mx-auto px-4 transition-all duration-300">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-8">
@@ -99,7 +99,7 @@ export default function Header() {
 
 
       {/* Main Header */}
-      <div className={`py-4 lg:px-40 md:px-40 transition-all duration-300 ${isScrolled ? "border-t border-gray-700 md:border-t-0" : ""}`}>
+      <div className={`max-w-6xl mx-auto px-4 py-5 transition-all duration-300 ${isScrolled ? "border-t border-gray-700 md:border-t-0" : ""}`}>
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">

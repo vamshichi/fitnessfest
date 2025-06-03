@@ -29,8 +29,8 @@ export default function Timer() {
   }, [])
 
   return (
-    <div className="absolute bottom-[-2rem] left-1/2 -translate-x-1/2 z-10 w-[90%] max-w-xl">
-      <div className="bg-white rounded-2xl shadow-2xl px-6 py-4">
+    <div className="absolute bottom-[-4rem] left-1/2 -translate-x-1/15 z-10 w-[90%] max-w-xl">
+      <div className="bg-white rounded-2xl shadow-2xl px-6 py-8">
         <div className="grid grid-cols-4 gap-4 sm:gap-6 text-center">
           <div>
             <div className="text-2xl sm:text-3xl font-extrabold text-[#fa0368]">

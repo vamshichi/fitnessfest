@@ -37,8 +37,8 @@ export default function Schedule() {
   ]
 
   return (
-    <section className="py-16 px-15 lg:px-40 md:px-8 lg:px-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 px-15  bg-gray-50">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
             <h6 className="text-pink-600 text-sm font-semibold mb-2">SCHEDULE DETAILS</h6>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function KnowMoreSection() {
   return (
-    <section className="py-16 px-4 sm:px-8 md:px-16 bg-white">
+    <section className="py-16 px-40 sm:px-8 md:px-16 bg-white">
         <div className="">
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">

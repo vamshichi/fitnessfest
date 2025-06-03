@@ -11,7 +11,7 @@ import { useState } from "react"
 // Speaker card component
 function SpeakerCard({ speaker, index }: { speaker: typeof speakers[0]; index: number }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+    <div className="max-w-6xl mx-auto px-4 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
       <div className="relative h-64 overflow-hidden">
         <Image
           src={speaker.image || "/placeholder.svg"}

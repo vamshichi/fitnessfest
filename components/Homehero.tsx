@@ -12,8 +12,8 @@ export default function Timer() {
   backgroundImage: "url('/images/Banner for website (1).png')",
   backgroundSize: "cover",
   backgroundPosition: "center",
-  borderBottomLeftRadius: "30%",
-  borderBottomRightRadius: "20%",
+  borderBottomLeftRadius: "10%",
+  borderBottomRightRadius: "10%",
 }}
     >
       {/* Overlay */}
