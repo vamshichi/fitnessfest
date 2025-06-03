@@ -37,7 +37,7 @@ export default function Schedule() {
   ]
 
   return (
-    <section className="py-16 px-15  bg-gray-50">
+    <section className="max-w-6xl mx-auto px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
@@ -76,7 +76,7 @@ export default function Schedule() {
 
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-8 max-w-6xl mx-auto px-4">
           {scheduleItems.map((item, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-[30%_50%_20%] gap-0">

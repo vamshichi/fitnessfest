@@ -15,7 +15,7 @@ export default function Speakers() {
   ];
 
   return (
-    <section className="py-16 lg:px-40 lg:py-20 bg-white">
+    <section className="max-w-6xl mx-auto px-4 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
@@ -36,7 +36,7 @@ export default function Speakers() {
                 <Image
                   src={speaker.image}
                   alt={speaker.name}
-                  width={300}
+                  width={250}
                   height={400}
                   className="object-cover h-94"
                 />

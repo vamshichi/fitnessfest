@@ -14,7 +14,7 @@ export default function Home() {
         <Hero />
         <Timer />
       </div>
-
+      
       <EventInfoSection />
       <WhyAttend />
       <Speakers />

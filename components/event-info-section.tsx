@@ -107,7 +107,7 @@ export default function EventInfoSection() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-20 pt-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-20 pt-4 max-w-6xl mx-auto px-4">
           <div className="text-center border-r border-black pr-4">
             <div className="text-4xl lg:text-7xl font-bold text-gray-800 mb-2">
               220<span className="text-pink-500">+</span>
