@@ -30,28 +30,28 @@ export default function Timer() {
 
   return (
     <div className="absolute bottom-[-4rem] left-1/2 -translate-x-1/15 z-10 w-[90%] max-w-xl">
-      <div className="bg-white rounded-2xl shadow-2xl px-6 py-8">
+      <div className="bg-white rounded-[40px] shadow-2xl px-6 py-10">
         <div className="grid grid-cols-4 gap-4 sm:gap-6 text-center">
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#fa0368]">
+            <div className="text-7xl sm:text-5xl font-extrabold text-[#fa0368]">
               {String(timeLeft.days).padStart(2, "0")}
             </div>
             <div className="text-xs sm:text-sm text-gray-600 font-semibold mt-1">Days</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#fa0368]">
+            <div className="text-7xl sm:text-5xl font-extrabold text-[#fa0368]">
               {String(timeLeft.hours).padStart(2, "0")}
             </div>
             <div className="text-xs sm:text-sm text-gray-600 font-semibold mt-1">Hours</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#fa0368]">
+            <div className="text-2xl sm:text-5xl font-extrabold text-[#fa0368]">
               {String(timeLeft.minutes).padStart(2, "0")}
             </div>
             <div className="text-xs sm:text-sm text-gray-600 font-semibold mt-1">Minutes</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#fa0368]">
+            <div className="text-2xl sm:text-5xl font-extrabold text-[#fa0368]">
               {String(timeLeft.seconds).padStart(2, "0")}
             </div>
             <div className="text-xs sm:text-sm text-gray-600 font-semibold mt-1">Seconds</div>

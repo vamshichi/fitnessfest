@@ -7,9 +7,9 @@ export default function Timer() {
  
   return (
     <div
-      className=" min-h-[80vh] bg-gray-900 relative overflow-hidden"
+      className=" lg:min-h-[90vh] bg-gray-900 relative overflow-hidden"
      style={{
-  backgroundImage: "url('/images/Banner for website (1).png')",
+  backgroundImage: "url('/images/image1.jpg')",
   backgroundSize: "cover",
   backgroundPosition: "center",
   borderBottomLeftRadius: "10%",
@@ -17,11 +17,11 @@ export default function Timer() {
 }}
     >
       {/* Overlay */}
-      <div className="absolute  inset-0 bg-black opacity-85"></div>
-
+      {/* <div className="absolute  inset-0 bg-blue-100 opacity-40"></div> */}
+      <div className="absolute  inset-0 bg-black opacity-15"></div>
       {/* Hero Section */}
       {/* Hero Section */}
-<div className="relative min-h-screen flex items-end pt-40"> {/* changed items-center -> items-end, added pt-24 for top gap */}
+<div className="relative min-h-screen flex items-end"> {/* changed items-center -> items-end, added pt-24 for top gap */}
   <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
     {/* Hero Image */}
     <div className="relative order-1 lg:order-1 flex justify-center">

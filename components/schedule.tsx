@@ -37,7 +37,7 @@ export default function Schedule() {
   ]
 
   return (
-    <section className="max-w-6xl mx-auto px-4 bg-gray-50">
+    <section className="max-w-6xl mx-auto px-4 py-10 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>

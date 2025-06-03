@@ -95,7 +95,7 @@ export default function Header() {
       </div>
 
       {/* Separator line - only visible when scrolled */}
-     <div className=" hidden md:block h-px bg-white"></div>
+     <div className="hidden md:block h-px bg-white scale-y-[0.3] origin-top"></div>
 
 
       {/* Main Header */}

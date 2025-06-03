@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export default function EventInfoSection() {
   return (
-    <section className="pt-16 ">
+    <section className="pt-16">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           {/* Left Side - Single Image */}
@@ -73,9 +73,9 @@ export default function EventInfoSection() {
       {/* Event Details Section */}
       <div className="w-full bg-gray-200 mt-40 lg:px-40 relative">
         <div className="sm:py-5 px-4 md:px-16 lg:px-32 grid md:grid-cols-2 gap-8 lg:-translate-y-1/2 items-center max-w-6xl mx-auto px-4">
-          <div className="bg-white p-8 rounded-lg shadow border">
+          <div className="bg-white p-8 rounded-4xl shadow border">
             <div className="flex items-center space-x-6">
-              <div className="bg-pink-500 rounded-md p-3">
+              <div className="bg-pink-500 rounded-2xl p-3">
                 <MapPin className="w-10 h-10 text-white" />
               </div>
               <div>
@@ -89,9 +89,9 @@ export default function EventInfoSection() {
             </div>
           </div>
 
-          <div className="bg-white p-8 rounded-lg shadow border">
+          <div className="bg-white p-8 rounded-4xl shadow border">
             <div className="flex items-center space-x-4">
-              <div className="bg-black rounded-md p-3">
+              <div className="bg-black rounded-2xl p-3">
                 <Calendar className="w-10 h-10 text-white" />
               </div>
               <div>
