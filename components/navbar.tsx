@@ -32,7 +32,7 @@ export default function Header() {
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-[#fa0368] rounded-full flex items-center justify-center">
                   <Phone className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -41,7 +41,7 @@ export default function Header() {
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-[#fa0368] rounded-full flex items-center justify-center">
                   <Mail className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -107,7 +107,7 @@ export default function Header() {
             </div>
 
             <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-              <a href="/" className="text-pink-500 hover:text-pink-400 font-medium transition-colors text-sm">
+              <a href="/" className="text-[#fa0368] hover:text-pink-400 font-medium transition-colors text-sm">
                 HOME
               </a>
               <a href="/about" className="text-white hover:text-pink-500 font-medium transition-colors text-sm">
@@ -139,7 +139,7 @@ export default function Header() {
             <div className="flex items-center space-x-2 sm:space-x-4">
               <Button
                 onClick={() => router.push("/tickets")}
-                className="bg-pink-500 hover:bg-pink-600 text-white px-3 sm:px-6 py-2 rounded-md font-semibold text-xs sm:text-sm"
+                className="bg-[#fa0368] hover:bg-pink-600 text-white px-3 sm:px-6 py-2 rounded-md font-semibold text-xs sm:text-sm"
               >
                 BUY NOW
               </Button>

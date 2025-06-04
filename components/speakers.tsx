@@ -19,7 +19,7 @@ export default function Speakers() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <h6 className="text-pink-500 text-sm font-semibold mb-2 uppercase tracking-wide">EVENT SPEAKERS</h6>
+          <h6 className="text-[#fa0368] text-sm font-semibold mb-2 uppercase tracking-wide">EVENT SPEAKERS</h6>
           <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">OUR EVENT SPEAKERS</h3>
           <p className="text-gray-600 max-w-2xl mx-auto text-base lg:text-lg">
             Quam amet tristique adipisicing incididunt arcu, excepturi molestie turpis deserunt ducimus malesuada minus

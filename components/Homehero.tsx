@@ -25,7 +25,7 @@ export default function Timer() {
     <div className="relative order-1 lg:order-1 flex justify-center">
       <div className="relative lg:w-full">
         <Image
-          src="/images/png website.png" 
+          src="/images/29.png" 
           alt="Hero Image"
           width={600}
           height={400}

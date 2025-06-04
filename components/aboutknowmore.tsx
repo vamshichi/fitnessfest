@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function KnowMoreSection() {
   return (
-    <section className="py-16 px-40 sm:px-8 md:px-16 bg-white">
+    <section className="max-w-5xl mx-auto py-20 bg-white">
         <div className="">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className=" grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
           <p className="text-pink-600 font-bold uppercase">Introduction</p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 leading-tight">

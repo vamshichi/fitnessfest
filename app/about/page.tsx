@@ -1,5 +1,3 @@
-
-
 import AboutEvent from "@/components/aboutknowmore"
 import CardSection from "@/components/AboutCardSection"
 import AboutWorkshop from "@/components/AboutWorkshop"
@@ -7,12 +5,11 @@ import AboutWorkshop from "@/components/AboutWorkshop"
 
 export default function AboutPage() {
   return (
-    <main className="flex-1">
+    <main className="">
       {/* Hero Section */}
-      <section className="min-h-[90vh] bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/eventum-img1.jpg')" }}>
+      <section className="min-h-[60vh] bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/eventum-img1.jpg')" }}>
   <div
-  className="absolute inset-0 bg-black opacity-80"
-></div>
+  className="absolute inset-0 bg-black opacity-80"></div>
 
   <div className="container mx-auto px-4 relative z-10">
     <div className="max-w-3xl mx-auto text-center">

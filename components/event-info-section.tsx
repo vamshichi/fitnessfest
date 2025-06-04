@@ -35,7 +35,7 @@ export default function EventInfoSection() {
               soluta? Faucibus ipsum, incidunt eros.
             </p>
 
-            <div className="max-w-120 space-y-4 bg-gray-50 p-8 rounded-lg shadow border-b-3 border-pink-500">
+            <div className="max-w-120 space-y-4 bg-gray-50 p-8 rounded-lg shadow border-b-3 border-[#fa0368]">
               <div className="flex items-start space-x-3">
                 <div className="bg-pink-100 rounded-full p-1 mt-1">
                   <Check className="w-4 h-4 text-pink-500" />
@@ -75,12 +75,12 @@ export default function EventInfoSection() {
         <div className="sm:py-5 px-4 md:px-16 lg:px-32 grid md:grid-cols-2 gap-8 lg:-translate-y-1/2 items-center max-w-6xl mx-auto px-4">
           <div className="bg-white p-8 rounded-4xl shadow border">
             <div className="flex items-center space-x-6">
-              <div className="bg-pink-500 rounded-2xl p-3">
+              <div className="bg-[#fa0368] rounded-2xl p-3">
                 <MapPin className="w-10 h-10 text-white" />
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 text-lg mb-2">WHERE IS THE EVENT :</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-sm">
                   2218 Baker Street, P.O Box 353 Park Road,
                   <br />
                   San Francisco USA - 215431
@@ -96,7 +96,7 @@ export default function EventInfoSection() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 text-lg mb-2">WHEN IS THE EVENT :</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-sm">
                   ( Sunday to Wednesday ) 20 January 2022
                   <br />
                   to 24 January 2022

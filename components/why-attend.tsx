@@ -44,7 +44,7 @@ export default function WhyAttend() {
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h6 className="text-pink-500 text-sm font-semibold mb-2">JOIN OUR EVENT</h6>
+          <h6 className="text-[#fa0368] text-sm font-semibold mb-2">JOIN OUR EVENT</h6>
           <h3 className="text-3xl font-bold text-gray-900 mb-4">WHY ATTEND OUR EVENT?</h3>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Quam amet tristique adipisicing incididunt arcu, excepturi molestie turpis deserunt ducimus malesuada minus
@@ -56,7 +56,7 @@ export default function WhyAttend() {
           {features.map((feature, index) => (
             <div key={index} className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
               <div className="flex justify-between items-center py-4">
-                <feature.icon className="w-15 h-15 text-pink-500" />
+                <feature.icon className="w-15 h-15 text-[#fa0368]" />
                 <span className="text-5xl font-bold  text-gray-300">{feature.number}</span>
               </div>
               <h5 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h5>

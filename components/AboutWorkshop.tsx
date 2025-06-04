@@ -29,7 +29,7 @@ const AboutWorkshop = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
+    <section className="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
       {/* Left Image */}
       <div className="relative w-full h-[500px] flex justify-center items-center">
         <div className="absolute w-72 h-72 bg-pink-200 rounded-full -z-10" />
