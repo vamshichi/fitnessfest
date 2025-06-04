@@ -35,34 +35,34 @@ export default function CompetitionsPage() {
             {[
               {
                 date: "June 15, 2025",
-                title: "Opening Ceremony & Powerlifting Challenge",
-                text: "The festival kicks off with an electrifying opening ceremony followed by the Ultimate Powerlifting Challenge.",
+                title: "Ultimate Yoga Flow Contest",
+                text: "Celebrate the essence of inner strength, poise, and breath at the Ultimate Yoga Flow Contest – where elegance meets endurance on the mat. Hosted as a signature event at the Bengaluru Fitness Festival 2025, this contest honors the beauty of yogic expression through a blend of traditional and creative flows.",
               },
               {
                 date: "June 16-17, 2025",
-                title: "CrossFit Championship",
-                text: "Two days of intense CrossFit competition testing strength, endurance, and mental fortitude.",
+                title: "Dance Fit Battle – “Last One Dancing”",
+                text: "Unleash your rhythm, energy, and passion for dance at the Dance Fit Battle – a high-energy event combining Zumba and freestyle dancing! Whether you're a Zumba enthusiast, a freestyle dancer, or both, this competition offers an exciting challenge where the last one dancing wins. Hosted as part of the Bengaluru Fitness Festival 2025, this contest promises an electrifying atmosphere with incredible performances, positive vibes, and great prizes.",
               },
               {
                 date: "June 18, 2025",
-                title: "Fitness Fest Marathon",
-                text: "A challenging marathon through the city's most scenic routes, testing endurance to the limit.",
+                title: "Push-Up & Plank King/Queen Challenge",
+                text: "Think you're strong? Prove it! Step up to the mat at the Push-Up & Plank King/Queen Challenge, one of the most exciting on-the-spot contests at the Bengaluru Fitness Festival 2025. No pre-registration, no complex formats — just pure strength, grit, and glory",
               },
-              {
-                date: "June 19, 2025",
-                title: "Extreme Obstacle Course",
-                text: "Navigate through a series of challenging obstacles designed to test agility, strength, and problem-solving.",
-              },
-              {
-                date: "June 20, 2025",
-                title: "Yoga & Flexibility Masters",
-                text: "A showcase of incredible flexibility, balance, and control in our yoga competition.",
-              },
-              {
-                date: "June 21, 2025",
-                title: "Team Challenge & Closing Ceremony",
-                text: "The festival concludes with the exciting Team Fitness Challenge followed by the awards ceremony.",
-              },
+              // {
+              //   date: "June 19, 2025",
+              //   title: "Extreme Obstacle Course",
+              //   text: "Navigate through a series of challenging obstacles designed to test agility, strength, and problem-solving.",
+              // },
+              // {
+              //   date: "June 20, 2025",
+              //   title: "Yoga & Flexibility Masters",
+              //   text: "A showcase of incredible flexibility, balance, and control in our yoga competition.",
+              // },
+              // {
+              //   date: "June 21, 2025",
+              //   title: "Team Challenge & Closing Ceremony",
+              //   text: "The festival concludes with the exciting Team Fitness Challenge followed by the awards ceremony.",
+              // },
             ].map((item, index) => (
               <div
                 key={index}

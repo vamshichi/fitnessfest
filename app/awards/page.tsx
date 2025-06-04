@@ -23,6 +23,7 @@ interface Category {
   title: string
   icon: any
   color: string
+  description: string
   nominees: Nominee[]
 }
 
@@ -41,10 +42,11 @@ export default function AwardsPage() {
 
   const awardCategories: Category[] = [
     {
-      id: "personal-trainer",
-      title: "Personal Trainer of the Year",
+      id: "Fitness Trainer of the Year",
+      title: "Fitness Trainer of the Year",
       icon: Trophy,
       color: "red",
+      description:"This award celebrates an outstanding fitness professional who has demonstrated excellence in personal training, client transformation, professional development, and positive community influence. The recipient will exemplify passion, expertise, and commitment to improving lives through health and fitness.Whether through one-on-one training, group classes, online coaching, or holistic fitness programs, the winner will be someone who goes beyond workouts to inspire lasting change and uplift the fitness culture in Bengaluru.",
       nominees: [
         {
           id: "sarah-johnson",
@@ -70,10 +72,11 @@ export default function AwardsPage() {
       ],
     },
     {
-      id: "fitness-influencer",
-      title: "Fitness Influencer Award",
+      id: "Nutritionist/Dietitian of the Year",
+      title: "Nutritionist/Dietitian of the Year",
       icon: Hash,
       color: "teal",
+      description:"This award honors an exceptional nutritionist or dietitian who has made a transformative impact on the health and wellbeing of individuals and communities through evidence-based, personalized nutrition strategies. The ideal candidate champions sustainable dietary change, merges science with practical application, and works collaboratively to empower clients to lead healthier lives.From clinical diet plans to fitness-focused nutrition coaching, this award celebrates professionals who educate, inspire, and deliver real, measurable outcomes through ethical and professional nutrition practice.",
       nominees: [
         {
           id: "mark-williams",
@@ -99,10 +102,11 @@ export default function AwardsPage() {
       ],
     },
     {
-      id: "breakthrough-athlete",
-      title: "Breakthrough Athlete",
+      id: "Best Group Class Instructor",
+      title: "Best Group Class Instructor",
       icon: Zap,
       color: "yellow",
+      description: "This award celebrates the most dynamic and inspiring group fitness instructor who knows how to energize a room, motivate movement, and create a lasting community vibe. Whether leading Zumba, DanceFit, Spinning, HIIT, Aerobics, or Functional Training sessions, this individual commands the class with infectious enthusiasm, music-driven momentum, and seamless program delivery.This award honors an instructor whose classes are more than workouts — they’re experiences that people look forward to, return to, and talk about. From choreography to cueing, this professional delivers high-energy, safe, and inclusive group sessions that leave every participant empowered.",
       nominees: [
         {
           id: "alex-chen",
@@ -124,6 +128,336 @@ export default function AwardsPage() {
           description: "Returned from a career-threatening injury to win the National Fitness Championship.",
           votes: 203,
           image: "/placeholder.svg?height=100&width=100&query=athlete comeback",
+        },
+      ],
+    },
+    {
+      id: "Physiotherapist of the Year",
+      title: "Physiotherapist of the Year",
+      icon: Trophy,
+      color: "red",
+      description:"This award honors an outstanding physiotherapist whose expertise, compassion, and dedication have empowered individuals to recover from injuries, manage chronic pain, and return to active, fulfilling lives. From athletes and fitness clients to the elderly and rehabilitating patients, this professional plays a pivotal role in restoring mobility and function—safely and sustainably.The “Physiotherapist of the Year” recognizes a licensed practitioner who not only demonstrates clinical excellence but also builds trust, educates clients, and contributes to the greater physiotherapy and wellness ecosystem.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Rising Star – Young Fitness Professional (Under 30)",
+      title: "Rising Star – Young Fitness Professional (Under 30)",
+      icon: Trophy,
+      color: "red",
+      description:"This award celebrates emerging talent in the fitness and wellness industry — young professionals under the age of 30 who are already making a meaningful impact. Whether through client transformations, innovative training styles, entrepreneurial ventures, or digital influence, the Rising Star exemplifies drive, creativity, and a deep passion for health and fitness.It’s about spotting tomorrow’s leaders today — those who combine skill, science, and social influence to inspire change in their community.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Lifetime Achievement in Fitness",
+      title: "Lifetime Achievement in Fitness",
+      icon: Trophy,
+      color: "red",
+      description:"This prestigious award honors an individual whose lifelong dedication, leadership, and vision have significantly shaped the fitness and wellness landscape in India — particularly in Bengaluru. Through decades of tireless work as a coach, educator, advocate, or pioneer, this individual has inspired generations to lead healthier, more active lives.The Lifetime Achievement Award is not just for professional accomplishments but also for the profound legacy left behind — in knowledge, influence, and service to the industry.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Community Fitness Hero",
+      title: "Community Fitness Hero",
+      icon: Trophy,
+      color: "red",
+      description:"This award honors a fitness professional, coach, or mentor who is making a real difference at the grassroots level — offering free, low-cost, or volunteer-led fitness services to underserved communities. From slums and government schools to parks and shelters, this unsung hero brings wellness where it’s needed most — not for fame or fortune, but out of purpose and compassion.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Innovator in Fitness Tech",
+      title: "Innovator in Fitness Tech",
+      icon: Trophy,
+      color: "red",
+      description:"This award celebrates the forward-thinking individuals, startups, or companies that are leveraging technology to revolutionize the fitness experience. From cutting-edge fitness apps and wearable devices to AI-driven workout programs, data trackers, and virtual fitness solutions, the Innovator in Fitness Tech award recognizes those transforming how we train, monitor progress, and stay motivated.Whether it’s streamlining fitness tracking, enhancing remote coaching, or gamifying physical activity, this award honors the pioneers pushing the boundaries of tech-driven wellness.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Women in Wellness Leadership Award",
+      title: "Women in Wellness Leadership Award",
+      icon: Trophy,
+      color: "red",
+      description:"This award celebrates exceptional women who are leading the way in the wellness industry — from fitness coaching and holistic health practices to nutrition, mental well-being, and entrepreneurial ventures. The Women in Wellness Leadership Award honors those who have demonstrated remarkable leadership, innovation, and commitment to promoting health and wellness in their communities, empowering others, and driving positive change.This award recognizes women who are not only leaders in their field but also role models for other women aspiring to make a difference in the wellness sector.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Best Fitness Studio/Gym in Bengaluru",
+      title: "Best Fitness Studio/Gym in Bengaluru",
+      icon: Trophy,
+      color: "red",
+      description:"This prestigious award recognizes the best fitness studio or gym in Bengaluru, celebrating those establishments that offer exceptional fitness programs, state-of-the-art facilities, and a strong commitment to community engagement. The Best Fitness Studio/Gym is defined by its ability to create a positive, motivating environment where members feel supported and inspired to reach their fitness goals. It also recognizes the importance of member satisfaction, wellness programs, and client retention.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+     {
+      id: "Best Wellness Retreat/Center",
+      title: "Best Wellness Retreat/Center",
+      icon: Trophy,
+      color: "red",
+      description:"This award celebrates holistic wellness retreats or centers that offer a comprehensive and transformative experience, combining fitness, mindfulness, and recovery. The Best Wellness Retreat/Center is recognized for its ability to provide an immersive environment where guests can rejuvenate both physically and mentally. These retreats foster an atmosphere of relaxation, self-care, and personal growth, integrating practices such as yoga, meditation, detox programs, fitness regimens, and recovery therapies. The focus is on providing a holistic approach to wellness that nurtures the mind, body, and soul.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Top Health Supplement Brand",
+      title: "Top Health Supplement Brand",
+      icon: Trophy,
+      color: "red",
+      description:"This award recognizes the Top Health Supplement Brand that is trusted by the fitness community for its quality, safety, and effectiveness. The winner of this category is a brand that provides supplements that meet the highest standards of scientific research, quality testing, and consumer trust. From protein powders and vitamins to pre-workouts, post-workouts, and recovery formulas, this brand delivers products that support fitness goals, promote well-being, and enhance performance. The Top Health Supplement Brand not only excels in product quality but also educates its users, offers transparency, and prioritizes safety and efficacy.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Best Activewear Brand",
+      title: "Best Activewear Brand",
+      icon: Trophy,
+      color: "red",
+      description:"This award honors the Best Activewear Brand that combines comfort, performance, and style, providing high-quality apparel designed for fitness enthusiasts, athletes, and wellness seekers. The winner will be a brand that delivers clothing that supports optimal movement, enhances performance, and looks great both in and out of the gym. Whether it’s for yoga, running, weight training, or daily activewear, this brand should prioritize fabric innovation, comfort, and fit while also staying on-trend with designs that inspire confidence.The Best Activewear Brand is recognized not just for the products it offers but also for the community it builds—from the influencers it partners with to the brand’s commitment to inclusivity, body positivity, and sustainable practices.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
+        },
+      ],
+    },
+    {
+      id: "Corporate Wellness Champion",
+      title: "Corporate Wellness Champion",
+      icon: Trophy,
+      color: "red",
+      description:"This award recognizes the Corporate Wellness Champion—a company that has gone above and beyond in promoting health, fitness, and well-being among its employees. The Corporate Wellness Champion is an organization that prioritizes employee health through structured wellness programs, fitness initiatives, and well-being policies that encourage physical activity, mental health support, and a balanced lifestyle. The company should focus on creating an environment that fosters employee engagement, workplace wellness, and overall productivity through initiatives such as on-site gyms, fitness challenges, mental health resources, and more.",
+      nominees: [
+        {
+          id: "sarah-johnson",
+          name: "Sarah Johnson",
+          description: "Transformed over 200 lives this year with innovative training methods and community programs.",
+          votes: 245,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer woman",
+        },
+        {
+          id: "michael-patel",
+          name: "Michael Patel",
+          description: "Specializes in rehabilitation fitness, helping clients recover from injuries and surgeries.",
+          votes: 189,
+          image: "/placeholder.svg?height=100&width=100&query=fitness trainer man",
+        },
+        {
+          id: "jessica-lee",
+          name: "Jessica Lee",
+          description: "Pioneer in adaptive fitness, making training accessible for people with disabilities.",
+          votes: 217,
+          image: "/placeholder.svg?height=100&width=100&query=adaptive fitness trainer",
         },
       ],
     },
@@ -218,14 +552,14 @@ export default function AwardsPage() {
   return (
     <main className=" bg-gray-50">
       {/* Hero Section */}
- <section className="min-h-[60vh] bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/eventum-img1.jpg')" }}>
+ <section className="min-h-[60vh] bg-cover bg-center py-40 flex items-center relative" style={{ backgroundImage: "url('/images/eventum-img1.jpg')" }}>
   <div
   className="absolute inset-0 bg-black opacity-80"></div>
 
-  <div className="container mx-auto px-4 relative z-10">
-    <div className="max-w-3xl mx-auto text-center">
+  <div className="container mx-auto px-4  relative z-10">
+    <div className="max-w-3xl mx-auto text-center pt-10">
    <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-white">
-  AWARDS
+  🏆 Bengaluru Fitness & Wellness Awards 2025
 </h1>
     </div>
   </div>
@@ -283,7 +617,7 @@ export default function AwardsPage() {
                 <div className="w-24 h-1 bg-[#dc5044] mx-auto"></div>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-1 gap-8">
                 {awardCategories.map((category, index) => {
                   const IconComponent = category.icon
                   const colors = {
@@ -305,7 +639,7 @@ export default function AwardsPage() {
                         <h4 className="text-xl font-bold text-gray-800">{category.title}</h4>
                       </div>
                       <p className="text-gray-600 mb-6 leading-relaxed">
-                        Recognizing outstanding achievements and contributions in this category.
+                       {category.description}
                       </p>
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-semibold text-gray-500">Current nominees:</span>

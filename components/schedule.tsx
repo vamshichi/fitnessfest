@@ -4,11 +4,14 @@ import { useState } from "react"
 import { events } from "@/data/events"
 import { Button } from "@/components/ui/button"
 import clsx from "clsx"
+import { useRouter } from "next/navigation"
 
 export default function Schedule() {
   const [selectedDate, setSelectedDate] = useState("12 October 2025")
 
   const filteredEvents = events.filter((e) => e.date === selectedDate)
+
+    const router = useRouter()
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-10 bg-gray-50">
@@ -89,12 +92,13 @@ export default function Schedule() {
                 <div className="p-6">
                   <h5 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">{item.description}</h5>
                   <p className="text-gray-600 mb-6">Location: {item.location}</p>
-                  <Button
-                    variant="outline"
-                    className="border-pink-600 text-pink-600 hover:bg-orange-500 hover:text-white"
-                  >
-                    LEARN MORE
-                  </Button>
+                   <Button
+      variant="outline"
+      className="border-pink-600 text-pink-600 hover:bg-orange-500 hover:text-white"
+      onClick={() => router.push(`/event/${item.id}`)}
+    >
+      LEARN MORE
+    </Button>
                 </div>
 
                 <div className="text-white text-center flex justify-center items-center p-4">

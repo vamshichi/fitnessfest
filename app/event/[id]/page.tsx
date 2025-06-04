@@ -23,37 +23,7 @@ export default function EventDetailPage({ params }: Props) {
   if (!event) {
     return (
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <header className="bg-white border-b">
-          <div className="container mx-auto px-4 py-4">
-            <nav className="flex items-center justify-between">
-              <Link href="/" className="flex items-center space-x-2">
-                <span className="text-2xl font-bold text-pink-600">Eventum.</span>
-              </Link>
-              <div className="hidden md:flex items-center space-x-8">
-                <Link href="/" className="hover:text-gray-600 transition-colors">
-                  HOME
-                </Link>
-                <Link href="/about" className="hover:text-gray-600 transition-colors">
-                  ABOUT US
-                </Link>
-                <Link href="/pages" className="hover:text-gray-600 transition-colors">
-                  PAGES
-                </Link>
-                <Link href="/events" className="text-pink-500 font-semibold">
-                  EVENTS
-                </Link>
-                <Link href="/blog" className="hover:text-gray-600 transition-colors">
-                  BLOG
-                </Link>
-                <Link href="/contact" className="hover:text-gray-600 transition-colors">
-                  CONTACT US
-                </Link>
-              </div>
-              <Button className="bg-pink-600 hover:bg-pink-700 text-white px-6">BUY NOW</Button>
-            </nav>
-          </div>
-        </header>
+   
 
         <div className="container mx-auto px-4 py-16">
           <Link href="/" className="text-pink-600 hover:text-pink-700 flex items-center gap-2 mb-8 font-medium">
@@ -79,18 +49,23 @@ export default function EventDetailPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-     
+            <section className="min-h-[60vh] bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/eventum-img1.jpg')" }}>
+  <div
+  className="absolute inset-0 bg-black opacity-80"></div>
+
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="max-w-3xl mx-auto text-center">
+   <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-white">
+  Events
+</h1>
+    </div>
+    
+  </div>
+</section> 
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-pink-600 to-pink-800 text-white py-12">
-        <div className="container mx-auto px-4">
-          <Link
-            href="/"
-            className="text-pink-200 hover:text-white flex items-center gap-2 mb-6 font-medium transition-colors"
-          >
-            <ArrowLeft size={20} />
-            Back to events
-          </Link>
+      <section className=" bg-[#fa0368] text-white py-12">
+        <div className="container max-w-3xl mx-auto px-4">
 
           <div className="max-w-4xl">
             <Badge className="bg-pink-500/20 text-pink-100 border-pink-400 mb-4">
@@ -126,7 +101,7 @@ export default function EventDetailPage({ params }: Props) {
 
       {/* Main Content */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-14">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
@@ -303,7 +278,7 @@ export default function EventDetailPage({ params }: Props) {
             </Button>
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-pink-600 px-8 py-3 font-semibold rounded-full"
+              className="bg-transparent border-white text-white hover:bg-white hover:text-pink-600 px-8 py-3 font-semibold rounded-full"
             >
               View More Events
             </Button>
