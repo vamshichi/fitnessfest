@@ -19,7 +19,7 @@ export default function Timer() {
       {/* <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div> */}
 
       {/* Hero Content */}
-      <div className="relative w-full h-full pt-25 2xl:pt-50 flex items-center z-10">
+      <div className="relative w-full h-full pt-25 2xl:pt-60 flex items-center z-10">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Hero Image */}
           <div className="relative order-1 flex justify-center">
