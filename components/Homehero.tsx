@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export default function Timer() {
   return (
     <div
-      className="relative min-h-[70vh] lg:min-h-[60vh] xl:min-h-[90vh] flex items-center bg-white"
+      className="relative min-h-[70vh] lg:min-h-[60vh] xl:min-h-[90vh] 2xl::min-h-[60vh] flex items-center bg-white"
       style={{
         backgroundImage: "url('/images/image1.jpg')",
         backgroundSize: "cover",
