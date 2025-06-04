@@ -11,7 +11,7 @@ export default function Timer() {
         backgroundImage: "url('/images/image1.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        borderBottomLeftRadius: "10%",
+        borderBottomLeftRadius: "16%",
         borderBottomRightRadius: "10%",
       }}
     >
