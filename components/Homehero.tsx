@@ -7,7 +7,7 @@ export default function Timer() {
  
   return (
     <div
-      className=" lg:min-h-[90vh] bg-gray-900 relative overflow-hidden"
+      className="relative min-h-[70vh] lg:min-h-[60vh] xl:min-h-[50vh] flex items-end"
      style={{
   backgroundImage: "url('/images/image1.jpg')",
   backgroundSize: "cover",
