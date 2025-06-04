@@ -165,39 +165,19 @@ export default function TicketsPage() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative text-white py-24">
-          {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/placeholder.svg?height=600&width=1200')" }}
-          />
+        <section className="min-h-[60vh] bg-cover bg-center py-20 flex items-center relative" style={{ backgroundImage: "url('/images/eventum-img1.jpg')" }}>
+  <div
+  className="absolute inset-0 bg-black opacity-80"
+></div>
 
-          {/* Pink Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-900/80 to-pink-700/60" />
-
-          {/* Content */}
-          <div className="relative z-10 container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
-                Get Your Tickets
-              </h1>
-              <p className="text-xl md:text-2xl opacity-90 mb-8 max-w-2xl mx-auto">
-                Secure your spot at DevCon 2024 and join thousands of tech enthusiasts for an unforgettable experience
-              </p>
-              <div className="flex items-center justify-center gap-4 text-pink-200">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5" />
-                  <span>July 17-19, 2024</span>
-                </div>
-                <div className="w-1 h-1 bg-pink-300 rounded-full"></div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
-                  <span>Boston, Canada</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="max-w-3xl mx-auto text-center">
+   <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-white">
+Get Your Tickets
+</h1>
+    </div>
+  </div>
+</section>
 
         {/* Event Details */}
         <section className="py-16 bg-white">
