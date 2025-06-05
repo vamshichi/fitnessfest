@@ -28,7 +28,7 @@ const attendanceSchema = z.object({
   dietaryRestrictions: z.string().optional(),
   accessibilityRequirements: z.string().optional(),
   networkingInterest: z.boolean(),
-  marketingConsent: z.boolean(),
+  marketingConsent: z.boolean(),  
   country: z.string().min(2, {
     message: "Please select a country.",
   }),
