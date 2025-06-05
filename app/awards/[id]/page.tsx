@@ -50,7 +50,7 @@ export default async function AwardDetailPage({ params }: PageProps) {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Nomination Form */}
-            
+            <NominationForm awardTitle={award.title} awardId={award.id} />
 
             {/* Eligibility Section */}
             <Card className="shadow-lg border-0">
@@ -136,7 +136,6 @@ export default async function AwardDetailPage({ params }: PageProps) {
                 </div>
               </CardContent>
             </Card>
-            <NominationForm awardTitle={award.title} />
           </div>
 
           {/* Sidebar */}
