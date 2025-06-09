@@ -1,7 +1,18 @@
 import { unstable_noStore as noStore } from "next/cache"
-import prisma from "@/lib/prisma"
+import { prisma } from "@/lib/prisma"
 import { columns } from "./columns"
 import { DataTable } from "@/components/admin/data-table"
+
+// Define the contact type
+type ContactData = {
+  id: string
+  name: string
+  email: string
+  phone: string | null
+  subject: string | null
+  message: string
+  createdAt: Date
+}
 
 export default async function ContactsPage() {
   // Prevent caching
@@ -14,8 +25,8 @@ export default async function ContactsPage() {
       },
     })
 
-    // Get unique contact types for the filter
-    const contactTypes = Array.from(new Set(contacts.map((contact) => contact.type)))
+    // Get unique contact types for the filter (if you have a type field)
+    const contactTypes: string[] = Array.from(new Set(contacts.map((contact: ContactData) => contact.subject || "General")))
 
     return (
       <div className="container mx-auto py-10">

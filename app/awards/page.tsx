@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Users, Mic, Camera, Vote, Award } from "lucide-react"
 import VotingCard from "@/components/voting-card"
+import { submitVote } from "./actions"
 
 import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
@@ -12,6 +13,7 @@ import { awardCategories } from "@/data/awards"
 interface VoterInfo {
   name: string
   email: string
+  phone: string
   categoryId: string
   nomineeId: string
 }
@@ -21,6 +23,7 @@ export default function AwardsPage() {
   const [activeTab, setActiveTab] = useState("participate")
   const [hasVoted, setHasVoted] = useState<Record<string, boolean>>({})
   const [showVoteSuccess, setShowVoteSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const features = [
     {
@@ -64,9 +67,15 @@ export default function AwardsPage() {
       return { success: false, error: "Category or nominee not found" }
     }
 
+    setIsSubmitting(true)
+
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Call the real server action to submit vote to database
+      const result = await submitVote(voterInfo, nominee.name, category.title)
+
+      if (!result.success) {
+        throw new Error(result.error || "Failed to submit vote")
+      }
 
       setHasVoted((prev) => ({
         ...prev,
@@ -81,18 +90,18 @@ export default function AwardsPage() {
       setShowVoteSuccess(true)
       setTimeout(() => setShowVoteSuccess(false), 5000)
 
-      return { success: true, id: `vote-${Date.now()}` }
+      return { success: true, id: result.id }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to submit your vote. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to submit your vote. Please try again.",
         variant: "destructive",
       })
       return { success: false, error: error instanceof Error ? error.message : "Unknown error" }
+    } finally {
+      setIsSubmitting(false)
     }
   }
-
-  
 
   return (
     <main className="bg-gray-50">
@@ -212,9 +221,6 @@ export default function AwardsPage() {
                 })}
               </div>
             </div>
-
-            {/* Participation Form */}
-            
           </div>
         )}
 
@@ -289,6 +295,7 @@ export default function AwardsPage() {
                           color={category.color}
                           onVote={handleVote}
                           hasVoted={hasVoted[category.id] || false}
+                          isSubmitting={isSubmitting}
                         />
                       ))}
                     </div>

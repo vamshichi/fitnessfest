@@ -34,17 +34,17 @@ model ContactSubmission {
 }
 
 model AwardVote {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  voterName   String
-  voterEmail  String
-  voterPhone  String
-  nomineeId   String
-  nomineeName String
-  categoryId  String
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  voterName    String
+  voterEmail   String
+  voterPhone   String
+  nomineeId    String
+  nomineeName  String
+  categoryId   String
   categoryName String
   
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
   
   @@map("award_votes")
 }

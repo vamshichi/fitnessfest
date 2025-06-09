@@ -3,15 +3,16 @@ import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { prisma } from "@/lib/prisma"
-// import type { Nomination } from "@prisma/client"
 
 // Define types for our data
+type NominationStatus = "PENDING" | "UNDER_REVIEW" | "APPROVED" | "REJECTED" | "SHORTLISTED"
+
 type NominationData = {
   id: string
   fullName: string
   email: string
   awardTitle: string
-  // status: NominationStatus
+  status: NominationStatus
   createdAt: Date
 }
 
@@ -232,7 +233,7 @@ export default async function DashboardPage() {
                             <p className="text-sm text-muted-foreground">{nomination.email}</p>
                             <p className="text-xs text-gray-500">{nomination.awardTitle}</p>
                             <p className="text-xs text-gray-500">
-                              {/* Status: {nomination.status} • {new Date(nomination.createdAt).toLocaleDateString()} */}
+                              Status: {nomination.status} • {new Date(nomination.createdAt).toLocaleDateString()}
                             </p>
                           </div>
                         </div>

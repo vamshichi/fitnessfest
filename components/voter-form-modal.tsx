@@ -1,18 +1,19 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Label } from "@/components/ui/label"
 import { X } from "lucide-react"
 import type { VoterInfo } from "./voting-card"
 
 interface Nominee {
   id: string
   name: string
+  description: string
+  votes: number
   image: string
 }
 
@@ -20,131 +21,175 @@ interface VoterFormModalProps {
   nominee: Nominee
   categoryId: string
   onClose: () => void
-  onSubmit: (voterInfo: VoterInfo) => void
+  onSubmit: (voterInfo: VoterInfo) => Promise<void>
 }
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().min(10, { message: "Please enter a valid phone number." }),
-})
-
 export default function VoterFormModal({ nominee, categoryId, onClose, onSubmit }: VoterFormModalProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-    },
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    setIsSubmitting(true)
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
 
-    // Prepare voter info
-    const voterInfo: VoterInfo = {
-      ...values,
-      nomineeId: nominee.id,
-      categoryId,
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required"
     }
 
-    // Submit the form
-    onSubmit(voterInfo)
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const voterInfo: VoterInfo = {
+        ...formData,
+        nomineeId: nominee.id,
+        categoryId,
+      }
+
+      await onSubmit(voterInfo)
+    } catch (error) {
+      console.error("Error submitting vote:", error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b flex justify-between items-center">
-          <h3 className="text-xl font-bold">Vote Confirmation</h3>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 transition-colors" aria-label="Close">
-            <X size={24} />
-          </button>
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      onClick={handleBackdropClick}
+    >
+      <div className="bg-white rounded-2xl max-w-md w-full p-6 relative animate-in fade-in-0 zoom-in-95 duration-200">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Vote for {nominee.name}</h2>
+          <p className="text-gray-600">Please provide your information to submit your vote.</p>
         </div>
 
-        <div className="p-6">
-          <div className="mb-6 bg-gray-50 p-4 rounded-lg">
-            <p className="text-gray-700 mb-2">You are voting for:</p>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full overflow-hidden">
-                <img
-                  src={nominee.image || "/placeholder.svg"}
-                  alt={nominee.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h4 className="font-bold text-lg">{nominee.name}</h4>
-              </div>
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="voter-name" className="text-sm font-medium text-gray-700">
+              Your Name *
+            </Label>
+            <Input
+              id="voter-name"
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className={`mt-1 ${errors.name ? "border-red-500" : ""}`}
+              placeholder="Enter your full name"
+            />
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
           </div>
 
-          <p className="text-gray-600 mb-4">
-            Please provide your information to complete your vote. This helps us verify the authenticity of votes.
-          </p>
+          <div>
+            <Label htmlFor="voter-email" className="text-sm font-medium text-gray-700">
+              Your Email *
+            </Label>
+            <Input
+              id="voter-email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className={`mt-1 ${errors.email ? "border-red-500" : ""}`}
+              placeholder="Enter your email address"
+            />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+          </div>
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Your Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="John Doe" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <div>
+            <Label htmlFor="voter-phone" className="text-sm font-medium text-gray-700">
+              Your Phone Number *
+            </Label>
+            <Input
+              id="voter-phone"
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className={`mt-1 ${errors.phone ? "border-red-500" : ""}`}
+              placeholder="Enter your phone number"
+            />
+            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+          </div>
 
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email Address</FormLabel>
-                    <FormControl>
-                      <Input type="email" placeholder="john.doe@example.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <p className="text-sm text-blue-800">
+              <strong>Note:</strong> You can only vote once per category. Your information will be used to verify your
+              vote and prevent duplicate submissions.
+            </p>
+          </div>
 
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="+1 (555) 123-4567" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="flex gap-3 pt-4">
-                <Button type="button" variant="outline" onClick={onClose} className="flex-1">
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  className="flex-1 bg-[#dc5044] hover:bg-[#c03c32] text-white"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Vote"}
-                </Button>
-              </div>
-            </form>
-          </Form>
-        </div>
+          <div className="flex gap-3 pt-4">
+            <Button type="button" variant="outline" onClick={onClose} className="flex-1" disabled={isSubmitting}>
+              Cancel
+            </Button>
+            <Button type="submit" className="flex-1 bg-[#dc5044] hover:bg-[#c03c32] text-white" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <svg
+                    className="animate-spin h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Submitting Vote...
+                </span>
+              ) : (
+                "Submit Vote"
+              )}
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   )

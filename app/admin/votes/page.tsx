@@ -1,7 +1,20 @@
 import { unstable_noStore as noStore } from "next/cache"
-import prisma from "@/lib/prisma"
+import { prisma } from "@/lib/prisma"
 import { columns } from "./columns"
 import { DataTable } from "@/components/admin/data-table"
+
+// Define the vote type to match your schema
+type VoteData = {
+  id: string
+  voterName: string
+  voterEmail: string
+  voterPhone: string
+  nomineeId: string
+  nomineeName: string
+  categoryId: string
+  categoryName: string
+  createdAt: Date
+}
 
 export default async function VotesPage() {
   // Prevent caching
@@ -12,10 +25,21 @@ export default async function VotesPage() {
       orderBy: {
         createdAt: "desc",
       },
+      select: {
+        id: true,
+        voterName: true,
+        voterEmail: true,
+        voterPhone: true,
+        nomineeId: true,
+        nomineeName: true,
+        categoryId: true,
+        categoryName: true,
+        createdAt: true,
+      },
     })
 
-    // Get unique categories for filters
-    const categories = Array.from(new Set(votes.map((vote) => vote.categoryName)))
+    // Get unique category names for filters
+    const categoryNames: string[] = Array.from(new Set(votes.map((vote: VoteData) => vote.categoryName)))
 
     return (
       <div className="container mx-auto py-10">
@@ -35,7 +59,7 @@ export default async function VotesPage() {
             filterOptions={{
               key: "categoryName",
               label: "category",
-              values: categories,
+              values: categoryNames,
             }}
             exportFileName="votes_export"
           />

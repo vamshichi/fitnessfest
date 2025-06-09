@@ -1,46 +1,54 @@
 "use server"
 
-import prisma from "@/lib/prisma"
-import type { VoterInfo } from "@/components/voting-card"
+export interface VoterInfo {
+  name: string
+  email: string
+  phone: string
+  nomineeId: string
+  categoryId: string
+}
 
-export async function submitVote(voterInfo: VoterInfo, nomineeName: string, categoryName: string) {
+export async function submitVote(
+  voterInfo: VoterInfo,
+  nomineeName: string,
+  categoryTitle: string,
+): Promise<{ success: boolean; error?: string; id?: string }> {
   try {
+    console.log("=== VOTE SUBMISSION ACTION ===")
+    console.log("Submitting vote via API...")
+
     // Validate required fields
     if (!voterInfo.name || !voterInfo.email || !voterInfo.phone || !voterInfo.nomineeId || !voterInfo.categoryId) {
-      console.error("Missing required fields in vote submission")
-      return {
-        success: false,
-        error: "Missing required voter information. Please fill out all required fields.",
-      }
+      return { success: false, error: "Missing required information." }
     }
 
-    // Log the data being saved
-    console.log("Saving award vote:", {
-      voter: voterInfo.name,
-      nominee: nomineeName,
-      category: categoryName,
-    })
-
-    // Save vote to database
-    const result = await prisma.awardVote.create({
-      data: {
-        voterName: voterInfo.name,
-        voterEmail: voterInfo.email,
-        voterPhone: voterInfo.phone,
-        nomineeId: voterInfo.nomineeId,
-        nomineeName: nomineeName,
-        categoryId: voterInfo.categoryId,
-        categoryName: categoryName,
+    // Call the public vote API endpoint
+   const response = await fetch(`${process.env.NEXTAUTH_URL || "https://fitnessfest.vercel.app"}/api/public/vote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        voterInfo,
+        nomineeName,
+        categoryName: categoryTitle,
+      }),
     })
 
-    console.log("Award vote saved successfully with ID:", result.id)
+    const result = await response.json()
+
+    console.log("API response:", result)
+
+    if (!result.success) {
+      return { success: false, error: result.error || "Failed to submit vote" }
+    }
+
     return { success: true, id: result.id }
   } catch (error) {
-    console.error("Error submitting vote:", error)
+    console.error("Vote submission action error:", error)
     return {
       success: false,
-      error: "Failed to record vote. Please try again later.",
+      error: error instanceof Error ? error.message : "Failed to submit vote",
     }
   }
 }

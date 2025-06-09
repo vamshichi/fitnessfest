@@ -21,6 +21,7 @@ interface VotingCardProps {
   color: string
   onVote: (voterInfo: VoterInfo) => Promise<{ success: boolean; id?: string; error?: string } | void>
   hasVoted: boolean
+  isSubmitting?: boolean
 }
 
 export interface VoterInfo {
@@ -31,7 +32,14 @@ export interface VoterInfo {
   categoryId: string
 }
 
-export default function VotingCard({ nominee, categoryId, color, onVote, hasVoted }: VotingCardProps) {
+export default function VotingCard({
+  nominee,
+  categoryId,
+  color,
+  onVote,
+  hasVoted,
+  isSubmitting = false,
+}: VotingCardProps) {
   const [isVoting, setIsVoting] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [localVotes, setLocalVotes] = useState(nominee.votes)
@@ -67,7 +75,7 @@ export default function VotingCard({ nominee, categoryId, color, onVote, hasVote
   }
 
   const handleVoteClick = () => {
-    if (hasVoted) return
+    if (hasVoted || isSubmitting) return
     setShowVoterForm(true)
   }
 
@@ -76,27 +84,24 @@ export default function VotingCard({ nominee, categoryId, color, onVote, hasVote
     setIsVoting(true)
 
     try {
-      // Call the server action
+      // Call the onVote function which will handle the API call
       const result = await onVote(voterInfo)
 
-      // Update local state regardless of the result
-      setLocalVotes((prev) => prev + 1)
-      setShowConfirmation(true)
-
-      // Log success if we have a result with an ID
-      if (result && "id" in result) {
+      if (result && result.success) {
+        // Update local state on success
+        setLocalVotes((prev) => prev + 1)
+        setShowConfirmation(true)
         console.log("Vote submitted successfully with ID:", result.id)
-      } else {
-        console.log("Vote submitted successfully")
-      }
 
-      // Hide confirmation after 3 seconds
-      setTimeout(() => {
-        setShowConfirmation(false)
-      }, 3000)
+        // Hide confirmation after 3 seconds
+        setTimeout(() => {
+          setShowConfirmation(false)
+        }, 3000)
+      } else {
+        console.error("Vote submission failed:", result?.error)
+      }
     } catch (error) {
       console.error("Error submitting vote:", error)
-      // Handle error case
     } finally {
       setIsVoting(false)
     }
@@ -142,12 +147,14 @@ export default function VotingCard({ nominee, categoryId, color, onVote, hasVote
           ) : (
             <Button
               onClick={handleVoteClick}
-              disabled={isVoting || hasVoted}
+              disabled={isVoting || hasVoted || isSubmitting}
               className={`w-full py-3 ${
-                hasVoted ? "bg-gray-300 text-gray-600 cursor-not-allowed" : `bg-[#dc5044] hover:bg-[#c03c32] text-white`
+                hasVoted || isSubmitting
+                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                  : `bg-[#dc5044] hover:bg-[#c03c32] text-white`
               }`}
             >
-              {isVoting ? (
+              {isVoting || isSubmitting ? (
                 <span className="flex items-center gap-2">
                   <svg
                     className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"

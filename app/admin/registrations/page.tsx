@@ -1,7 +1,24 @@
 import { unstable_noStore as noStore } from "next/cache"
-import prisma from "@/lib/prisma"
+import { prisma } from "@/lib/prisma"
 import { columns } from "./columns"
 import { DataTable } from "@/components/admin/data-table"
+
+// Define the registration type to match the actual Prisma schema
+type RegistrationData = {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  dateOfBirth: string
+  competition: string
+  experienceLevel: string
+  emergencyContactName: string
+  emergencyContactPhone: string
+  termsAccepted: boolean
+  createdAt: Date
+  updatedAt: Date
+}
 
 export default async function RegistrationsPage() {
   // Prevent caching
@@ -15,8 +32,10 @@ export default async function RegistrationsPage() {
     })
 
     // Get unique competitions and experience levels for filters
-    const competitions = Array.from(new Set(registrations.map((reg) => reg.competition)))
-    const experienceLevels = Array.from(new Set(registrations.map((reg) => reg.experienceLevel)))
+    const competitions: string[] = Array.from(new Set(registrations.map((reg: RegistrationData) => reg.competition)))
+    const experienceLevels: string[] = Array.from(
+      new Set(registrations.map((reg: RegistrationData) => reg.experienceLevel).filter(Boolean)),
+    ) as string[]
 
     return (
       <div className="container mx-auto py-10">
@@ -30,11 +49,10 @@ export default async function RegistrationsPage() {
           </div>
         ) : (
           <div className="space-y-4">
-            {/* Competition filter */}
             <DataTable
               columns={columns}
               data={registrations}
-              filterColumn="fullName"
+              filterColumn="firstName"
               filterOptions={{
                 key: "competition",
                 label: "competition",
