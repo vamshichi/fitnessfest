@@ -1,6 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
+// schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,7 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Contact Form Submissions
 model ContactSubmission {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
@@ -36,7 +33,6 @@ model ContactSubmission {
   @@map("contact_submissions")
 }
 
-// Award Votes
 model AwardVote {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   voterName   String
@@ -53,7 +49,6 @@ model AwardVote {
   @@map("award_votes")
 }
 
-// Competition Registrations
 model CompetitionRegistration {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
   firstName           String
@@ -73,7 +68,6 @@ model CompetitionRegistration {
   @@map("competition_registrations")
 }
 
-// Admin Users
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
@@ -84,4 +78,49 @@ model User {
   updatedAt     DateTime  @updatedAt
 
   @@map("users")
+}
+
+model Nomination {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  
+  // Award Information
+  awardTitle String
+  awardId    String
+  
+  // Basic Information
+  fullName     String
+  dateOfBirth  DateTime
+  gender       String
+  contactNumber String
+  email        String
+  cityArea     String
+  organization String?
+  designation  String
+  
+  // Professional data stored as JSON
+  professionalData Json?
+  
+  // Social media information stored as JSON
+  socialMediaData Json?
+  
+  // File upload URLs (local paths) stored as JSON
+  uploadedFiles Json?
+  
+  // Status and metadata
+  status      NominationStatus @default(PENDING)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  reviewedBy  String?
+  adminNotes  String?
+  
+  // Indexes
+  @@map("nominations")
+}
+
+enum NominationStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  SHORTLISTED
 }

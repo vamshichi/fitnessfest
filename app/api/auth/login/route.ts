@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import prisma from "@/lib/prisma"
+import {prisma} from "@/lib/prisma"
 import { signJwt } from "@/lib/jwt"
 import { cookies } from "next/headers"
 import { compare } from "bcrypt"

@@ -283,7 +283,7 @@ export default function NominationForm({ awardTitle, awardId }: NominationFormPr
     })
 
     try {
-      const res = await fetch("/api/nominations", {
+      const res = await fetch("/api/nomination", {
         method: "POST",
         body: form,
       })

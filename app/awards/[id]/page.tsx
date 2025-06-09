@@ -111,31 +111,7 @@ export default async function AwardDetailPage({ params }: PageProps) {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Submission Requirements */}
-            <Card className="shadow-lg border-0">
-              <CardHeader className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3 text-2xl text-orange-800">
-                  <FileText className="h-6 w-6" />
-                  Submission Requirements
-                </CardTitle>
-                <CardDescription className="text-orange-600">
-                  A complete nomination should include the following documents:
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <div className="grid gap-4">
-                  {award.submissionRequirements.map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
-                      <div className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
-                        {index + 1}
-                      </div>
-                      <span className="text-gray-700 leading-relaxed">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                      
           </div>
 
           {/* Sidebar */}
