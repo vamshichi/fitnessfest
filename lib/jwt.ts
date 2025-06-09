@@ -1,25 +1,25 @@
-import { SignJWT, jwtVerify } from "jose"
+import jwt from "jsonwebtoken"
 
-// Secret key for JWT signing and verification
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "default_jwt_secret_key_change_this_in_production",
-)
+const JWT_SECRET = process.env.JWT_SECRET || "your-jwt-secret" // Fallback for safety
 
 export async function signJwt(payload: any): Promise<string> {
-  const token = await new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("24h") // Token expires in 24 hours
-    .sign(JWT_SECRET)
-
-  return token
+  try {
+    const token = jwt.sign(payload, JWT_SECRET, {
+      expiresIn: "24h", // Token expires in 24 hours
+    })
+    return token
+  } catch (error) {
+    console.error("JWT signing error:", error)
+    throw new Error("Failed to sign JWT token")
+  }
 }
 
 export async function verifyJwt(token: string): Promise<any> {
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET)
+    const payload = jwt.verify(token, JWT_SECRET)
     return payload
   } catch (error) {
+    console.error("JWT verification error:", error)
     return null
   }
 }
