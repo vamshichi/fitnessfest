@@ -1,11 +1,17 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
+interface RouteContext {
+  params: Promise<{ id: string }>
+}
+
 // GET single nomination by ID
-export async function GET(request: NextRequest, context: { params: { id: string } }) {
+export async function GET(request: NextRequest, context: RouteContext) {
   try {
+    const { id } = await context.params
+
     const nomination = await prisma.nomination.findUnique({
-      where: { id: context.params.id },
+      where: { id },
     })
 
     if (!nomination) {
@@ -23,13 +29,14 @@ export async function GET(request: NextRequest, context: { params: { id: string 
 }
 
 // PATCH - Update nomination status
-export async function PATCH(request: NextRequest, context: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, context: RouteContext) {
   try {
+    const { id } = await context.params
     const body = await request.json()
     const { status, adminNotes, reviewedBy } = body
 
     const nomination = await prisma.nomination.update({
-      where: { id: context.params.id },
+      where: { id },
       data: {
         status,
         adminNotes,
