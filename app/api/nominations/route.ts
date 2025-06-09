@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { put } from "@vercel/blob"
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
 
@@ -29,49 +28,69 @@ function generateUniqueFilename(originalName: string): string {
   return `${timestamp}-${randomString}-${nameWithoutExt}.${extension}`
 }
 
-// Helper function to save file to Vercel Blob in production or locally in development
+// Helper function to save file
 async function saveFile(file: File, subfolder: string): Promise<string> {
   const filename = generateUniqueFilename(file.name)
   const filepath = `${subfolder}/${filename}`
 
-  if (process.env.NODE_ENV === "production") {
-    // Use Vercel Blob in production
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      throw new Error("BLOB_READ_WRITE_TOKEN is not configured")
+  // Always use Vercel Blob in production (Vercel environment)
+  if (process.env.VERCEL || process.env.NODE_ENV === "production") {
+    try {
+      // Dynamic import of Vercel Blob
+      const { put } = await import("@vercel/blob")
+
+      if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        throw new Error("BLOB_READ_WRITE_TOKEN environment variable is not set")
+      }
+
+      const blob = await put(filepath, file, {
+        access: "public",
+      })
+
+      console.log(`File uploaded to Vercel Blob: ${blob.url}`)
+      return blob.url
+    } catch (error) {
+      console.error("Vercel Blob upload error:", error)
+      throw new Error(`Failed to upload to Vercel Blob: ${error instanceof Error ? error.message : "Unknown error"}`)
     }
-
-    const blob = await put(filepath, file, {
-      access: "public",
-    })
-
-    return blob.url
   } else {
-    // Use local file system in development
-    const { writeFile, mkdir } = await import("fs/promises")
-    const { existsSync } = await import("fs")
-    const { join } = await import("path")
+    // Use local file system in development only
+    try {
+      const { writeFile, mkdir } = await import("fs/promises")
+      const { existsSync } = await import("fs")
+      const { join } = await import("path")
 
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
+      const bytes = await file.arrayBuffer()
+      const buffer = Buffer.from(bytes)
 
-    // Create upload path
-    const uploadDir = join(process.cwd(), "public", "uploads", subfolder)
+      // Create upload path
+      const uploadDir = join(process.cwd(), "public", "uploads", subfolder)
 
-    // Ensure directory exists
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true })
+      // Ensure directory exists
+      if (!existsSync(uploadDir)) {
+        await mkdir(uploadDir, { recursive: true })
+      }
+
+      const fullPath = join(uploadDir, filename)
+      await writeFile(fullPath, buffer)
+
+      console.log(`File saved locally: /uploads/${subfolder}/${filename}`)
+      return `/uploads/${subfolder}/${filename}`
+    } catch (error) {
+      console.error("Local file system error:", error)
+      throw new Error(`Failed to save file locally: ${error instanceof Error ? error.message : "Unknown error"}`)
     }
-
-    const fullPath = join(uploadDir, filename)
-    await writeFile(fullPath, buffer)
-
-    // Return public URL path
-    return `/uploads/${subfolder}/${filename}`
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("Environment check:", {
+      NODE_ENV: process.env.NODE_ENV,
+      VERCEL: process.env.VERCEL,
+      BLOB_TOKEN_EXISTS: !!process.env.BLOB_READ_WRITE_TOKEN,
+    })
+
     const formData = await request.formData()
 
     // Extract basic form data
@@ -107,8 +126,10 @@ export async function POST(request: NextRequest) {
 
       for (const file of fileList) {
         try {
+          console.log(`Uploading file: ${file.name} (${file.size} bytes)`)
           const fileUrl = await saveFile(file, nominationFolder)
           uploadedFiles[fieldName].push(fileUrl)
+          console.log(`File uploaded successfully: ${fileUrl}`)
         } catch (error) {
           console.error(`Error uploading file ${file.name}:`, error)
           throw new Error(`Failed to upload file: ${file.name}`)
