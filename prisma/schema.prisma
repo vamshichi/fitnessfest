@@ -96,6 +96,7 @@ model Nomination {
   cityArea     String
   organization String?
   designation  String
+  profilePhotoUrl String?
   
   // Professional data stored as JSON
   professionalData Json?
