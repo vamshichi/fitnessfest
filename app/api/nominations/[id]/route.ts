@@ -2,10 +2,10 @@ import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 // GET single nomination by ID
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, context: { params: { id: string } }) {
   try {
     const nomination = await prisma.nomination.findUnique({
-      where: { id: params.id },
+      where: { id: context.params.id },
     })
 
     if (!nomination) {
@@ -23,13 +23,13 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 }
 
 // PATCH - Update nomination status
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, context: { params: { id: string } }) {
   try {
     const body = await request.json()
     const { status, adminNotes, reviewedBy } = body
 
     const nomination = await prisma.nomination.update({
-      where: { id: params.id },
+      where: { id: context.params.id },
       data: {
         status,
         adminNotes,
