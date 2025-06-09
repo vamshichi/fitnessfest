@@ -1,7 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { writeFile, mkdir } from "fs/promises"
-import { existsSync } from "fs"
-import { join } from "path"
+import { put } from "@vercel/blob"
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
 
@@ -22,13 +20,6 @@ const nominationSchema = z.object({
   }),
 })
 
-// Helper function to ensure upload directory exists
-async function ensureUploadDir(dirPath: string) {
-  if (!existsSync(dirPath)) {
-    await mkdir(dirPath, { recursive: true })
-  }
-}
-
 // Helper function to generate unique filename
 function generateUniqueFilename(originalName: string): string {
   const timestamp = Date.now()
@@ -38,24 +29,45 @@ function generateUniqueFilename(originalName: string): string {
   return `${timestamp}-${randomString}-${nameWithoutExt}.${extension}`
 }
 
-// Helper function to save file locally
-async function saveFileLocally(file: File, subfolder: string): Promise<string> {
-  const bytes = await file.arrayBuffer()
-  const buffer = Buffer.from(bytes)
-
-  // Create upload path
-  const uploadDir = join(process.cwd(), "public", "uploads", subfolder)
-  await ensureUploadDir(uploadDir)
-
-  // Generate unique filename
+// Helper function to save file to Vercel Blob in production or locally in development
+async function saveFile(file: File, subfolder: string): Promise<string> {
   const filename = generateUniqueFilename(file.name)
-  const filepath = join(uploadDir, filename)
+  const filepath = `${subfolder}/${filename}`
 
-  // Write file
-  await writeFile(filepath, buffer)
+  if (process.env.NODE_ENV === "production") {
+    // Use Vercel Blob in production
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      throw new Error("BLOB_READ_WRITE_TOKEN is not configured")
+    }
 
-  // Return public URL path
-  return `/uploads/${subfolder}/${filename}`
+    const blob = await put(filepath, file, {
+      access: "public",
+    })
+
+    return blob.url
+  } else {
+    // Use local file system in development
+    const { writeFile, mkdir } = await import("fs/promises")
+    const { existsSync } = await import("fs")
+    const { join } = await import("path")
+
+    const bytes = await file.arrayBuffer()
+    const buffer = Buffer.from(bytes)
+
+    // Create upload path
+    const uploadDir = join(process.cwd(), "public", "uploads", subfolder)
+
+    // Ensure directory exists
+    if (!existsSync(uploadDir)) {
+      await mkdir(uploadDir, { recursive: true })
+    }
+
+    const fullPath = join(uploadDir, filename)
+    await writeFile(fullPath, buffer)
+
+    // Return public URL path
+    return `/uploads/${subfolder}/${filename}`
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -87,7 +99,7 @@ export async function POST(request: NextRequest) {
     const nominationTimestamp = Date.now()
     const nominationFolder = `nomination-${nominationTimestamp}`
 
-    // Upload files to local storage
+    // Upload files
     const uploadedFiles: Record<string, string[]> = {}
 
     for (const [fieldName, fileList] of Object.entries(files)) {
@@ -95,8 +107,8 @@ export async function POST(request: NextRequest) {
 
       for (const file of fileList) {
         try {
-          const filePath = await saveFileLocally(file, nominationFolder)
-          uploadedFiles[fieldName].push(filePath)
+          const fileUrl = await saveFile(file, nominationFolder)
+          uploadedFiles[fieldName].push(fileUrl)
         } catch (error) {
           console.error(`Error uploading file ${file.name}:`, error)
           throw new Error(`Failed to upload file: ${file.name}`)
@@ -151,7 +163,7 @@ export async function POST(request: NextRequest) {
           mediaMentions: data.mediaMentions,
         },
 
-        // File URLs (local paths)
+        // File URLs
         uploadedFiles: uploadedFiles,
 
         status: "PENDING",
